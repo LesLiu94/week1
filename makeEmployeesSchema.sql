@@ -1,6 +1,3 @@
-drop database if exists EmployeesDB;
-create database EmployeesDB;
-	
 drop schema if exists employeesSchema cascade;
 create schema employeesSchema;
 
