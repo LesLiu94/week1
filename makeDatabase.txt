@@ -1,0 +1,14 @@
+How to create a database
+
+1. To get to psql, go to postgresql/<version>/bin and type this command to enter psql command line ineterface
+psql -U postgres
+
+2. Then type in your password 
+
+3. Create a databas using the command:
+CREATE DATABASE <myDatabase> WITH ENCODING 'UTF8' LC_COLLATE='English_United States' LC_CTYPE='English_United States';
+
+4. Connect to it by using the command:
+\c <database name>
+
+
