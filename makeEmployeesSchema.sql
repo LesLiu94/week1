@@ -15,7 +15,7 @@ create table employeesSchema.departments (
 create index dept_name on employeesSchema.departments(dept_name);
 
 create table employeesSchema.employees (
-	emp_no numeric(11) unique not null,		--shows primary key symbol but not listed under "Indexes"
+	emp_no numeric(11) unique not null,
 	birth_date date not null,
 	first_name varchar(14) not null,
 	last_name varchar(16) not null,
@@ -50,7 +50,7 @@ create index dept_no_dept_manager_index on employeesSchema.dept_manager(dept_no)
 create table employeesSchema.salaries (
 	emp_no numeric(11) primary key references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	salary numeric(11) not null,
-	from_date date not null, 		--shows primary key symbol but not listed under "Indexes"
+	from_date date not null,
 	to_date date not null
 );
 
@@ -58,8 +58,8 @@ create index emp_no_salaries_index on employeesSchema.salaries(emp_no);
 
 create table employeesSchema.titles (
 	emp_no numeric(11) primary key references employeesSchema.employees(emp_no) on update cascade on delete restrict,
-	title varchar(50) not null,		--shows primary key symbol but not listed under "Indexes"
-	from_date date not null,		--shows primary key symbol but not listed under "Indexes"
+	title varchar(50) not null,
+	from_date date not null,
 	to_date date
 );
 
