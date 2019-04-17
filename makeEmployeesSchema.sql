@@ -12,8 +12,6 @@ create table employeesSchema.departments (
 	dept_name varchar(40) unique not null
 );
 
-create index dept_name on employeesSchema.departments(dept_name);
-
 create table employeesSchema.employees (
 	emp_no numeric(11) primary key,
 	birth_date date not null,
