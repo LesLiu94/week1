@@ -1,9 +1,13 @@
 package com.project.spring;
 
+import com.google.gson.Gson;
+import com.project.spring.DTO.Employee;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.gson.GsonAutoConfiguration;
+import org.springframework.boot.json.GsonJsonParser;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,7 +27,17 @@ public class UnequalPayEndpoint {
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
     public ResponseEntity<String> findUnequallyPaidEmployees() {
         logger.info("Handling request for list of employees that make less than their juniors");
-        ArrayList<String> unequalEmployees = UnequalPayLookupService
+        ArrayList<Integer> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
+        if (unequalEmployees.size()<=0) {
+            logger.info("Found no employees that make less than their juniors.");
+            String json = new Gson().toJson("{}");
+            return ResponseEntity.status(202).header("Could not find an employee").body(json);
+        }
+        else{
+            logger.info("Successfully generated a response for unequally paid employees");
+            String json = new Gson().toJson(unequalEmployees);
+            return ResponseEntity.ok(json);
+        }
     }
 
 
