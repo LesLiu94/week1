@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(name = "employees")
 @JsonIgnoreProperties
-public class Employee {
+public class Employee implements Comparable <Employee>{
 
     @Column(name = "emp_no")
     @Id
@@ -38,6 +38,11 @@ public class Employee {
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date hireDate;
+
+    @Override
+    public int compareTo(Employee e) {
+        return this.getHireDate().compareTo(e.getHireDate());
+    }
 
     //Getters and Setters
     public int getEmpNo() {

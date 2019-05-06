@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import static org.springframework.util.CollectionUtils.isEmpty;
@@ -27,12 +29,16 @@ public class UnequalPayLookupService {
         logger.info("Finding unequally paid employees");
        ArrayList<Integer> unequalResultSet = new ArrayList<Integer>();
         List<Employee> employeeList = employeeDAO.findAll();
+
         //if the employee set is empty, return null
         if(isEmpty(employeeList)) {
             return null;
         }
+
+        Collections.sort(employeeList);
+
         Employee baseEmp, compareEmp;
-        for (int i = 0; i < (employeeList.size()-1); i++){
+        /*for (int i = 0; i < (employeeList.size()-1); i++){
          baseEmp = employeeList.get(i);
          for (int j = i+1; j <= (employeeList.size()-1); j++) {
             compareEmp = employeeList.get(j);
@@ -47,7 +53,17 @@ public class UnequalPayLookupService {
                 }
             }
          }
+        }*/
+
+        for (int i = 0; i < (employeeList.size()-1); i++){
+            baseEmp = employeeList.get(i);
+            compareEmp = employeeList.get(i+1);
+            if(salaryDAO.findByEmpNo(baseEmp.getEmpNo()).getPay() < salaryDAO.findByEmpNo(compareEmp.getEmpNo()).getPay()) {
+                unequalResultSet.add(baseEmp.getEmpNo());
+            }
+
         }
+
         return unequalResultSet;
     }
 }
