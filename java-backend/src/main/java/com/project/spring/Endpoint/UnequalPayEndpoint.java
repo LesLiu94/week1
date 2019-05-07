@@ -28,7 +28,7 @@ public class UnequalPayEndpoint {
         if (unequalEmployees.size()<=0) {
             logger.info("Found no employees that make less than their juniors.");
             String json = new Gson().toJson("{}");
-            return ResponseEntity.status(202).header("Could not find an employee").body(json);
+            return ResponseEntity.status(204).header("Could not find an employee").body(json);
         }
         else{
             logger.info("Successfully generated a response for unequally paid employees");

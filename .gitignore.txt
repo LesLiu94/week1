@@ -3,3 +3,10 @@
 *.iws
 *.iml
 *.ipr
+
+### Gradle ###
+build/
+gradle/
+gradlew*
+gradlew.bat
+settings.gradle

@@ -37,29 +37,29 @@ public class UnequalPayLookupService {
 
         Collections.sort(employeeList);
 
-        Employee baseEmp, compareEmp;
+        Employee seniorEmp, juniorEmp;
         /*for (int i = 0; i < (employeeList.size()-1); i++){
-         baseEmp = employeeList.get(i);
+         seniorEmp = employeeList.get(i);
          for (int j = i+1; j <= (employeeList.size()-1); j++) {
-            compareEmp = employeeList.get(j);
-            if(baseEmp.getHireDate().before(compareEmp.getHireDate())) {
-                if(salaryDAO.findByEmpNo(baseEmp.getEmpNo()).getPay() < salaryDAO.findByEmpNo(compareEmp.getEmpNo()).getPay()) {
-                    unequalResultSet.add(baseEmp.getEmpNo());
+            juniorEmp = employeeList.get(j);
+            if(seniorEmp.getHireDate().before(juniorEmp.getHireDate())) {
+                if(salaryDAO.findByEmpNo(seniorEmp.getEmpNo()).getPay() < salaryDAO.findByEmpNo(juniorEmp.getEmpNo()).getPay()) {
+                    unequalResultSet.add(seniorEmp.getEmpNo());
                 }
             }
             else {
-                if(salaryDAO.findByEmpNo(baseEmp.getEmpNo()).getPay() > salaryDAO.findByEmpNo(compareEmp.getEmpNo()).getPay()) {
-                    unequalResultSet.add(compareEmp.getEmpNo());
+                if(salaryDAO.findByEmpNo(seniorEmp.getEmpNo()).getPay() > salaryDAO.findByEmpNo(juniorEmp.getEmpNo()).getPay()) {
+                    unequalResultSet.add(juniorEmp.getEmpNo());
                 }
             }
          }
         }*/
 
         for (int i = 0; i < (employeeList.size()-1); i++){
-            baseEmp = employeeList.get(i);
-            compareEmp = employeeList.get(i+1);
-            if(salaryDAO.findByEmpNo(baseEmp.getEmpNo()).getPay() < salaryDAO.findByEmpNo(compareEmp.getEmpNo()).getPay()) {
-                unequalResultSet.add(baseEmp.getEmpNo());
+            seniorEmp = employeeList.get(i);
+            juniorEmp = employeeList.get(i+1);
+            if(salaryDAO.findByEmpNo(seniorEmp.getEmpNo()).getPay() < salaryDAO.findByEmpNo(juniorEmp.getEmpNo()).getPay()) {
+                unequalResultSet.add(seniorEmp.getEmpNo());
             }
 
         }
