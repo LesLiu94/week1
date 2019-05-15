@@ -1,4 +1,4 @@
-package com.project.spring.DTO;
+package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

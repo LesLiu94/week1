@@ -1,16 +1,17 @@
-package com.project.spring.DTO;
+package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.Comparator;
 import java.util.Date;
 
 @Entity
 @Table(name = "employees")
 @JsonIgnoreProperties
-public class Employee implements Comparable <Employee>{
+public class Employee{
 
     @Column(name = "emp_no")
     @Id
@@ -39,10 +40,10 @@ public class Employee implements Comparable <Employee>{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date hireDate;
 
-    @Override
-    public int compareTo(Employee e) {
-        return this.getHireDate().compareTo(e.getHireDate());
-    }
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn (name = "emp_no")
+    @NotBlank
+    private Salary salary;
 
     //Getters and Setters
     public int getEmpNo() {
@@ -91,5 +92,13 @@ public class Employee implements Comparable <Employee>{
 
     public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
+    }
+
+    public Salary getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Salary salary) {
+        this.salary = salary;
     }
 }

@@ -1,6 +1,7 @@
 package com.project.spring.Endpoint;
 
 import com.google.gson.Gson;
+import com.project.spring.DomainObjects.Employee;
 import com.project.spring.Services.UnequalPayLookupService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
