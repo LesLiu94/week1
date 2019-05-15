@@ -14,9 +14,8 @@ public class Salary {
     //int emp_no, int salary, date from_date, date to_date
     @Column(name = "emp_no")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank
-    private int emp_No;
+    private int empNo;
 
     @Column(name = "salary")
     @NotBlank
@@ -34,11 +33,11 @@ public class Salary {
     private Date toDate;
 
     public int getEmp_No() {
-        return emp_No;
+        return empNo;
     }
 
     public void setEmp_No(int emp_No) {
-        this.emp_No = emp_No;
+        this.empNo = emp_No;
     }
 
     public int getPay() {
