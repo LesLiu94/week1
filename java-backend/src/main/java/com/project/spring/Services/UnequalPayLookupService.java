@@ -29,7 +29,7 @@ public class UnequalPayLookupService {
        ArrayList<Integer> unequalResultSet = new ArrayList<>();
         List<Employee> employeeList = employeeDAO.findAll();
 
-        Collections.sort(employeeList,Collections.reverseOrder());
+        Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
 
         int maxSalary = 0;
 
