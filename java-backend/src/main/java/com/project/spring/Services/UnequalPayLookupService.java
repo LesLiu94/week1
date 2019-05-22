@@ -7,6 +7,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,9 +26,11 @@ public class UnequalPayLookupService {
 
     private final static Logger logger = LogManager.getLogger(UnequalPayLookupService.class);
 
-    public ArrayList<Integer> findUnequallyPaidEmployees() {
+    @ResponseBody
+    public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Finding unequally paid employees");
-       ArrayList<Integer> unequalResultSet = new ArrayList<>();
+       ArrayList<String> unequalResultSet = new ArrayList<>();
+       String resultEmployee;
         List<Employee> employeeList = employeeDAO.findAll();
 
         Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
@@ -38,7 +42,8 @@ public class UnequalPayLookupService {
                 maxSalary = e.getSalary().getPay();
             }
             else {
-                unequalResultSet.add(e.getEmpNo());
+                resultEmployee = e.toString();
+                unequalResultSet.add(resultEmployee);
             }
         }
 

@@ -8,6 +8,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,22 +25,13 @@ public class UnequalPayEndpoint {
     final static Logger logger = LogManager.getLogger(UnequalPayEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
-    public ResponseEntity<String> findUnequallyPaidEmployees() {
+    @GetMapping(value = "/", produces = "application/json")
+    public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Handling request for list of employees that make less than their juniors");
-        ArrayList<Integer> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
-        if (unequalEmployees.size()<=0) {
-            logger.info("Found no employees that make less than their juniors.");
-            String json = new Gson().toJson("{}");
-            return ResponseEntity.status(204).header("Could not find an employee").body(json);
-        }
-        else{
-            logger.info("Successfully generated a response for unequally paid employees");
-            String json = new Gson().toJson(unequalEmployees);
-            return ResponseEntity.ok(json);
-        }
+        ArrayList<String> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
+
+        logger.info("Successfully generated a response for unequally paid employees");
+        return unequalEmployees;
     }
-
-
-
 
 }

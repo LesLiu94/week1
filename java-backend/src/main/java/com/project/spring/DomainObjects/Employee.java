@@ -45,6 +45,12 @@ public class Employee{
     @NotBlank
     private Salary salary;
 
+    @Override
+    public String toString(){
+        String resultString = String.join(" ",this.firstName, this.lastName, this.birthDate);
+        return resultString;
+    }
+
     //Getters and Setters
     public int getEmpNo() {
         return empNo;
