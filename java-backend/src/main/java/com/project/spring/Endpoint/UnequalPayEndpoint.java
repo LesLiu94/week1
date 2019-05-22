@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping(value = "/api/unequalPayLookup")
+@RequestMapping(value = "/api/PayLookup")
 public class UnequalPayEndpoint {
 
     @Autowired
@@ -25,7 +25,7 @@ public class UnequalPayEndpoint {
     final static Logger logger = LogManager.getLogger(UnequalPayEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
-    @GetMapping(value = "/", produces = "application/json")
+    @GetMapping(value = "/unequalEmployees", produces = "application/json")
     public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Handling request for list of employees that make less than their juniors");
         ArrayList<String> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
