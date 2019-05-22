@@ -6,5 +6,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SalaryDAO extends JpaRepository<Salary,Long> {
-    Salary findByEmpNo (int empNo);
 }
