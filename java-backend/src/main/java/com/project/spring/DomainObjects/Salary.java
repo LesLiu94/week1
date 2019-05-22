@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import java.util.Date;
 
 @Entity
-@Table(name = "salaries")
+@Table(schema = "employeesschema", name = "salaries")
 
 public class Salary {
 

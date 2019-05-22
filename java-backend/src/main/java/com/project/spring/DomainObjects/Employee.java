@@ -9,8 +9,7 @@ import java.util.Comparator;
 import java.util.Date;
 
 @Entity
-@Table(name = "employees")
-@JsonIgnoreProperties
+@Table(schema = "employeesschema", name = "employees")
 public class Employee{
 
     @Column(name = "emp_no")
