@@ -20,6 +20,7 @@ public class Employee{
 
     @Column(name = "birth_date")
     @NotBlank
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private String birthDate;
 
     @Column(name = "first_name")
@@ -40,9 +41,24 @@ public class Employee{
     private Date hireDate;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn (name = "emp_no")
+    @JoinColumn(name = "emp_no")
     @NotBlank
     private Salary salary;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no")
+    @NotBlank
+    private Title title;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no")
+    @NotBlank
+    private DepartmentManager departmentManager;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no")
+    @NotBlank
+    private DepartmentEmployee departmentEmployee;
 
     @Override
     public String toString(){
@@ -51,6 +67,7 @@ public class Employee{
     }
 
     //Getters and Setters
+
     public int getEmpNo() {
         return empNo;
     }
@@ -105,5 +122,29 @@ public class Employee{
 
     public void setSalary(Salary salary) {
         this.salary = salary;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public void setTitle(Title title) {
+        this.title = title;
+    }
+
+    public DepartmentManager getDepartmentManager() {
+        return departmentManager;
+    }
+
+    public void setDepartmentManager(DepartmentManager departmentManager) {
+        this.departmentManager = departmentManager;
+    }
+
+    public DepartmentEmployee getDepartmentEmployee() {
+        return departmentEmployee;
+    }
+
+    public void setDepartmentEmployee(DepartmentEmployee departmentEmployee) {
+        this.departmentEmployee = departmentEmployee;
     }
 }

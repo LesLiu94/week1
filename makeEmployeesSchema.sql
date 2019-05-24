@@ -7,6 +7,12 @@ if not exists (select 1 from pg_catalog.pg_type where typname = 'sex') then
 end if;
 end $$;
 
+do $$ begin
+if not exists (select 1 from pg_catalog.pg_type where typname = 'employee_title') then
+	create type employee_title as enum ('Employee','Manager', 'Janitor');
+end if;
+end $$;
+
 create table employeesSchema.departments (
 	dept_no char(4) primary key,
 	dept_name varchar(40) unique not null
@@ -57,7 +63,7 @@ create index emp_no_salaries_index on employeesSchema.salaries(emp_no);
 
 create table employeesSchema.titles (
 	emp_no numeric(11) references employeesSchema.employees(emp_no) on update cascade on delete restrict,
-	title varchar(50) not null,
+	title employee_title not null,
 	from_date date not null,
 	to_date date,
 	primary key (emp_no, title, from_date)
