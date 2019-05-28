@@ -8,4 +8,5 @@ import java.util.Date;
 
 @Repository
 public interface EmployeeDAO extends JpaRepository<Employee,Long> {
+    Employee findByFirstNameLastNameBirthDate(String firstName, String lastName, String birthDate);
 }

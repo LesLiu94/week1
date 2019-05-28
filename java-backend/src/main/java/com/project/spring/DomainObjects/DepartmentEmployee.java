@@ -4,11 +4,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_emp")
-public class DepartmentEmployee {
+public class DepartmentEmployee{
     //int emp_no, int dept_no, date from_date, date to_date
     @Column(name = "emp_no")
     @Id
