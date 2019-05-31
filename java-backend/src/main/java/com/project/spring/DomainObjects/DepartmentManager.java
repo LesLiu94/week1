@@ -17,13 +17,13 @@ public class DepartmentManager implements Serializable{
     @EmbeddedId
     private DeptManagerCompositeKey deptManagerCompositeKey;
 
-    //@Column(name = "dept_no")
-    @NotBlank
-    private int deptNo;
-
-    //@Column(name = "emp_no")
+    @Column(name = "emp_no", insertable = false, updatable = false)
     @NotBlank
     private int empNo;
+
+    @Column(name = "dept_no", insertable = false, updatable = false)
+    @NotBlank
+    private int deptNo;
 
     @Column(name = "from_date")
     @NotBlank
@@ -35,19 +35,24 @@ public class DepartmentManager implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date toDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dept_no")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_no", insertable = false, updatable = false)
     @NotBlank
-    private Set<Department> departments;
+    private Department departments;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no", insertable = false, updatable = false)
+    @NotBlank
+    private Employee employee;
 
     //Getters and Setters
 
-    public DeptManagerCompositeKey getDeptManagerCompositeKey() {
-        return deptManagerCompositeKey;
+    public int getEmpNo() {
+        return empNo;
     }
 
-    public void setDeptManagerCompositeKey(DeptManagerCompositeKey deptManagerCompositeKey) {
-        this.deptManagerCompositeKey = deptManagerCompositeKey;
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
     }
 
     public int getDeptNo() {
@@ -58,12 +63,12 @@ public class DepartmentManager implements Serializable{
         this.deptNo = deptNo;
     }
 
-    public int getEmpNo() {
-        return empNo;
+    public DeptManagerCompositeKey getDeptManagerCompositeKey() {
+        return deptManagerCompositeKey;
     }
 
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
+    public void setDeptManagerCompositeKey(DeptManagerCompositeKey deptManagerCompositeKey) {
+        this.deptManagerCompositeKey = deptManagerCompositeKey;
     }
 
     public Date getFromDate() {
@@ -82,11 +87,19 @@ public class DepartmentManager implements Serializable{
         this.toDate = toDate;
     }
 
-    public Set<Department> getDepartments() {
+    public Department getDepartments() {
         return departments;
     }
 
-    public void setDepartments(Set<Department> departments) {
+    public void setDepartments(Department departments) {
         this.departments = departments;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

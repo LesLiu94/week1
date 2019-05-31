@@ -2,13 +2,14 @@ package com.project.spring.CompositeKeys;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class DeptManagerCompositeKey {
-    @Column(name = "emp_no")
+public class DeptManagerCompositeKey implements Serializable {
+    @Column(name = "emp_no", insertable = false, updatable = false)
     private int empNo;
 
-    @Column(name = "dept_no")
+    @Column(name = "dept_no", insertable = false, updatable = false)
     private int deptNo;
 
     public DeptManagerCompositeKey(){

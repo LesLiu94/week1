@@ -17,16 +17,16 @@ public class Title implements Serializable{
     @EmbeddedId
     private TitlesCompositeKey titlesCompositeKey;
 
-    //@Column(name = "emp_no")
+    @Column(name = "emp_no",insertable=false, updatable=false)
     @NotBlank
     private int empNo;
 
-    //@Column(name = "title")
+    @Column(name = "title",insertable=false, updatable=false)
     @NotBlank
     @Enumerated(EnumType.STRING)
     private EmployeeTitle title;
 
-    //@Column(name = "from_date")
+    @Column(name = "from_date",insertable=false, updatable=false)
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date fromDate;

@@ -16,7 +16,7 @@ public class Salary implements Serializable {
     @EmbeddedId
     private SalariesCompositeKey salariesCompositeKey;
 
-    //@Column(name = "emp_no")
+    @Column(name = "emp_no",insertable=false, updatable=false)
     @NotBlank
     private int empNo;
 
@@ -24,7 +24,7 @@ public class Salary implements Serializable {
     @NotBlank
     private int pay;
 
-    //@Column(name = "from_date")
+    @Column(name = "from_date",insertable=false, updatable=false)
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fromDate;

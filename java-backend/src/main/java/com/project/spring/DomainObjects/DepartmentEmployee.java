@@ -16,11 +16,11 @@ public class DepartmentEmployee implements Serializable{
     @EmbeddedId
     private DeptEmpCompositeKey deptEmpCompositeKey;
 
-    //@Column(name = "emp_no")
+    @Column(name = "emp_no",insertable=false, updatable=false)
     @NotBlank
     private int empNo;
 
-    //@Column(name = "dept_no")
+    @Column(name = "dept_no",insertable=false, updatable=false)
     @NotBlank
     private int deptNo;
 
@@ -34,10 +34,15 @@ public class DepartmentEmployee implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date toDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dept_no")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "dept_no", insertable = false, updatable = false)
     @NotBlank
-    private Set<Department> departments;
+    private Department department;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "emp_no", insertable = false, updatable = false)
+    @NotBlank
+    private Employee employee;
 
     //Getters and Setters
 
@@ -81,11 +86,19 @@ public class DepartmentEmployee implements Serializable{
         this.toDate = toDate;
     }
 
-    public Set<Department> getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(Set<Department> departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }
