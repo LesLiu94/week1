@@ -1,25 +1,27 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
+import com.project.spring.CompositeKeys.DeptManagerCompositeKey;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_manager")
 public class DepartmentManager implements Serializable{
-    //int dept_no, int emp_no, date from_date, date to_date
-    @Column(name = "dept_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @EmbeddedId
+    private DeptManagerCompositeKey deptManagerCompositeKey;
+
+    //@Column(name = "dept_no")
     @NotBlank
     private int deptNo;
 
-    @Column(name = "emp_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "emp_no")
     @NotBlank
     private int empNo;
 
@@ -33,12 +35,20 @@ public class DepartmentManager implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date toDate;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_no")
     @NotBlank
-    private Department department;
+    private Set<Department> departments;
 
     //Getters and Setters
+
+    public DeptManagerCompositeKey getDeptManagerCompositeKey() {
+        return deptManagerCompositeKey;
+    }
+
+    public void setDeptManagerCompositeKey(DeptManagerCompositeKey deptManagerCompositeKey) {
+        this.deptManagerCompositeKey = deptManagerCompositeKey;
+    }
 
     public int getDeptNo() {
         return deptNo;
@@ -72,11 +82,11 @@ public class DepartmentManager implements Serializable{
         this.toDate = toDate;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Set<Department> getDepartments() {
+        return departments;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
 }

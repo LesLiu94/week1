@@ -1,19 +1,22 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.spring.CompositeKeys.SalariesCompositeKey;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "salaries")
 
-public class Salary {
+public class Salary implements Serializable {
 
-    //int emp_no, int salary, date from_date, date to_date
-    @Column(name = "emp_no")
-    @Id
+    @EmbeddedId
+    private SalariesCompositeKey salariesCompositeKey;
+
+    //@Column(name = "emp_no")
     @NotBlank
     private int empNo;
 
@@ -21,8 +24,7 @@ public class Salary {
     @NotBlank
     private int pay;
 
-    @Column(name = "from_date")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "from_date")
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date fromDate;
@@ -31,6 +33,14 @@ public class Salary {
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date toDate;
+
+    public SalariesCompositeKey getSalariesCompositeKey() {
+        return salariesCompositeKey;
+    }
+
+    public void setSalariesCompositeKey(SalariesCompositeKey salariesCompositeKey) {
+        this.salariesCompositeKey = salariesCompositeKey;
+    }
 
     public int getEmp_No() {
         return empNo;

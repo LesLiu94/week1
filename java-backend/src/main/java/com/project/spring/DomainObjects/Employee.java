@@ -2,11 +2,14 @@ package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.project.spring.Enums.Sex;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "employees")
@@ -33,32 +36,33 @@ public class Employee{
 
     @Column(name = "gender")
     @NotBlank
-    private char sex;
+    @Enumerated
+    private Sex sex;
 
     @Column(name = "hire_date")
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date hireDate;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Salary salary;
+    private Set<Salary> salaries;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Title title;
+    private Set<Title> titles;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private DepartmentManager departmentManager;
+    private Set<DepartmentManager> departmentManager;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private DepartmentEmployee departmentEmployee;
+    private Set<DepartmentEmployee> departmentEmployee;
 
     @Override
     public String toString(){
@@ -100,11 +104,11 @@ public class Employee{
         this.lastName = lastName;
     }
 
-    public char getSex() {
+    public Sex getSex() {
         return sex;
     }
 
-    public void setSex(char sex) {
+    public void setSex(Sex sex) {
         this.sex = sex;
     }
 
@@ -116,35 +120,35 @@ public class Employee{
         this.hireDate = hireDate;
     }
 
-    public Salary getSalary() {
-        return salary;
+    public Set<Salary> getSalaries() {
+        return salaries;
     }
 
-    public void setSalary(Salary salary) {
-        this.salary = salary;
+    public void setSalaries(Set<Salary> salaries) {
+        this.salaries = salaries;
     }
 
-    public Title getTitle() {
-        return title;
+    public Set<Title> getTitles() {
+        return titles;
     }
 
-    public void setTitle(Title title) {
-        this.title = title;
+    public void setTitles(Set<Title> titles) {
+        this.titles = titles;
     }
 
-    public DepartmentManager getDepartmentManager() {
+    public Set<DepartmentManager> getDepartmentManager() {
         return departmentManager;
     }
 
-    public void setDepartmentManager(DepartmentManager departmentManager) {
+    public void setDepartmentManager(Set<DepartmentManager> departmentManager) {
         this.departmentManager = departmentManager;
     }
 
-    public DepartmentEmployee getDepartmentEmployee() {
+    public Set<DepartmentEmployee> getDepartmentEmployee() {
         return departmentEmployee;
     }
 
-    public void setDepartmentEmployee(DepartmentEmployee departmentEmployee) {
+    public void setDepartmentEmployee(Set<DepartmentEmployee> departmentEmployee) {
         this.departmentEmployee = departmentEmployee;
     }
 }

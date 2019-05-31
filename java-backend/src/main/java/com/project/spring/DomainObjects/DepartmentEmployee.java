@@ -1,25 +1,26 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_emp")
 public class DepartmentEmployee implements Serializable{
-    //int emp_no, int dept_no, date from_date, date to_date
-    @Column(name = "emp_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @EmbeddedId
+    private DeptEmpCompositeKey deptEmpCompositeKey;
+
+    //@Column(name = "emp_no")
     @NotBlank
     private int empNo;
 
-    @Column(name = "dept_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "dept_no")
     @NotBlank
     private int deptNo;
 
@@ -33,12 +34,20 @@ public class DepartmentEmployee implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date toDate;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_no")
     @NotBlank
-    private Department department;
+    private Set<Department> departments;
 
     //Getters and Setters
+
+    public DeptEmpCompositeKey getDeptEmpCompositeKey() {
+        return deptEmpCompositeKey;
+    }
+
+    public void setDeptEmpCompositeKey(DeptEmpCompositeKey deptEmpCompositeKey) {
+        this.deptEmpCompositeKey = deptEmpCompositeKey;
+    }
 
     public int getEmpNo() {
         return empNo;
@@ -72,11 +81,11 @@ public class DepartmentEmployee implements Serializable{
         this.toDate = toDate;
     }
 
-    public Department getDepartment() {
-        return department;
+    public Set<Department> getDepartments() {
+        return departments;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDepartments(Set<Department> departments) {
+        this.departments = departments;
     }
 }

@@ -1,6 +1,8 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.project.spring.CompositeKeys.TitlesCompositeKey;
+import com.project.spring.Enums.EmployeeTitle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -11,23 +13,20 @@ import java.util.Date;
 @Table(schema = "employeesschema", name = "titles")
 
 public class Title implements Serializable{
-    //int emp_no, String title, String from_date, String to_date
 
-    @Column(name = "emp_no")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EmbeddedId
+    private TitlesCompositeKey titlesCompositeKey;
+
+    //@Column(name = "emp_no")
     @NotBlank
     private int empNo;
 
-    @Column(name = "title")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "title")
     @NotBlank
-    private String title;
+    @Enumerated(EnumType.STRING)
+    private EmployeeTitle title;
 
-    @Column(name = "from_date")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "from_date")
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date fromDate;
@@ -38,6 +37,14 @@ public class Title implements Serializable{
 
     //Getters and Setters
 
+    public TitlesCompositeKey getTitlesCompositeKey() {
+        return titlesCompositeKey;
+    }
+
+    public void setTitlesCompositeKey(TitlesCompositeKey titlesCompositeKey) {
+        this.titlesCompositeKey = titlesCompositeKey;
+    }
+
     public int getEmpNo() {
         return empNo;
     }
@@ -46,11 +53,11 @@ public class Title implements Serializable{
         this.empNo = empNo;
     }
 
-    public String getTitle() {
+    public EmployeeTitle getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(EmployeeTitle title) {
         this.title = title;
     }
 

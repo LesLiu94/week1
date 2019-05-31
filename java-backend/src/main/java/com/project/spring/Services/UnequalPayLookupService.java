@@ -3,6 +3,7 @@ package com.project.spring.Services;
 import com.project.spring.DAO.EmployeeDAO;
 import com.project.spring.DAO.SalaryDAO;
 import com.project.spring.DomainObjects.Employee;
+import com.project.spring.DomainObjects.Salary;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,17 +36,19 @@ public class UnequalPayLookupService {
 
         Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
 
+
+
         int maxSalary = 0;
 
-        for (Employee e: employeeList){
-            if(maxSalary < e.getSalary().getPay()) {
-                maxSalary = e.getSalary().getPay();
+        /*for (Employee e: employeeList){
+            if(maxSalary < e.getSalaries().get(0).getPay()) {
+                maxSalary = e.getSalaries().get(0).getPay();
             }
             else {
                 resultEmployee = e.toString();
                 unequalResultSet.add(resultEmployee);
             }
-        }
+        }*/
 
         return unequalResultSet;
     }
