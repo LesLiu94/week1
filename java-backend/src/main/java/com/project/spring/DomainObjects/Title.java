@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Table(schema = "employeesschema", name = "titles")
 
-public class Title{
+public class Title implements Serializable{
     //int emp_no, String title, String from_date, String to_date
 
     @Column(name = "emp_no")

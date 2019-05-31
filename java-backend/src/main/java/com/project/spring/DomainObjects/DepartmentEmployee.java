@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_emp")
-public class DepartmentEmployee{
+public class DepartmentEmployee implements Serializable{
     //int emp_no, int dept_no, date from_date, date to_date
     @Column(name = "emp_no")
     @Id

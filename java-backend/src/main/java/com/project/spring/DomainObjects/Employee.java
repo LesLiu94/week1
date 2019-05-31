@@ -41,22 +41,22 @@ public class Employee{
     private Date hireDate;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no")
+    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
     private Salary salary;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no")
+    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
     private Title title;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no")
+    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
     private DepartmentManager departmentManager;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no")
+    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
     private DepartmentEmployee departmentEmployee;
 
