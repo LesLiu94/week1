@@ -34,7 +34,7 @@ public class EmployeeLookupService {
         logger.info("Finding employee by first name, last name, and date of birth");
         String resultString="";
         Employee resultEmployee;
-        resultEmployee = employeeDAO.findByFirstNameLastNameBirthDate(first, last, dob);
+        resultEmployee = employeeDAO.findByFirstNameAndLastNameAndBirthDate(first, last, dob);
 
         logger.info("Finding title, salary and department of this employee.");
         resultString = resultEmployee.getFirstName() + " " + resultEmployee.getLastName() + " is a(n) "; //+ resultEmployee.getTitles().get(0).getTitle() + " of " + resultEmployee.getDepartmentManager().getDepartment().getDeptName() + " with a salary of " + resultEmployee.getSalaries().get(0).getPay() +".";
