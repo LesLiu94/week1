@@ -31,29 +31,28 @@ public class UnequalPayLookupService {
     @ResponseBody
     public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Finding unequally paid employees");
-       ArrayList<String> unequalResultList = new ArrayList<>();
-       String resultEmployee;
+       //get all employees
        List<Employee> employeeList = employeeDAO.findAll();
-       List<List<Salary>> salaryListArrayList = new ArrayList<>();
+
+       //sort by hire date descending. so the most recent employees are first.
+       Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
+
+       String resultEmployee;
        List<Salary> salaryArrayList= new ArrayList<>();
 
-       Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
-        employeeList.forEach(employee -> salaryListArrayList.add(employee.getSalaries()));
-        salaryListArrayList.forEach(salaries -> salaryArrayList.add(salaries.get(salaries.size()-1)));
+       ArrayList<String> unequalResultList = new ArrayList<>();
+
+       employeeList.forEach(employee -> salaryArrayList.add(employee.getSalaries().get(employee.getSalaries().size()-1)));
 
         int maxSalary = 0;
-        List<Integer> indexes = new ArrayList<>();
 
         for(int i = 0; i < salaryArrayList.size(); i++){
             if (maxSalary < salaryArrayList.get(i).getPay()){
                 maxSalary = salaryArrayList.get(i).getPay();
             }
             else{
-                indexes.add(i);
+                unequalResultList.add(employeeList.get(i).toString());
             }
-        }
-        for (int i: indexes){
-            unequalResultList.add(employeeList.get(i).toString());
         }
 
         return unequalResultList;
