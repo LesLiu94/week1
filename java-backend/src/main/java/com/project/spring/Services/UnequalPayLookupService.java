@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import static org.springframework.util.CollectionUtils.isEmpty;
 
@@ -30,26 +31,31 @@ public class UnequalPayLookupService {
     @ResponseBody
     public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Finding unequally paid employees");
-       ArrayList<String> unequalResultSet = new ArrayList<>();
+       ArrayList<String> unequalResultList = new ArrayList<>();
        String resultEmployee;
-        List<Employee> employeeList = employeeDAO.findAll();
+       List<Employee> employeeList = employeeDAO.findAll();
+       List<List<Salary>> salaryListArrayList = new ArrayList<>();
+       List<Salary> salaryArrayList= new ArrayList<>();
 
-        Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
-
-
+       Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
+        employeeList.forEach(employee -> salaryListArrayList.add(employee.getSalaries()));
+        salaryListArrayList.forEach(salaries -> salaryArrayList.add(salaries.get(salaries.size()-1)));
 
         int maxSalary = 0;
+        List<Integer> indexes = new ArrayList<>();
 
-        /*for (Employee e: employeeList){
-            if(maxSalary < e.getSalaries().get(0).getPay()) {
-                maxSalary = e.getSalaries().get(0).getPay();
+        for(int i = 0; i < salaryArrayList.size(); i++){
+            if (maxSalary < salaryArrayList.get(i).getPay()){
+                maxSalary = salaryArrayList.get(i).getPay();
             }
-            else {
-                resultEmployee = e.toString();
-                unequalResultSet.add(resultEmployee);
+            else{
+                indexes.add(i);
             }
-        }*/
+        }
+        for (int i: indexes){
+            unequalResultList.add(employeeList.get(i).toString());
+        }
 
-        return unequalResultSet;
+        return unequalResultList;
     }
 }

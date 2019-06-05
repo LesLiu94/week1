@@ -22,7 +22,7 @@ public class DepartmentEmployee implements Serializable{
 
     @Column(name = "dept_no",insertable=false, updatable=false)
     @NotBlank
-    private int deptNo;
+    private String deptNo;
 
     @Column(name = "from_date")
     @NotBlank
@@ -62,11 +62,11 @@ public class DepartmentEmployee implements Serializable{
         this.empNo = empNo;
     }
 
-    public int getDeptNo() {
+    public String getDeptNo() {
         return deptNo;
     }
 
-    public void setDeptNo(int deptNo) {
+    public void setDeptNo(String deptNo) {
         this.deptNo = deptNo;
     }
 

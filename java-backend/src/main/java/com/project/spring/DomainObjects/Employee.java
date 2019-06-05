@@ -6,7 +6,7 @@ import com.project.spring.Enums.Sex;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.Set;
@@ -47,22 +47,22 @@ public class Employee{
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Set<Salary> salaries;
+    private List<Salary> salaries;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Set<Title> titles;
+    private List<Title> titles;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Set<DepartmentManager> departmentManager;
+    private List<DepartmentManager> departmentManager;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
     @NotBlank
-    private Set<DepartmentEmployee> departmentEmployee;
+    private List<DepartmentEmployee> departmentEmployee;
 
     @Override
     public String toString(){
@@ -120,35 +120,35 @@ public class Employee{
         this.hireDate = hireDate;
     }
 
-    public Set<Salary> getSalaries() {
+    public List<Salary> getSalaries() {
         return salaries;
     }
 
-    public void setSalaries(Set<Salary> salaries) {
+    public void setSalaries(List<Salary> salaries) {
         this.salaries = salaries;
     }
 
-    public Set<Title> getTitles() {
+    public List<Title> getTitles() {
         return titles;
     }
 
-    public void setTitles(Set<Title> titles) {
+    public void setTitles(List<Title> titles) {
         this.titles = titles;
     }
 
-    public Set<DepartmentManager> getDepartmentManager() {
+    public List<DepartmentManager> getDepartmentManager() {
         return departmentManager;
     }
 
-    public void setDepartmentManager(Set<DepartmentManager> departmentManager) {
+    public void setDepartmentManager(List<DepartmentManager> departmentManager) {
         this.departmentManager = departmentManager;
     }
 
-    public Set<DepartmentEmployee> getDepartmentEmployee() {
+    public List<DepartmentEmployee> getDepartmentEmployee() {
         return departmentEmployee;
     }
 
-    public void setDepartmentEmployee(Set<DepartmentEmployee> departmentEmployee) {
+    public void setDepartmentEmployee(List<DepartmentEmployee> departmentEmployee) {
         this.departmentEmployee = departmentEmployee;
     }
 }
