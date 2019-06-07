@@ -35,6 +35,12 @@ public class Title implements Serializable{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date toDate;
 
+    @Override
+    public String toString() {
+        String resultString = title.toString();
+        return resultString;
+    }
+
     //Getters and Setters
 
     public TitlesCompositeKey getTitlesCompositeKey() {

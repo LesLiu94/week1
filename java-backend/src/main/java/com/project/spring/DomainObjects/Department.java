@@ -11,17 +11,17 @@ public class Department {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @NotBlank
-    private int deptNo;
+    private String deptNo;
 
     @Column(name = "dept_name", unique = true)
     @NotBlank
     private String deptName;
 
-    public int getDeptNo() {
+    public String getDeptNo() {
         return deptNo;
     }
 
-    public void setDeptNo(int deptNo) {
+    public void setDeptNo(String deptNo) {
         this.deptNo = deptNo;
     }
 

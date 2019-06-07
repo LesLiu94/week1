@@ -1,14 +1,12 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
 import com.project.spring.CompositeKeys.DeptManagerCompositeKey;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_manager")
@@ -38,7 +36,7 @@ public class DepartmentManager implements Serializable{
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_no", insertable = false, updatable = false)
     @NotBlank
-    private Department departments;
+    private Department department;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", insertable = false, updatable = false)
@@ -87,12 +85,12 @@ public class DepartmentManager implements Serializable{
         this.toDate = toDate;
     }
 
-    public Department getDepartments() {
-        return departments;
+    public Department getDepartment() {
+        return department;
     }
 
-    public void setDepartments(Department departments) {
-        this.departments = departments;
+    public void setDepartment(Department department) {
+        this.department = department;
     }
 
     public Employee getEmployee() {

@@ -6,6 +6,9 @@ import com.project.spring.Enums.Sex;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Comparator;
 import java.util.Date;
@@ -24,7 +27,7 @@ public class Employee{
     @Column(name = "birth_date")
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
-    private String birthDate;
+    private Date birthDate;
 
     @Column(name = "first_name")
     @NotBlank
@@ -36,7 +39,7 @@ public class Employee{
 
     @Column(name = "gender")
     @NotBlank
-    @Enumerated
+    @Enumerated(EnumType.STRING)
     private Sex sex;
 
     @Column(name = "hire_date")
@@ -66,7 +69,9 @@ public class Employee{
 
     @Override
     public String toString(){
-        String resultString = String.join(" ",this.firstName, this.lastName, this.birthDate);
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String dobString = dateFormat.format(this.birthDate);
+        String resultString = String.join(" ",this.firstName, this.lastName, dobString);
         return resultString;
     }
 
@@ -80,11 +85,11 @@ public class Employee{
         this.empNo = empNo;
     }
 
-    public String getBirthDate() {
+    public Date getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(String birthDate) {
+    public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
     }
 
