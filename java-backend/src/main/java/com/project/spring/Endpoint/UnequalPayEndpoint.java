@@ -26,6 +26,7 @@ public class UnequalPayEndpoint {
 
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
     @GetMapping(value = "/unequalEmployees", produces = "application/json")
+    @ResponseBody
     public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Handling request for list of employees that make less than their juniors");
         ArrayList<String> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();

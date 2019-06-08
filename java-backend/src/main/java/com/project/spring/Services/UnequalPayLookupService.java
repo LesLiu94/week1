@@ -28,7 +28,6 @@ public class UnequalPayLookupService {
 
     private final static Logger logger = LogManager.getLogger(UnequalPayLookupService.class);
 
-    @ResponseBody
     public ArrayList<String> findUnequallyPaidEmployees() {
         logger.info("Finding unequally paid employees");
        //get all employees
@@ -37,7 +36,6 @@ public class UnequalPayLookupService {
        //sort by hire date descending. so the most recent employees are first.
        Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
 
-       String resultEmployee;
        List<Salary> salaryArrayList= new ArrayList<>();
 
        ArrayList<String> unequalResultList = new ArrayList<>();

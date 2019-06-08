@@ -1,18 +1,19 @@
 package com.project.spring.Services;
 
 import com.project.spring.DAO.*;
-import com.project.spring.DomainObjects.Employee;
+import com.project.spring.DomainObjects.*;
+import com.project.spring.Enums.EmployeeTitle;
+import org.apache.commons.lang3.builder.CompareToBuilder;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.transaction.Transactional;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.format.DateTimeParseException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -32,32 +33,82 @@ public class EmployeeLookupService {
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
-    @ResponseBody
-    public String findEmployee(String first, String last, String dobString){
+    public String findEmployee(String first, String last, String dobString) {
+
         logger.info("Finding employee by first name, last name, and date of birth");
-        String resultString="";
-        Employee resultEmployee;
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        Date dob = new Date();
-        //convert String to Date
-        try{
-            dob = formatter.parse(dobString);
-        }catch (ParseException e){
-            e.printStackTrace();
-        }
-        resultEmployee = employeeDAO.findByFirstNameAndLastNameAndBirthDate(first, last, dob);
 
-        logger.info("Finding title, salary and department of this employee.");
-        resultString = resultEmployee.getFirstName() + " " + resultEmployee.getLastName() + " is a(n) " + resultEmployee.getTitles().get(0).getTitle().toString() + " of ";
-        if (resultEmployee.getTitles().get(0).getTitle().equals("Manager")){
-            resultString = resultString + resultEmployee.getDepartmentManager().get(0).getDepartment().getDeptName();
-        }
-        else {
-            resultString = resultString + resultEmployee.getDepartmentEmployee().get(0).getDepartment().getDeptName();
+        LocalDate dob;
+
+        try {
+            dob = LocalDate.parse(dobString);
+        } catch (DateTimeParseException e) {
+            return "Your date format is trash, try again using the format: 'yyyy-MM-dd' ";
         }
 
-        resultString = resultString + " with a salary of " + resultEmployee.getSalaries().get(0).getPay() + ".";
+        Employee employee = employeeDAO.findByFirstNameAndLastNameAndBirthDate(first, last, dob.toDate());
 
-        return resultString;
+
+        if (employee == null) {
+            return "We could not find the person you were looking for.";
+        }
+
+
+        String firstName = employee.getFirstName();
+        String lastName = employee.getLastName();
+
+        Date now = new Date();
+
+        //assumes only 1 title is relevant at a time
+        EmployeeTitle title = employee
+                .getTitles()
+                .stream()
+                .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
+                .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
+                .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
+                .map(Title::getTitle)
+                .orElse(EmployeeTitle.NONE);
+
+
+        //assumes only 1 salary is relevant at a time
+        int salary = employee
+                .getSalaries()
+                .stream()
+                .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
+                .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
+                .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
+                .map(wage -> wage.getPay())
+                .orElse(0);
+
+        String departments;
+
+        if (title == EmployeeTitle.Manager) {
+            //a person can manage many departments
+            List<String> managedDepartments = employee
+                    .getDepartmentManager()
+                    .stream()
+                    .filter(depManager -> depManager.getFromDate() != null && now.compareTo(depManager.getFromDate()) >= 0)
+                    .filter(depManager -> depManager.getToDate() == null || now.compareTo(depManager.getToDate()) < 0)
+                    .map(DepartmentManager::getDepartment) //get the department
+                    .map(Department::getDeptName) //get the department name
+                    .collect(Collectors.toList());
+
+            departments = String.join(", ", managedDepartments);
+        } else {
+            //a person can work at many departments
+            List<String> employedDepartments = employee
+                    .getDepartmentEmployee()
+                    .stream()
+                    .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
+                    .filter(depEmployee -> depEmployee.getToDate() == null || now.compareTo(depEmployee.getToDate()) < 0)
+                    .map(DepartmentEmployee::getDepartment)
+                    .map(Department::getDeptName)
+                    .collect(Collectors.toList());
+
+            departments = String.join(", ", employedDepartments);
+        }
+
+        String result = String.format("%s %s is a(n) %s with departments %s with a salary of %d.", firstName, lastName, title, departments, salary);
+
+        return result;
     }
 }
