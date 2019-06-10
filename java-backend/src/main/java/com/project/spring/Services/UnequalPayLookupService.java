@@ -11,10 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.springframework.util.CollectionUtils.isEmpty;
 
@@ -37,12 +35,19 @@ public class UnequalPayLookupService {
        Collections.sort(employeeList, Collections.reverseOrder(UnequalPayLookupUtilities.sortByHireDateComparator));
 
        List<Salary> salaryArrayList= new ArrayList<>();
-
        ArrayList<String> unequalResultList = new ArrayList<>();
+        Date today = new Date();
 
-       employeeList.forEach(employee -> salaryArrayList.add(employee.getSalaries().get(employee.getSalaries().size()-1)));
+       employeeList.forEach(employee -> {
+           salaryArrayList.add( employee
+                   .getSalaries()
+                   .stream()
+                   .filter(wage -> wage.getFromDate() != null && today.compareTo(wage.getFromDate()) >= 0)
+                   .filter(wage -> wage.getToDate() != null && today.compareTo(wage.getToDate()) < 0)
+                   .findFirst()
+                   .get());});
 
-        int maxSalary = 0;
+        double maxSalary = 0.0;
 
         for(int i = 0; i < salaryArrayList.size(); i++){
             if (maxSalary < salaryArrayList.get(i).getPay()){

@@ -53,7 +53,7 @@ create index dept_no_dept_manager_index on employeesSchema.dept_manager(dept_no)
 
 create table employeesSchema.salaries (
 	emp_no numeric(11) references employeesSchema.employees(emp_no) on update cascade on delete restrict,
-	salary numeric(11) not null,
+	salary numeric(11,2) not null,
 	from_date date not null,
 	to_date date not null,
 	primary key (emp_no, from_date)

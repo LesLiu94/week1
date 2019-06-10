@@ -33,7 +33,7 @@ public class EmployeeLookupService {
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
-    public String findEmployee(String first, String last, String dobString) {
+    public EmployeeLookupResult findEmployee(String first, String last, String dobString) {
 
         logger.info("Finding employee by first name, last name, and date of birth");
 
@@ -42,73 +42,68 @@ public class EmployeeLookupService {
         try {
             dob = LocalDate.parse(dobString);
         } catch (DateTimeParseException e) {
-            return "Your date format is trash, try again using the format: 'yyyy-MM-dd' ";
+            logger.info("Your date format is trash, try again using the format: 'yyyy-MM-dd' ");
+            return null;
         }
 
         Employee employee = employeeDAO.findByFirstNameAndLastNameAndBirthDate(first, last, dob.toDate());
 
+        EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
 
         if (employee == null) {
-            return "We could not find the person you were looking for.";
+            return employeeLookupResult;
         }
 
-
-        String firstName = employee.getFirstName();
-        String lastName = employee.getLastName();
+        employeeLookupResult.setFirstName(employee.getFirstName());
+        employeeLookupResult.setLastName(employee.getLastName());
 
         Date now = new Date();
 
         //assumes only 1 title is relevant at a time
-        EmployeeTitle title = employee
+        employeeLookupResult.setEmployeeTitle(employee
                 .getTitles()
                 .stream()
                 .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
                 .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
                 .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
                 .map(Title::getTitle)
-                .orElse(EmployeeTitle.NONE);
+                .orElse(EmployeeTitle.NONE));
 
 
         //assumes only 1 salary is relevant at a time
-        int salary = employee
+        employeeLookupResult.setSalary(employee
                 .getSalaries()
                 .stream()
                 .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
                 .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
                 .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
                 .map(wage -> wage.getPay())
-                .orElse(0);
+                .orElse(0.0));
 
-        String departments;
 
-        if (title == EmployeeTitle.Manager) {
+        if (employeeLookupResult.getEmployeeTitle() == EmployeeTitle.Manager) {
             //a person can manage many departments
-            List<String> managedDepartments = employee
+            employeeLookupResult.setDepartments(employee
                     .getDepartmentManager()
                     .stream()
                     .filter(depManager -> depManager.getFromDate() != null && now.compareTo(depManager.getFromDate()) >= 0)
                     .filter(depManager -> depManager.getToDate() == null || now.compareTo(depManager.getToDate()) < 0)
                     .map(DepartmentManager::getDepartment) //get the department
                     .map(Department::getDeptName) //get the department name
-                    .collect(Collectors.toList());
-
-            departments = String.join(", ", managedDepartments);
-        } else {
+                    .collect(Collectors.toList()));
+        }
+        else {
             //a person can work at many departments
-            List<String> employedDepartments = employee
+            employeeLookupResult.setDepartments( employee
                     .getDepartmentEmployee()
                     .stream()
                     .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
                     .filter(depEmployee -> depEmployee.getToDate() == null || now.compareTo(depEmployee.getToDate()) < 0)
                     .map(DepartmentEmployee::getDepartment)
                     .map(Department::getDeptName)
-                    .collect(Collectors.toList());
-
-            departments = String.join(", ", employedDepartments);
+                    .collect(Collectors.toList()));
         }
 
-        String result = String.format("%s %s is a(n) %s with departments %s with a salary of %d.", firstName, lastName, title, departments, salary);
-
-        return result;
+        return employeeLookupResult;
     }
 }

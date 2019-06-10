@@ -22,7 +22,7 @@ public class Salary implements Serializable {
 
     @Column(name = "salary")
     @NotBlank
-    private int pay;
+    private double pay;
 
     @Column(name = "from_date",insertable=false, updatable=false)
     @NotBlank
@@ -50,11 +50,11 @@ public class Salary implements Serializable {
         this.empNo = emp_No;
     }
 
-    public int getPay() {
+    public double getPay() {
         return pay;
     }
 
-    public void setPay(int pay) {
+    public void setPay(double pay) {
         this.pay = pay;
     }
 
