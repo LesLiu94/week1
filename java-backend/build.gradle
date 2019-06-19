@@ -7,12 +7,21 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.4.RELEASE")
+        classpath("org.liquibase:liquibase-core:3.6.1")
+        classpath "org.liquibase:liquibase-gradle-plugin:2.0.1"
+//        classpath 'postgres:postgres-connector-java:5.1.34'
     }
 }
+
+plugins {
+    id 'org.liquibase.gradle' version '2.0.1'
+}
+
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'org.liquibase.gradle'
 
 bootJar {
     baseName = 'gs-spring-boot'
@@ -39,9 +48,70 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.postgresql:postgresql:9.4.1212")
     compile("joda-time:joda-time:2.10.2")
-    compile("org.liquibase:liquibase-core")
-    compile("org.liquibase:liquibase-gradle-plugin:2.0.1")
+//    compile("org.liquibase:liquibase-core")
+//    compile("org.liquibase:liquibase-gradle-plugin:2.0.1")
+    liquibaseRuntime 'org.liquibase:liquibase-core:3.6.1'
+    liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl:2.0.1'
+//    liquibaseRuntime 'postgres:postgres-connector-java:5.1.34'
     compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
     implementation("com.google.code.gson:gson:2.8.2")
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+def baselineChangeLog = "$projectDir/src/main/resources/liquibase/db-changelog-baseline.xml"
+def databaseUrl = "jdbc:postgresql://localhost:5432/postgres"
+
+def user = "postgres"
+def pass = "postgres"
+
+user = user == null ? postgres : user
+pass = pass == null ? postgres : pass
+
+task('baseline') << {
+
+    println "executing baseline"
+
+    liquibase {
+
+        activities {
+
+            main {
+
+                changeLogFile baselineChangeLog
+
+                url databaseUrl
+
+                username user
+
+                password pass
+
+            }
+        }
+    }
+}
+
+def updateChangeLog = "$projectDir/src/main/resources/liquibase/db-changelog-update.xml"
+
+
+task('huh') << {
+
+    println "executing update"
+
+    liquibase {
+
+        activities {
+
+            main {
+
+                changeLogFile updateChangeLog
+
+                url databaseUrl
+
+                username user
+
+                password pass
+
+            }
+        }
+    }
 }
