@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name employeeProjectFrontEndApp
+ * @name employeeProjectAppApp
  * @description
- * # employeeProjectFrontEndApp
+ * # employeeProjectAppApp
  *
  * Main module of the application.
  */
 angular
-  .module('employeeProjectFrontEndApp', [
+  .module('employeeProjectAppApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
