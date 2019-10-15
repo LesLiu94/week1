@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name employeeProjectAppApp
+ * @name employeeProjectApp
  * @description
- * # employeeProjectAppApp
+ * # employeeProjectApp
  *
  * Main module of the application.
  */
 angular
-  .module('employeeProjectAppApp', [
+  .module('employeeProjectApp', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -19,19 +19,19 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(function ($routeProvider) {
+  .config(['$routeProvider', function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+      .when('/employeeList', {
+        templateUrl: 'views/employeeList.html',
+        controller: 'EmployeeListCtrl', function($scope){
+          $scope.title = 'EmployeeList';
+        }
       })
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);
