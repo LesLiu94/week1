@@ -25,11 +25,21 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/employeeList', {
-        templateUrl: 'views/employeeList.html',
-        controller: 'EmployeeListCtrl', function($scope){
-          $scope.title = 'EmployeeList';
+      .when('/employee-list', {
+        templateUrl: 'views/employee-list.html',
+        controller: 'EmployeeListCtrl',
+        resolve: {
+          employeeList: ['%http', function ($http){
+            return $http.get("/api/EmployeeListLookup/allEmployees").then(function(response){
+              return response.data;
+            })
+          }]
         }
+        }
+      )
+      .when('/unequally-paid', {
+        templateUrl: 'views/unequally-paid.html',
+        controller: 'UnequallyPaidCtrl'
       })
       .otherwise({
         redirectTo: '/'

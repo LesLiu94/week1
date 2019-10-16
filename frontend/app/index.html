@@ -33,15 +33,14 @@
               <span class="icon-bar"></span>
             </button>
 
-            <a class="navbar-brand" href="#!/">employeeProjectApp</a>
+            <a class="navbar-brand" href="#!/"> <i class="fa fa-home"></i>  EmployeeProject</a>
           </div>
 
           <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#!/">Home</a></li>
-              <li><a ng-href="#!/employeeList">EmployeeList</a></li>
-              <li><a ng-href="#!/">Contact</a></li>
+              <li><a ng-href="#!/employee-list"> <i class="fa fa-users"></i>  Employee List</a></li>
+              <li><a ng-href="#!/unequally-paid"> <i class="fa fa-not-equal"></i>  Unequally Paid</a></li>
             </ul>
           </div>
         </div>
@@ -85,11 +84,15 @@
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
+    
+    <!--Used to get the not equals icon-->
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/mainCtrl.js"></script>
-        <script src="scripts/controllers/employeeListCtrl.js"></script>
+        <script src="scripts/controllers/main-ctrl.js"></script>
+        <script src="scripts/controllers/employee-list-ctrl.js"></script>
+        <script src="scripts/controllers/unequally-paid-ctrl.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -8,10 +8,7 @@
  * Controller of the employeeProjectApp
  */
 angular.module('employeeProjectApp')
-  .controller('EmployeeListCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('EmployeeListCtrl', ['$scope', 'employeeList', function ($scope, employeeList) {
+    $scope.title = "Employee List";
+    $scope.employeeList = employeeList;
+  }]);
