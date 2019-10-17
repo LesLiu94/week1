@@ -8,10 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -25,6 +22,7 @@ public class UnequalPayEndpoint {
     final static Logger logger = LogManager.getLogger(UnequalPayEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
+    @CrossOrigin(origins = "http://localhost:9000")
     @GetMapping(value = "/unequalEmployees", produces = "application/json")
     @ResponseBody
     public ArrayList<String> findUnequallyPaidEmployees() {

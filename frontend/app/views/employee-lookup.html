@@ -1,0 +1,11 @@
+<div class="jumbotron">
+    <h1>{{title}}</h1>
+    <div class="small-jumbotron">
+        <p>Enter the details below to lookup an employee.</p>
+        <label >First Name:</label> <input ng-model="fname" type="text" placeholder="John">
+        <label >Last Name:</label> <input ng-model="lname" type="text" placeholder="Doe">
+        <label class="lastItem">Date of Birth:</label> <input ng-model="dob" type="text" placeholder="yyyy-mm-dd">
+        <button class="lastItem" ng-click="employeeLookup()">Lookup</button>
+    </div>
+    {{employeeTitle}}
+</div>

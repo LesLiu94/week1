@@ -38,6 +38,10 @@ angular
         }
         }
       )
+      .when('/employee-lookup', {
+        templateUrl: 'views/employee-lookup.html',
+        controller: 'EmployeeLookupCtrl'
+      })
       .when('/unequally-paid', {
         templateUrl: 'views/unequally-paid.html',
         controller: 'UnequallyPaidCtrl'

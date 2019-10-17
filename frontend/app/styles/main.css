@@ -73,7 +73,9 @@ body {
   }
 
   .small-jumbotron {
-    background-color: rgb(199, 194, 194)
+    background-color: rgb(199, 194, 194);
+    border-radius: 16px;
+    text-align: center;
   }
   
   dt {
@@ -83,6 +85,10 @@ body {
     padding-bottom: 16px;
   }
   
+  p {
+    padding-top: 20px;
+  }
+
   .home-paragraph {
     padding-top: 16px;
     font-size: 14px;
@@ -92,6 +98,32 @@ body {
     padding-top: 16px;
     padding-bottom: 16px;
     font-size: 21px;
-    
+    display: inline-block;
   }
+  
+  .employee-in-list {
+    padding-left: 20px;
+  }
+
+  /* Hides placeholder when the input box is selected */
+  input:focus::placeholder{
+    color:transparent;
+  }
+
+  label {
+    display: inline-block;
+    width: 40%;
+    text-align: right;
+  }
+  input {
+    display: inline-block;
+    margin-right: 150px;
+    text-indent: 20px;
+    border-radius: 4px;
+  }
+
+  .lastItem {
+    margin-bottom: 20px;
+  }
+
 }
