@@ -1,11 +1,9 @@
 <div class="jumbotron">
     <h1>{{title}}</h1>
     <div class="small-jumbotron">
-        <ul>
-            <li ng-repeat="employee in employeeList">{{employee.name}}</li>
-        </ul>
-
-        <p>This is the Employee List view.</p>    
+        <ul class="employee-list">
+            <li ng-repeat="employee in employeeList">{{employee.firstName}} {{employee.lastName}}</li>
+        </ul>   
     </div>
 </div>
 

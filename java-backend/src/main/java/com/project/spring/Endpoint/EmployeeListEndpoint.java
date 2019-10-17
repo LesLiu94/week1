@@ -7,10 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,7 @@ public class EmployeeListEndpoint {
     final static Logger logger = LogManager.getLogger(EmployeeListEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees")
+    @CrossOrigin(origins = "http://localhost:9000")
     @GetMapping(value = "/allEmployees", produces = "application/json")
     @ResponseBody
     public List<EmployeeLookupResult> findAllEmployees(){

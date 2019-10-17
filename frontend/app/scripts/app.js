@@ -19,7 +19,8 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-  .config(['$routeProvider', function ($routeProvider) {
+  .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
+    $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
@@ -29,8 +30,8 @@ angular
         templateUrl: 'views/employee-list.html',
         controller: 'EmployeeListCtrl',
         resolve: {
-          employeeList: ['%http', function ($http){
-            return $http.get("/api/EmployeeListLookup/allEmployees").then(function(response){
+          employeeList: ['$http', function ($http){
+            return $http.get("http://localhost:8080/api/EmployeeListLookup/allEmployees").then(function(response){
               return response.data;
             })
           }]
