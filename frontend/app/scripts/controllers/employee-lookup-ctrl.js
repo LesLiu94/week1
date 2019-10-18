@@ -8,19 +8,26 @@
  * Controller of the employeeProjectApp
  */
 angular.module('employeeProjectApp')
-  .controller('EmployeeLookupCtrl', ['$scope', function ($scope) {
+  .controller('EmployeeLookupCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = "Employee Lookup";
-    $scope.lookup = ('$scope', '$http', function($scope, $http) {
+    $scope.employeeLookupForm = {
+        fname: '',
+        lname: '',
+        dob: ''
+    }
+    $scope.lookup = function(employeeSearchCriteria) {
         $http({
             method: 'GET',
             url: "http://localhost:8080/api/EmployeeLookup/findEmployee",
-            params: {first: fname, last: lname, dobstring: dob}
+            params: {
+                first: employeeSearchCriteria.fname, 
+                last: employeeSearchCriteria.lname, 
+                dobString: employeeSearchCriteria.dob
+            }
         }).then(function(response){
-            $scope.employeeTitle = response.employeeTitle;
-            
+            $scope.employeeTitle = response.data.employeeTitle;
         })
-    });
-    $scope.lookup();
+    };
   }]);
   
 
