@@ -45,11 +45,14 @@ public class UnequalPayLookupService {
                    .filter(wage -> wage.getFromDate() != null && today.compareTo(wage.getFromDate()) >= 0)
                    .filter(wage -> wage.getToDate() != null && today.compareTo(wage.getToDate()) < 0)
                    .findFirst()
-                   .get());});
+                   .orElse(null));});
 
         double maxSalary = 0.0;
 
         for(int i = 0; i < salaryArrayList.size(); i++){
+            if(salaryArrayList.get(i)==null){
+                continue;
+            }
             if (maxSalary < salaryArrayList.get(i).getPay()){
                 maxSalary = salaryArrayList.get(i).getPay();
             }

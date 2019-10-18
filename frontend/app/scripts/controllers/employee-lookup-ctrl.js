@@ -25,7 +25,11 @@ angular.module('employeeProjectApp')
                 dobString: employeeSearchCriteria.dob
             }
         }).then(function(response){
+            $scope.firstName = response.data.firstName;
+            $scope.lastName = response.data.lastName;
+            $scope.departments = response.data.departments;
             $scope.employeeTitle = response.data.employeeTitle;
+            $scope.salary = response.data.salary;
         })
     };
   }]);
