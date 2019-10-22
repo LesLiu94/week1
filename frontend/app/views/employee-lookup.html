@@ -1,14 +1,23 @@
-<div class="jumbotron">
-    <h1>{{title}}</h1>
-    <div class="small-jumbotron">
-        <p>Enter the details below to lookup an employee.</p>
-        <label >First Name:</label> <input ng-model="employeeLookupForm.fname" type="text" placeholder="John">
-        <label >Last Name:</label> <input ng-model="employeeLookupForm.lname" type="text" placeholder="Doe">
-        <label class="lastItem">Date of Birth:</label> <input ng-model="employeeLookupForm.dob" type="text" placeholder="yyyy-mm-dd">
-        <button class="lastItem" ng-click="lookup(employeeLookupForm)">Lookup</button>
+<div class="card border-info mb-3">
+    <h1 class="card-header">{{title}}</h1>
+    <div class="card-body">
+        <p class="card-text" style="font-size: 24px;">Enter the details below to lookup an employee.</p>
+        <div>
+                <label style="width: 8%; font-size: 14px;">First Name:</label> <input ng-model="employeeLookupForm.fname" type="text" placeholder="John">
+                <br>
+                <label style="width: 8%; font-size: 14px;">Last Name:</label> <input ng-model="employeeLookupForm.lname" type="text" placeholder="Doe">
+                <br>
+                <label class="lastItem" style="width: 8%; font-size: 13.5px;">Date of Birth:</label> <input ng-model="employeeLookupForm.dob" type="text" placeholder="yyyy-mm-dd">
+                <br>
+                <button type="button" class="lastItem btn btn-secondary btn-lg" ng-click="lookup(employeeLookupForm)">Lookup</button>
+        </div>
     </div>
-    <h1 class>Lookup Result:</h1>
-        <div class="small-jumbotron">
+</div>
+<br>
+<br>
+<div class="card border-info mb-3">
+    <h1 class="card-header">Lookup Result:</h1>
+        <div class="card-body">
             <h2 class="firstItem">{{firstName}} {{lastName}} </h2>
             <br>
             <h4>Department(s) = {{departments}} </h4>
@@ -19,3 +28,4 @@
             <br>
         </div>
 </div>
+<br>
