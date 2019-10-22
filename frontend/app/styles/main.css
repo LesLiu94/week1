@@ -130,8 +130,16 @@ body {
     padding-top: 20px;
   }
 
-  li{
+  li {
     padding-bottom: 10px;
   }
 
+  .nav-item {
+    font-size: 15px;
+  }
+  
+  .navbar-brand {
+    text-align: center;
+    margin: auto;
+  }
 }
