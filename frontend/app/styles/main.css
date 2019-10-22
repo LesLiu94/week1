@@ -130,4 +130,8 @@ body {
     padding-top: 20px;
   }
 
+  li{
+    padding-bottom: 10px;
+  }
+
 }

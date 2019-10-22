@@ -6,6 +6,7 @@ import com.project.spring.CompositeKeys.SalariesCompositeKey;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
+import java.text.DecimalFormat;
 import java.util.Date;
 
 @Entity

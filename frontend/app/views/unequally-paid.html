@@ -1,7 +1,14 @@
 <div class="jumbotron">
     <h1>{{title}}</h1>
     <div class="small-jumbotron">
-        <p>This is the Unequally Paid view.</p>
+        <ul class="employee-list">
+            <li class="employee-in-list" ng-repeat = "unequal in unequalList">
+                Name: {{unequal.firstName}} {{unequal.lastName}}
+                <br> Salary: {{unequal.salary | currency}}
+                <br> Hire Date: {{unequal.hireDate}}
+                <br> Birth Date: {{unequal.birthDate}}
+            </li>
+        </ul>
     </div>
     
 </div>

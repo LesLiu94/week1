@@ -30,7 +30,7 @@ angular
         templateUrl: 'views/employee-list.html',
         controller: 'EmployeeListCtrl',
         resolve: {
-          employeeList: ['$http', function ($http){
+          employeeList: ['$http', function($http){
             return $http.get("http://localhost:8080/api/EmployeeListLookup/allEmployees").then(function(response){
               return response.data;
             })
@@ -44,8 +44,16 @@ angular
       })
       .when('/unequally-paid', {
         templateUrl: 'views/unequally-paid.html',
-        controller: 'UnequallyPaidCtrl'
-      })
+        controller: 'UnequallyPaidCtrl',
+        resolve: {
+          unequalList: ['$http', function($http){
+            return $http.get("http://localhost:8080/api/PayLookup/unequalEmployees").then(function(response){
+              return response.data;
+            })
+          }]
+        }
+        }
+      )
       .otherwise({
         redirectTo: '/'
       });
