@@ -1,7 +1,7 @@
 <div>
     <h1>{{title}}</h1>
     <br>
-    <table id="employee-Data-Table"class="table table-hover table-bordered">
+    <table ng-table="employee-Table"class="table table-hover table-bordered">
         <thead class="thead-dark">
             <tr>
                 <th>#</th>
@@ -10,7 +10,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="employee in employeeList | orderBy:'firstName' ">
+            <tr ng-repeat="employee in employeeList">
                 <th>{{$index+1}}</th>
                 <th>{{employee.firstName}} </th>
                 <th>{{employee.lastName}}</th>

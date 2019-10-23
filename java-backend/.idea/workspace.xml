@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -153,7 +154,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="1006" />
     <option name="width" value="921" />
     <option name="height" value="1047" />
@@ -320,7 +321,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6889401" visible="true" weight="0.08635394" />
       <window_info id="Structure" order="1" sideWeight="0.31105992" side_tool="true" visible="true" weight="0.08635394" />
