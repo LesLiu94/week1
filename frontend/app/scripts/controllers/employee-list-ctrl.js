@@ -7,8 +7,8 @@
  * # EmployeeListCtrl
  * Controller of the employeeProjectApp
  */
-angular.module('employeeProjectApp')
-  .controller('EmployeeListCtrl', ['$scope', 'employeeList', function ($scope, employeeList) {
+angular.module('employeeProjectApp', ['ngTable'])
+  .controller('EmployeeListCtrl', ['$scope', 'employeeList', function ($scope, employeeList, ngTableParams) {
     $scope.title = "Employee List";
     $scope.employeeList = employeeList.sort(function(a,b)
     { 
@@ -16,4 +16,5 @@ angular.module('employeeProjectApp')
         return a.lastName.localeCompare(b.lastName);
       }
       return a.firstName.localeCompare(b.firstName)});
+    $scope.employeeTable = new ngTableParams({},{ dataset: $scope.employeeList});  
   }]);

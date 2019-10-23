@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" afterDir="false" />
-    </list>
+    <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
