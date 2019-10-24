@@ -17,6 +17,7 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
+    'ngTable',
     'ngTouch'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
