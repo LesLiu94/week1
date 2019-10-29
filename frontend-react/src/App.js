@@ -10,15 +10,15 @@ function App() {
   return (
     <div className="App">
 
-      <div className="app-header" class="header container">
+      <div className="app-header header container">
         <NavigationBar/>
       </div>
 
-      <div className="app-body" class="body container">
+      <div className="app-body body container">
         <NavigationContent/>
       </div>
 
-      <div className="app-footer" class="footer container">
+      <div className="app-footer footer container">
           <FooterContent/>
       </div>
 

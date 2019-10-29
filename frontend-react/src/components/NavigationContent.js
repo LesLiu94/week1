@@ -4,6 +4,8 @@ import {
     Switch,
     Route
 } from "react-router-dom";
+import Home from './body-contents/Home';
+import EmployeeList from './body-contents/EmployeeList';
 
 class NavigationContent extends React.Component {
     render() {
@@ -11,10 +13,10 @@ class NavigationContent extends React.Component {
             <Router>
                 <Switch>
                     <Route path="/">
-                        {/* <Home /> */}
+                        <Home />
                     </Route>
                     <Route path="/employee-list">
-                        {/* <EmployeeList /> */}
+                        <EmployeeList />
                     </Route>
                     <Route path="/employee-lookup">
                         {/* <EmployeeLookup /> */}
