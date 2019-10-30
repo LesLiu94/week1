@@ -2,17 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptEmpCompositeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptEmpCompositeKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptManagerCompositeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptManagerCompositeKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/SalariesCompositeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/SalariesCompositeKey.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/DepartmentEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/DepartmentEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -53,30 +44,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+            <state relative-caret-position="558">
+              <caret line="99" column="48" lean-forward="true" selection-start-line="99" selection-start-column="48" selection-end-line="99" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3928#3936#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Enums/EmployeeTitle.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupResult.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -134,18 +106,18 @@
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeRequest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/SalariesCompositeKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptEmpCompositeKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/DeptManagerCompositeKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/Title.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="879" />
+    <option name="width" value="1048" />
     <option name="height" value="1047" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -328,10 +300,9 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
+    <frame x="879" y="0" width="1048" height="1047" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9029126" visible="true" weight="0.18336888" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.9029126" visible="true" weight="0.18522267" />
       <window_info id="Structure" order="1" sideWeight="0.097087376" side_tool="true" weight="0.19616205" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -340,7 +311,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5007874" side_tool="true" weight="0.10501066" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.07367281" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.117067836" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -499,26 +470,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DAO/EmployeeDAO.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="75" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="362">
-          <caret line="42" column="20" lean-forward="true" selection-start-line="42" selection-start-column="20" selection-end-line="42" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeListLookupService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -590,13 +541,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="48" column="42" selection-start-line="48" selection-start-column="42" selection-end-line="48" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/SalariesCompositeKey.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="411">
@@ -622,16 +566,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/Title.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="60" lean-forward="true" selection-start-line="60" selection-end-line="60" />
-          <folding>
-            <element signature="method#setTitlesCompositeKey#0;class#Title#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -672,6 +606,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/Title.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="25" column="32" lean-forward="true" selection-start-line="25" selection-start-column="4" selection-end-line="25" selection-end-column="32" />
+          <folding>
+            <element signature="method#setTitlesCompositeKey#0;class#Title#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/CompositeKeys/TitlesCompositeKey.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="41" column="35" selection-start-line="41" selection-start-column="35" selection-end-line="41" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DAO/EmployeeDAO.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="75" selection-start-line="11" selection-start-column="75" selection-end-line="11" selection-end-column="75" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DomainObjects/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" column="16" selection-start-line="57" selection-start-column="16" selection-end-line="57" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Enums/EmployeeTitle.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -681,11 +652,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="78" column="52" selection-start-line="78" selection-start-column="52" selection-end-line="78" selection-end-column="52" />
+        <state relative-caret-position="558">
+          <caret line="99" column="48" lean-forward="true" selection-start-line="99" selection-start-column="48" selection-end-line="99" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3928#3936#0" expanded="true" />
           </folding>
         </state>
       </provider>

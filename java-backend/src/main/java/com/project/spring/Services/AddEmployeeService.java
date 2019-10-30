@@ -6,6 +6,7 @@ import com.project.spring.CompositeKeys.SalariesCompositeKey;
 import com.project.spring.CompositeKeys.TitlesCompositeKey;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.*;
+import com.project.spring.Enums.EmployeeTitle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
@@ -69,10 +70,18 @@ public class AddEmployeeService {
             return null;
         }
 
-        //generating a random employee number
-        Random random = new Random();
-        int newEmployeeEmpNo = 10000000 + random.nextInt(90000000);
+     //populating employeeDAO
 
+        Employee newEmployee = new Employee();
+        newEmployee.setFirstName(employeeRequest.getFirstName());
+        newEmployee.setLastName(employeeRequest.getLastName());
+        newEmployee.setSex(employeeRequest.getGender());
+        newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
+        newEmployee.setHireDate(java.sql.Date.valueOf(employeeRequest.getHireDate()));
+        employeeDAO.save(newEmployee);
+
+     //retrieving the spring generated empNo
+        int newEmployeeEmpNo = employeeDAO.findByFirstNameAndLastName(employeeRequest.getFirstName(),employeeRequest.getLastName()).getEmpNo();
      //populating titleDAO
 
         Title newEmployeeTitle = new Title();
@@ -83,7 +92,7 @@ public class AddEmployeeService {
         TitlesCompositeKey newEmployeeTitlesCompositeKey = new TitlesCompositeKey();
         newEmployeeTitlesCompositeKey.setEmpNo(newEmployeeEmpNo);
         newEmployeeTitlesCompositeKey.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-        newEmployeeTitlesCompositeKey.setTitle(""+employeeRequest.getEmployeeTitle());
+        newEmployeeTitlesCompositeKey.setTitle(employeeRequest.getEmployeeTitle());
         newEmployeeTitle.setTitlesCompositeKey(newEmployeeTitlesCompositeKey);
         titleDAO.save(newEmployeeTitle);
 
@@ -98,20 +107,6 @@ public class AddEmployeeService {
         newEmployeeSalariesCompositeKey.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
         newEmployeeSalary.setSalariesCompositeKey(newEmployeeSalariesCompositeKey);
         salaryDAO.save(newEmployeeSalary);
-
-     //populating employeeDAO
-
-        Employee newEmployee = new Employee();
-        newEmployee.setFirstName(employeeRequest.getFirstName());
-        newEmployee.setLastName(employeeRequest.getLastName());
-        newEmployee.setSex(employeeRequest.getGender());
-        newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
-        newEmployee.setHireDate(java.sql.Date.valueOf(employeeRequest.getHireDate()));
-
-        List<String> newEmployeeDepartments = new ArrayList<String>();
-        newEmployeeDepartments.add(employeeRequest.getDepartments().get(0));
-
-        employeeDAO.save(newEmployee);
 
         if (employeeRequest.getEmployeeTitle().equals("Manager")){
      //populate and save departmentManagerDAO
@@ -176,6 +171,9 @@ public class AddEmployeeService {
             newEmployeeDeptEmpCompositeKey.setEmpNo(newEmployeeEmpNo);
             departmentEmployeeDAO.save(newEmployeeDepartmentEmployee);
         }
+
+        List<String> newEmployeeDepartments = new ArrayList<>();
+        newEmployeeDepartments.add(employeeRequest.getDepartments().get(0));
 
         //populate the result to send back
         newEmployeeResult.setFirstName(employeeRequest.getFirstName());

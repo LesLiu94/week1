@@ -1,7 +1,11 @@
 package com.project.spring.CompositeKeys;
 
+import com.project.spring.Enums.EmployeeTitle;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -12,7 +16,8 @@ public class TitlesCompositeKey implements Serializable {
     private int empNo;
 
     @Column(name = "title")
-    private String title;
+    @Enumerated(EnumType.STRING)
+    private EmployeeTitle title;
 
     @Column(name = "from_date")
     private Date fromDate;
@@ -20,7 +25,7 @@ public class TitlesCompositeKey implements Serializable {
     public TitlesCompositeKey(){
     }
 
-    public TitlesCompositeKey(int empNo, String title, Date fromDate){
+    public TitlesCompositeKey(int empNo, EmployeeTitle title, Date fromDate){
         this.empNo = empNo;
         this.title = title;
         this.fromDate = fromDate;
@@ -34,11 +39,11 @@ public class TitlesCompositeKey implements Serializable {
         this.empNo = empNo;
     }
 
-    public String getTitle() {
+    public EmployeeTitle getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(EmployeeTitle title) {
         this.title = title;
     }
 
