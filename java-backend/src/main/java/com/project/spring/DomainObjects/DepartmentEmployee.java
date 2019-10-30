@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_emp")

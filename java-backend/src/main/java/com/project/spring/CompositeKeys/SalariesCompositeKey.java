@@ -25,8 +25,16 @@ public class SalariesCompositeKey implements Serializable {
         return empNo;
     }
 
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
     public Date getFromDate(){
         return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
     }
 
     @Override

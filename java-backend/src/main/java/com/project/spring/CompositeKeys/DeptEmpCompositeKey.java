@@ -24,8 +24,16 @@ public class DeptEmpCompositeKey implements Serializable {
         return empNo;
     }
 
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
     public int getDeptNo() {
         return deptNo;
+    }
+
+    public void setDeptNo(int deptNo) {
+        this.deptNo = deptNo;
     }
 
     @Override
