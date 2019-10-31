@@ -6,6 +6,7 @@ import com.project.spring.Enums.EmployeeTitle;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public class Title implements Serializable{
     private int empNo;
 
     @Column(name = "title",insertable=false, updatable=false)
-    @NotBlank
+    @NotNull
     @Enumerated(EnumType.STRING)
     private EmployeeTitle title;
 

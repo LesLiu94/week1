@@ -3,9 +3,13 @@ package com.project.spring.DomainObjects;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.spring.Enums.Sex;
+import com.project.spring.Misc.PostgreSQLEnumType;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -16,16 +20,18 @@ import java.util.Set;
 
 @Entity
 @Table(schema = "employeesschema", name = "employees")
+@TypeDef(
+        name = "psql_enum",
+        typeClass = PostgreSQLEnumType.class
+)
 public class Employee{
 
     @Column(name = "emp_no")
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
     private int empNo;
 
     @Column(name = "birth_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
     private Date birthDate;
 
@@ -37,34 +43,33 @@ public class Employee{
     @NotBlank
     private String lastName;
 
-    @Column(name = "gender")
-    @NotBlank
+    @Column(columnDefinition = "sex", name = "gender")
+    @NotNull
     @Enumerated(EnumType.STRING)
+    @Type(type="psql_enum")
     private Sex sex;
 
     @Column(name = "hire_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date hireDate;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
-    @NotBlank
+    @NotNull
     private List<Salary> salaries;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
-    @NotBlank
+    @NotNull
     private List<Title> titles;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
-    @NotBlank
     private List<DepartmentManager> departmentManager;
 
     @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no",insertable=false,updatable=false)
-    @NotBlank
     private List<DepartmentEmployee> departmentEmployee;
 
     @Override
@@ -76,7 +81,7 @@ public class Employee{
     }
 
     //Getters and Setters
-
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     public int getEmpNo() {
         return empNo;
     }

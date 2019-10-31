@@ -1,23 +1,20 @@
 package com.project.spring.Services;
 
-import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
-import com.project.spring.CompositeKeys.DeptManagerCompositeKey;
-import com.project.spring.CompositeKeys.SalariesCompositeKey;
-import com.project.spring.CompositeKeys.TitlesCompositeKey;
 import com.project.spring.DAO.*;
-import com.project.spring.DomainObjects.*;
+import com.project.spring.DomainObjects.Employee;
+import com.project.spring.DomainObjects.Salary;
+import com.project.spring.DomainObjects.Title;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.test.annotation
 
-import javax.transaction.Transactional;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Random;
 
 @Service
 @Transactional
@@ -40,7 +37,7 @@ public class AddEmployeeService {
 
     private final static Logger logger = LogManager.getLogger(AddEmployeeService.class);
 
-    public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest){
+    public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest) throws Exception{
 
         logger.info("Adding employee by first name, last name, title, department, salary, birth date, hire date, gender, from date, and to date");
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
@@ -69,119 +66,38 @@ public class AddEmployeeService {
             return null;
         }
 
-        //generating a random employee number
-        Random random = new Random();
-        int newEmployeeEmpNo = 10000000 + random.nextInt(90000000);
-
-     //populating titleDAO
-
-        Title newEmployeeTitle = new Title();
-        newEmployeeTitle.setEmpNo(newEmployeeEmpNo);
-        newEmployeeTitle.setTitle(employeeRequest.getEmployeeTitle());
-        newEmployeeTitle.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-        newEmployeeTitle.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
-        TitlesCompositeKey newEmployeeTitlesCompositeKey = new TitlesCompositeKey();
-        newEmployeeTitlesCompositeKey.setEmpNo(newEmployeeEmpNo);
-        newEmployeeTitlesCompositeKey.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-        newEmployeeTitlesCompositeKey.setTitle(""+employeeRequest.getEmployeeTitle());
-        newEmployeeTitle.setTitlesCompositeKey(newEmployeeTitlesCompositeKey);
-        titleDAO.save(newEmployeeTitle);
-
-     //populating salaryDAO
+        //salaries
+        List<Salary> salaryList = new ArrayList<>();
         Salary newEmployeeSalary = new Salary();
-        newEmployeeSalary.setEmp_No(newEmployeeEmpNo);
         newEmployeeSalary.setPay(employeeRequest.getSalary());
         newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
         newEmployeeSalary.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
-        SalariesCompositeKey newEmployeeSalariesCompositeKey = new SalariesCompositeKey();
-        newEmployeeSalariesCompositeKey.setEmpNo(newEmployeeEmpNo);
-        newEmployeeSalariesCompositeKey.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-        newEmployeeSalary.setSalariesCompositeKey(newEmployeeSalariesCompositeKey);
-        salaryDAO.save(newEmployeeSalary);
+        salaryList.add(newEmployeeSalary);
 
-     //populating employeeDAO
+        //titles
+        List<Title> titleList = new ArrayList<>();
+        Title newEmployeeTitle = new Title();
+        newEmployeeTitle.setTitle(employeeRequest.getEmployeeTitle());
+        newEmployeeTitle.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
+        newEmployeeTitle.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
+        titleList.add(newEmployeeTitle);
 
+        //employee
         Employee newEmployee = new Employee();
         newEmployee.setFirstName(employeeRequest.getFirstName());
         newEmployee.setLastName(employeeRequest.getLastName());
         newEmployee.setSex(employeeRequest.getGender());
         newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
         newEmployee.setHireDate(java.sql.Date.valueOf(employeeRequest.getHireDate()));
-
-        List<String> newEmployeeDepartments = new ArrayList<String>();
-        newEmployeeDepartments.add(employeeRequest.getDepartments().get(0));
+        newEmployee.setSalaries(salaryList);
+        newEmployee.setTitles(titleList);
 
         employeeDAO.save(newEmployee);
 
-        if (employeeRequest.getEmployeeTitle().equals("Manager")){
-     //populate and save departmentManagerDAO
-
-            DepartmentManager newEmployeeDepartmentManager = new DepartmentManager();
-            newEmployeeDepartmentManager.setEmpNo(newEmployeeEmpNo);
-            Department newEmployeeDepartment = new Department();
-            newEmployeeDepartment.setDeptName(employeeRequest.getDepartments().get(0));
-            switch(employeeRequest.getDepartments().get(0)){
-                case "Production and Operations":
-                    newEmployeeDepartment.setDeptNo("0000");
-                case "Research and Development":
-                    newEmployeeDepartment.setDeptNo("0001");
-                case "Purchasing":
-                    newEmployeeDepartment.setDeptNo("0002");
-                case "Marketing":
-                    newEmployeeDepartment.setDeptNo("0003");
-                case "Human Resources":
-                    newEmployeeDepartment.setDeptNo("0004");
-                case "Accounting and Finance":
-                    newEmployeeDepartment.setDeptNo("0005");
-            }
-            newEmployeeDepartmentManager.setDepartment(newEmployeeDepartment);
-            newEmployeeDepartmentManager.setDeptNo(newEmployeeDepartment.getDeptNo());
-            newEmployeeDepartmentManager.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-            newEmployeeDepartmentManager.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
-            newEmployeeDepartmentManager.setEmployee(newEmployee);
-            DeptManagerCompositeKey newEmployeeDeptManagerCompositeKey = new DeptManagerCompositeKey();
-            newEmployeeDeptManagerCompositeKey.setDeptNo(Integer.parseInt(newEmployeeDepartment.getDeptNo()));
-            newEmployeeDeptManagerCompositeKey.setEmpNo(newEmployeeEmpNo);
-            newEmployeeDepartmentManager.setDeptManagerCompositeKey(newEmployeeDeptManagerCompositeKey);
-            departmentManagerDAO.save(newEmployeeDepartmentManager);
-
-        }
-        else{
-     //populate and save departmentEmployeeDAO
-            DepartmentEmployee newEmployeeDepartmentEmployee = new DepartmentEmployee();
-            newEmployeeDepartmentEmployee.setEmpNo(newEmployeeEmpNo);
-            Department newEmployeeDepartment = new Department();
-            newEmployeeDepartment.setDeptName(employeeRequest.getDepartments().get(0));
-            switch(employeeRequest.getDepartments().get(0)){
-                case "Production and Operations":
-                    newEmployeeDepartment.setDeptNo("0000");
-                case "Research and Development":
-                    newEmployeeDepartment.setDeptNo("0001");
-                case "Purchasing":
-                    newEmployeeDepartment.setDeptNo("0002");
-                case "Marketing":
-                    newEmployeeDepartment.setDeptNo("0003");
-                case "Human Resources":
-                    newEmployeeDepartment.setDeptNo("0004");
-                case "Accounting and Finance":
-                    newEmployeeDepartment.setDeptNo("0005");
-            }
-            newEmployeeDepartmentEmployee.setDeptNo(newEmployeeDepartment.getDeptNo());
-            newEmployeeDepartmentEmployee.setDepartment(newEmployeeDepartment);
-            newEmployeeDepartmentEmployee.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-            newEmployeeDepartmentEmployee.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
-            newEmployeeDepartmentEmployee.setEmployee(newEmployee);
-            DeptEmpCompositeKey newEmployeeDeptEmpCompositeKey = new DeptEmpCompositeKey();
-            newEmployeeDeptEmpCompositeKey.setDeptNo(Integer.parseInt(newEmployeeDepartment.getDeptNo()));
-            newEmployeeDeptEmpCompositeKey.setEmpNo(newEmployeeEmpNo);
-            departmentEmployeeDAO.save(newEmployeeDepartmentEmployee);
-        }
-
-        //populate the result to send back
+        //response
         newEmployeeResult.setFirstName(employeeRequest.getFirstName());
         newEmployeeResult.setLastName(employeeRequest.getLastName());
         newEmployeeResult.setSalary(employeeRequest.getSalary());
-        newEmployeeResult.setDepartments(newEmployeeDepartments);
         newEmployeeResult.setEmployeeTitle(employeeRequest.getEmployeeTitle());
 
         return newEmployeeResult;
