@@ -30,7 +30,7 @@ public class Employee{
     @Id
     @Column(name = "emp_no")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="emp_seq")
-    private Long empNo;
+    private Integer empNo;
 
     @Column(name = "birth_date")
     @NotNull
@@ -83,11 +83,11 @@ public class Employee{
     }
 
     //Getters and Setters
-    public Long getEmpNo() {
+    public Integer getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(Long empNo) {
+    public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
     }
 
