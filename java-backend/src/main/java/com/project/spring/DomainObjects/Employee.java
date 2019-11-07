@@ -24,7 +24,7 @@ import java.util.Set;
         name = "psql_enum",
         typeClass = PostgreSQLEnumType.class
 )
-@SequenceGenerator(name="emp_seq")
+@SequenceGenerator(name="emp_seq", schema="employeesschema")
 public class Employee{
 
     @Id

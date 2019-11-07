@@ -80,7 +80,7 @@ public class EmployeeLookupService {
                 .orElse(0.0));
 
 
-        if (employeeLookupResult.getEmployeeTitle() == EmployeeTitle.Manager) {
+        if (employeeLookupResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
             //a person can manage many departments
             employeeLookupResult.setDepartments(employee
                     .getDepartmentManager()
