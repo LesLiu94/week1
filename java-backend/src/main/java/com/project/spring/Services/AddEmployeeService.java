@@ -36,7 +36,7 @@ public class AddEmployeeService {
 
     private final static Logger logger = LogManager.getLogger(AddEmployeeService.class);
 
-    public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest) throws Exception{
+    public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest){
 
         logger.info("Adding employee by first name, last name, title, department, salary, birth date, hire date, gender, from date, and to date");
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
