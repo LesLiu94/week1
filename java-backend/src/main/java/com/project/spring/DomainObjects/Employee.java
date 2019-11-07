@@ -24,11 +24,13 @@ import java.util.Set;
         name = "psql_enum",
         typeClass = PostgreSQLEnumType.class
 )
+@SequenceGenerator(name="emp_seq")
 public class Employee{
 
-    @Column(name = "emp_no")
     @Id
-    private int empNo;
+    @Column(name = "emp_no")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="emp_seq")
+    private Long empNo;
 
     @Column(name = "birth_date")
     @NotNull
@@ -81,12 +83,11 @@ public class Employee{
     }
 
     //Getters and Setters
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    public int getEmpNo() {
+    public Long getEmpNo() {
         return empNo;
     }
 
-    public void setEmpNo(int empNo) {
+    public void setEmpNo(Long empNo) {
         this.empNo = empNo;
     }
 
