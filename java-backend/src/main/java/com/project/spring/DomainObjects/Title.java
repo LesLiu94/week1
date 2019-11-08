@@ -18,19 +18,19 @@ public class Title implements Serializable{
     @EmbeddedId
     private TitlesCompositeKey titlesCompositeKey;
 
-    @Column(name = "emp_no",insertable=false, updatable=false)
+    /*@Column(name = "emp_no",insertable=false, updatable=false)
     @NotBlank
-    private int empNo;
+    private int empNo;*/
 
-    @Column(name = "title",insertable=false, updatable=false)
+    /*@Column(name = "title",insertable=false, updatable=false)
     @NotNull
     @Enumerated(EnumType.STRING)
-    private EmployeeTitle title;
+    private EmployeeTitle title;*/
 
-    @Column(name = "from_date",insertable=false, updatable=false)
+    /*@Column(name = "from_date",insertable=false, updatable=false)
     @NotBlank
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
-    private Date fromDate;
+    private Date fromDate;*/
 
     @Column(name = "to_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
@@ -38,8 +38,12 @@ public class Title implements Serializable{
 
     @Override
     public String toString() {
-        String resultString = title.toString();
+        String resultString = titlesCompositeKey.getTitle().toString();
         return resultString;
+    }
+
+    public Title(){
+        titlesCompositeKey = new TitlesCompositeKey();
     }
 
     //Getters and Setters
@@ -52,28 +56,34 @@ public class Title implements Serializable{
         this.titlesCompositeKey = titlesCompositeKey;
     }
 
-    public int getEmpNo() {
-        return empNo;
+    public Employee getEmployee() {
+        return (titlesCompositeKey==null) ? null : titlesCompositeKey.getEmployee();
     }
 
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
+    public void setEmployee(Employee employee) {
+        if(titlesCompositeKey != null){
+            titlesCompositeKey.setEmployee(employee);
+        }
     }
 
     public EmployeeTitle getTitle() {
-        return title;
+        return (titlesCompositeKey==null) ? null : titlesCompositeKey.getTitle();
     }
 
     public void setTitle(EmployeeTitle title) {
-        this.title = title;
+        if(titlesCompositeKey != null) {
+            titlesCompositeKey.setTitle(title);
+        }
     }
 
     public Date getFromDate() {
-        return fromDate;
+        return (titlesCompositeKey==null) ? null : titlesCompositeKey.getFromDate();
     }
 
     public void setFromDate(Date fromDate) {
-        this.fromDate = fromDate;
+        if(titlesCompositeKey != null){
+            titlesCompositeKey.setFromDate(fromDate);
+        }
     }
 
     public Date getToDate() {

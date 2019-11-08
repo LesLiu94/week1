@@ -56,13 +56,13 @@ public class Employee{
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date hireDate;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "emp_no")
     @NotNull
     private List<Salary> salaries;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "emp_no",insertable=false,updatable=false)
+    @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "emp_no")
     @NotNull
     private List<Title> titles;
 

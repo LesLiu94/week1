@@ -1,5 +1,6 @@
 package com.project.spring.Services;
 
+import com.project.spring.CompositeKeys.SalariesCompositeKey;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
@@ -38,7 +39,8 @@ public class AddEmployeeService {
 
     public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest){
 
-        logger.info("Adding employee by first name, last name, title, department, salary, birth date, hire date, gender, from date, and to date");
+        logger.info("Adding employee by first name, last name, title, department, salary, birth date, hire date," +
+                " gender, from date, and to date");
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
 
         //checking all dates to see if they are the correct format
@@ -69,7 +71,6 @@ public class AddEmployeeService {
         List<Salary> salaryList = new ArrayList<>();
         Salary newEmployeeSalary = new Salary();
         newEmployeeSalary.setPay(employeeRequest.getSalary());
-        newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
         newEmployeeSalary.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
         salaryList.add(newEmployeeSalary);
 
@@ -90,6 +91,9 @@ public class AddEmployeeService {
         newEmployee.setHireDate(java.sql.Date.valueOf(employeeRequest.getHireDate()));
         newEmployee.setSalaries(salaryList);
         newEmployee.setTitles(titleList);
+
+        newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
+        newEmployeeSalary.setEmployee(newEmployee);
 
         employeeDAO.save(newEmployee);
 
