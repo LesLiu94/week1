@@ -48,14 +48,6 @@ public class Title implements Serializable{
 
     //Getters and Setters
 
-    public TitlesCompositeKey getTitlesCompositeKey() {
-        return titlesCompositeKey;
-    }
-
-    public void setTitlesCompositeKey(TitlesCompositeKey titlesCompositeKey) {
-        this.titlesCompositeKey = titlesCompositeKey;
-    }
-
     public Employee getEmployee() {
         return (titlesCompositeKey==null) ? null : titlesCompositeKey.getEmployee();
     }

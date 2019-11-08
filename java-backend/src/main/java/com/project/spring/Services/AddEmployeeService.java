@@ -72,6 +72,7 @@ public class AddEmployeeService {
         Salary newEmployeeSalary = new Salary();
         newEmployeeSalary.setPay(employeeRequest.getSalary());
         newEmployeeSalary.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
+        newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
         salaryList.add(newEmployeeSalary);
 
         //titles
@@ -92,8 +93,8 @@ public class AddEmployeeService {
         newEmployee.setSalaries(salaryList);
         newEmployee.setTitles(titleList);
 
-        newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
         newEmployeeSalary.setEmployee(newEmployee);
+        newEmployeeTitle.setEmployee(newEmployee);
 
         employeeDAO.save(newEmployee);
 
