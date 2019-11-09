@@ -1,13 +1,13 @@
 import React from "react";
 
-class EmployeeList extends React.Component {
+class EmployeeLookup extends React.Component {
     render() {
         return (
             <div>
-                EmployeeList
+                EmployeeLookup
             </div>
         );
     }
 }
 
-export default EmployeeList;
+export default EmployeeLookup;

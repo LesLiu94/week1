@@ -1,13 +1,13 @@
 import React from "react";
 
-class EmployeeList extends React.Component {
+class UnequallyPaid extends React.Component {
     render() {
         return (
             <div>
-                EmployeeList
+                UnequallyPaid
             </div>
         );
     }
 }
 
-export default EmployeeList;
+export default UnequallyPaid;
