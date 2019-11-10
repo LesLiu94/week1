@@ -36,12 +36,15 @@ public class EmployeeLookupService {
 
         logger.info("Finding employee by first name, last name, and date of birth");
 
-        LocalDate dob;
+        LocalDate dob = null;
 
         try {
             dob = LocalDate.parse(dobString);
         } catch (DateTimeParseException e) {
             logger.info("Your date format is trash, try again using the format: 'yyyy-MM-dd' ");
+            return null;
+        } catch (NullPointerException e){
+            logger.info("No date of birth was given.");
             return null;
         }
 
