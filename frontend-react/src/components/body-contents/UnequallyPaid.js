@@ -24,7 +24,7 @@ class UnequallyPaid extends React.Component {
                                             </div>
                                             <br/>
                                             <div className="card-body">
-                                                    Salary: {employee.salary}
+                                                    Salary: ${employee.salary}
                                                     <br/> Hire Date: {employee.hireDate}
                                                     <br/> Birth Date: {employee.birthDate}
                                             </div>

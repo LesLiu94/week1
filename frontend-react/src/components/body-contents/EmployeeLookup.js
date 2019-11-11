@@ -67,7 +67,7 @@ class EmployeeLookup extends React.Component {
                 <div className="card border-info mb-3">
                     <h1 className="card-header">Lookup Result:</h1>
                     <div className="card-body">
-                        <h2 className="firstItem">Name: {this.state.firstName} &nbsp; {this.state.lastName} </h2>
+                        <h2 className="firstItem">Name: {this.state.firstName} {this.state.lastName} </h2>
                         <br/>
                         <h4>Department(s) = {this.state.departments} </h4>
                         <br/>
