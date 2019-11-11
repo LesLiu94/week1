@@ -39,7 +39,7 @@ public class EmployeeListLookupService {
 
         List<Employee> employeeList = employeeDAO.findAll();
 
-        List<EmployeeLookupResult> employeeListResult = new ArrayList<EmployeeLookupResult>();
+        List<EmployeeLookupResult> employeeListResult = new ArrayList<>();
 
         Date now = new Date();
 
@@ -49,6 +49,7 @@ public class EmployeeListLookupService {
 
             employeeLookupResult.setFirstName(e.getFirstName());
             employeeLookupResult.setLastName(e.getLastName());
+            employeeLookupResult.setDob(e.getBirthDate());
 
             //assume only 1 title is relevant at a time
             employeeLookupResult.setEmployeeTitle( e

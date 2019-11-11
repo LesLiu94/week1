@@ -37,7 +37,7 @@ public class Employee{
 
     @Column(name = "birth_date")
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private Date birthDate;
 
     @Column(name = "first_name")

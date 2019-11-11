@@ -24,7 +24,7 @@ public class UnequalPayEndpoint {
     final static Logger logger = LogManager.getLogger(UnequalPayEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees that make less than their juniors")
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "*")
     @GetMapping(value = "/unequalEmployees", produces = "application/json")
     @ResponseBody
     public ArrayList<UnequalLookupResult> findUnequallyPaidEmployees() {
