@@ -18,7 +18,7 @@ class UnequallyPaid extends React.Component {
                             {
                                 this.state.employees.map((employee, index)=>{
                                     return (
-                                        <li className="list-group-item card border border-dark">
+                                        <li key={index} className="list-group-item card border border-dark">
                                             <div className="card-header">
                                                     Name: {employee.firstName} {employee.lastName}
                                             </div>
