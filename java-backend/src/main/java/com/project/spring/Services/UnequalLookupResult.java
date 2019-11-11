@@ -1,5 +1,6 @@
 package com.project.spring.Services;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Endpoint.UnequalPayEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import org.apache.logging.log4j.LogManager;
@@ -13,8 +14,8 @@ import java.util.List;
 
 public class UnequalLookupResult extends EmployeeLookupResult {
 
-
-    private String hireDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private Date hireDate;
 
     final static Logger logger = LogManager.getLogger(UnequalPayEndpoint.class);
 
@@ -24,11 +25,11 @@ public class UnequalLookupResult extends EmployeeLookupResult {
         return resultString;
     }
 
-    public String getHireDate() {
+    public Date getHireDate() {
         return hireDate;
     }
 
-    public void setHireDate(String hireDate) {
+    public void setHireDate(Date hireDate) {
         this.hireDate = hireDate;
     }
 
