@@ -71,8 +71,8 @@ public class UnequalPayLookupService {
                 SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                 String dobString = formatter.format((employeeDAO.findByFirstNameAndLastName(currentUnequalEmployee.getFirstName(),currentUnequalEmployee.getLastName())).getBirthDate());
                 currentUnequalEmployee.setBirthDate(dobString);
-                String hireString = formatter.format((employeeDAO.findByFirstNameAndLastName(currentUnequalEmployee.getFirstName(),currentUnequalEmployee.getLastName())).getHireDate());
-                currentUnequalEmployee.setHireDate(hireString);
+                Date hireDate = (employeeDAO.findByFirstNameAndLastName(currentUnequalEmployee.getFirstName(),currentUnequalEmployee.getLastName())).getHireDate();
+                currentUnequalEmployee.setHireDate(hireDate);
                 currentUnequalEmployee.setSalary((salaryArrayList.get(i).getPay()));
 
                 unequalResultList.add(currentUnequalEmployee);

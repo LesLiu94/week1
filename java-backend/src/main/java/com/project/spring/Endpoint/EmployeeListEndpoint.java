@@ -21,7 +21,7 @@ public class EmployeeListEndpoint {
     final static Logger logger = LogManager.getLogger(EmployeeListEndpoint.class);
 
     @ApiOperation(value = "lists all of the employees")
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = "*")
     @GetMapping(value = "/allEmployees", produces = "application/json")
     @ResponseBody
     public List<EmployeeLookupResult> findAllEmployees(){
