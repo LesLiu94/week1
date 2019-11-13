@@ -25,14 +25,13 @@ import java.util.Set;
         typeClass = PostgreSQLEnumType.class
 )
 @SequenceGenerator(name="emp_seq",
-        sequenceName="emp_seq", schema="employeesschema",
-        initialValue=1, allocationSize=2147483647)
+        sequenceName="emp_seq", schema="employeesschema")
 
 public class Employee{
 
     @Id
     @Column(name = "emp_no")
-    @GeneratedValue(strategy=GenerationType.IDENTITY, generator="emp_seq")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="emp_seq")
     private Integer empNo;
 
     @Column(name = "birth_date")

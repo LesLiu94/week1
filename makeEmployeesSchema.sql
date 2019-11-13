@@ -71,4 +71,5 @@ create table employeesSchema.titles (
 
 create index emp_no_titles_index on employeesSchema.titles(emp_no);
 
-create sequence if not exists employeesSchema.emp_seq;
+drop sequence if exists employeesSchema.emp_seq;
+create sequence if not exists employeesSchema.emp_seq start 10000050 increment 3 minvalue 10000050;
