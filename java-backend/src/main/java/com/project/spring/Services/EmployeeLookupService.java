@@ -37,14 +37,13 @@ public class EmployeeLookupService {
         logger.info("Finding employee(s) by first name and last name");
 
         //capitalizes the first character of first name and last name if not inputted as capitalized
-        if(Character.isLowerCase(first.charAt(0))){
+        if (Character.isLowerCase(first.charAt(0))) {
             first = Character.toUpperCase(first.charAt(0)) + first.substring(1);
         }
-        if(Character.isLowerCase(last.charAt(0))){
+        if (Character.isLowerCase(last.charAt(0))) {
             last = Character.toUpperCase(last.charAt(0)) + last.substring(1);
         }
-        System.out.println(first);
-        System.out.println(last);
+
         List<Employee> employees = employeeDAO.findByFirstNameAndLastName(first, last);
         List<EmployeeLookupResult> listEmployeeLookupResult = new ArrayList<>();
 
@@ -54,7 +53,7 @@ public class EmployeeLookupService {
 
         EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
 
-        for (Employee employee: employees) {
+        for (Employee employee : employees) {
 
             employeeLookupResult.setFirstName(employee.getFirstName());
             employeeLookupResult.setLastName(employee.getLastName());
@@ -92,10 +91,9 @@ public class EmployeeLookupService {
                         .map(DepartmentManager::getDepartment) //get the department
                         .map(Department::getDeptName) //get the department name
                         .collect(Collectors.toList()));
-            }
-            else {
+            } else {
                 //a person can work at many departments
-                employeeLookupResult.setDepartments( employee
+                employeeLookupResult.setDepartments(employee
                         .getDepartmentEmployee()
                         .stream()
                         .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
@@ -109,7 +107,7 @@ public class EmployeeLookupService {
         }
 
 
-
         return listEmployeeLookupResult;
     }
 }
+

@@ -1,6 +1,5 @@
 package com.project.spring.Services;
 
-import com.project.spring.CompositeKeys.SalariesCompositeKey;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
@@ -47,12 +46,11 @@ public class AddEmployeeService {
         checkDateFormat(employeeRequest.getBirthDate());
         checkDateFormat(""+employeeRequest.getFromDate());
         checkDateFormat(""+employeeRequest.getToDate());
-        checkDateFormat(employeeRequest.getHireDate());
 
         //checking to see if dates are in order
         LocalDate fromLocalDate = LocalDate.parse(employeeRequest.getFromDate());
         LocalDate toLocalDate = LocalDate.parse(employeeRequest.getToDate());
-        LocalDate hireLocalDate = LocalDate.parse(employeeRequest.getHireDate());
+        LocalDate hireLocalDate = LocalDate.fromDateFields(employeeRequest.getHireDate());
         LocalDate birthLocalDate = LocalDate.parse(employeeRequest.getBirthDate());
         if(toLocalDate.isBefore(fromLocalDate)){
             logger.info("Your 'from date' is after your 'to date' which does not make sense.");
@@ -89,7 +87,7 @@ public class AddEmployeeService {
         newEmployee.setLastName(employeeRequest.getLastName());
         newEmployee.setSex(employeeRequest.getGender());
         newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
-        newEmployee.setHireDate(java.sql.Date.valueOf(employeeRequest.getHireDate()));
+        newEmployee.setHireDate(employeeRequest.getHireDate());
         newEmployee.setSalaries(salaryList);
         newEmployee.setTitles(titleList);
 

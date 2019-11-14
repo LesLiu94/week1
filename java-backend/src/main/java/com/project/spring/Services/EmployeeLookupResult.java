@@ -1,13 +1,18 @@
 package com.project.spring.Services;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Enums.EmployeeTitle;
 
+import java.util.Date;
 import java.util.List;
 
 public class EmployeeLookupResult {
 
     private String firstName;
     private String lastName;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private Date dob;
     private EmployeeTitle employeeTitle;
     private List<String> departments;
     private Double salary;
@@ -35,6 +40,14 @@ public class EmployeeLookupResult {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
     }
 
     public EmployeeTitle getEmployeeTitle() {
