@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
 import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/EmployeeLookup")
@@ -25,16 +26,16 @@ public class EmployeeEndpoint {
     @CrossOrigin(origins = "http://localhost:9000")
     @GetMapping(value = "/findEmployee", produces= "application/json")
     @ResponseBody
-    public EmployeeLookupResult findEmployee(String first, String last, String dobString) {
+    public List<EmployeeLookupResult> findEmployee(String first, String last) {
         logger.info("Handling request for an employee");
-        EmployeeLookupResult yourEmployee = employeeLookupService.findEmployee(first,last,dobString);
+        List<EmployeeLookupResult> yourEmployees = employeeLookupService.findEmployee(first,last);
 
-        if (yourEmployee == null){
+        if (yourEmployees == null){
             logger.info("We could not find the person you were looking for.");
-            return yourEmployee;
+            return yourEmployees;
         }
 
         logger.info("Successfully generated a response for the employee look up");
-        return yourEmployee;
+        return yourEmployees;
     }
 }
