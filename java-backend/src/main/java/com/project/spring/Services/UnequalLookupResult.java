@@ -21,7 +21,8 @@ public class UnequalLookupResult extends EmployeeLookupResult {
 
     @Override
     public String toString() {
-        String resultString = String.format("%s %s is an unequally paid employee who was hired on %s with a salary of $%f", this.getFirstName(), this.getLastName(), this.getHireDate(), this.getSalary());
+        String resultString = String.format("%s %s is an unequally paid employee who was hired on %s with " +
+                "a salary of $%f", this.getFirstName(), this.getLastName(), this.getHireDate(), this.getSalary());
         return resultString;
     }
 

@@ -11,8 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -38,7 +41,7 @@ public class AddEmployeeService {
 
     public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest){
 
-        logger.info("Adding employee by first name, last name, title, department, salary, birth date, hire date," +
+        logger.info("Adding employee by first name, last name, title, salary, birth date, hire date," +
                 " gender, from date, and to date");
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
 
@@ -87,6 +90,18 @@ public class AddEmployeeService {
         newEmployee.setLastName(employeeRequest.getLastName());
         newEmployee.setSex(employeeRequest.getGender());
         newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
+
+        //change employeeRequest's ISO format to MM-DD-YYYY
+
+//        Date newEmployeeHireDate = new Date();
+//        try {
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+//            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
+//            newEmployeeHireDate = new SimpleDateFormat("mm/dd/yyyy").parse(sdf2.format(sdf.parse(employeeRequest.getHireDate().toString())));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+
         newEmployee.setHireDate(employeeRequest.getHireDate());
         newEmployee.setSalaries(salaryList);
         newEmployee.setTitles(titleList);
