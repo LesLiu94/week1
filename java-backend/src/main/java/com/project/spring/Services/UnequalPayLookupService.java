@@ -4,20 +4,17 @@ import com.project.spring.DAO.EmployeeDAO;
 import com.project.spring.DAO.SalaryDAO;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
+import com.project.spring.Misc.UnequalPayLookupUtilities;
+import com.project.spring.dto.UnequalLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.transaction.Transactional;
 import org.joda.time.LocalDate;
 
-import java.text.DateFormat;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static org.springframework.util.CollectionUtils.isEmpty;
 
@@ -67,10 +64,7 @@ public class UnequalPayLookupService {
                 currentUnequalEmployee.setFirstName(employeeList.get(i).getFirstName());
                 currentUnequalEmployee.setLastName(employeeList.get(i).getLastName());
 
-                //formatting date
-                SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-                String dobString = formatter.format(employeeList.get(i).getBirthDate());
-                currentUnequalEmployee.setBirthDate(dobString);
+                currentUnequalEmployee.setBirthDate(employeeList.get(i).getBirthDate());
 
                 Date hireDate = employeeList.get(i).getHireDate();
                 currentUnequalEmployee.setHireDate(hireDate);

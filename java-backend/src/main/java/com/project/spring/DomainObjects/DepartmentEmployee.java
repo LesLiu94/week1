@@ -2,6 +2,9 @@ package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
+import org.hibernate.annotations.Type;
+
+import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -25,12 +28,12 @@ public class DepartmentEmployee implements Serializable{
 
     @Column(name = "from_date")
     @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date fromDate;
 
     @Column(name = "to_date")
     @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date toDate;
 
     @OneToOne(fetch = FetchType.LAZY)

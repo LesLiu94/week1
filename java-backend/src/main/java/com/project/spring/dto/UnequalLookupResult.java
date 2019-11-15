@@ -1,16 +1,13 @@
-package com.project.spring.Services;
+package com.project.spring.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Endpoint.UnequalPayEndpoint;
-import com.project.spring.Enums.EmployeeTitle;
+import com.project.spring.dto.EmployeeLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class UnequalLookupResult extends EmployeeLookupResult {
 
@@ -34,19 +31,12 @@ public class UnequalLookupResult extends EmployeeLookupResult {
         this.hireDate = hireDate;
     }
 
-    public String getBirthDate() {
-        return LocalDate.fromDateFields(super.getDob()).toString("MM/dd/yyyy");
+    public Date getBirthDate() {
+        return super.getDob();
     }
 
-    public void setBirthDate(String birthDate) {
-        try{
-
-            Date dob =new SimpleDateFormat("yyyy-MM-dd").parse(birthDate);
-            super.setDob(dob);
-        }catch(ParseException e){
-            logger.info("The birthdate could not be properly parsed.");
-            super.setDob(null);
-        }
+    public void setBirthDate(Date birthDate) {
+        super.setDob(birthDate);
     }
 
 }

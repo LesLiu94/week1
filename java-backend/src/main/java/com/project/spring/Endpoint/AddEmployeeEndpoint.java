@@ -1,8 +1,8 @@
 package com.project.spring.Endpoint;
 
-import com.project.spring.Services.AddEmployeeRequest;
+import com.project.spring.dto.AddEmployeeRequest;
 import com.project.spring.Services.AddEmployeeService;
-import com.project.spring.Services.EmployeeLookupResult;
+import com.project.spring.dto.EmployeeLookupResult;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

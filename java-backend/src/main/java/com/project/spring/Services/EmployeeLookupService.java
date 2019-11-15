@@ -3,6 +3,7 @@ package com.project.spring.Services;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.*;
 import com.project.spring.Enums.EmployeeTitle;
+import com.project.spring.dto.EmployeeLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.joda.time.LocalDate;
@@ -10,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -46,10 +46,6 @@ public class EmployeeLookupService {
 
         List<Employee> employees = employeeDAO.findByFirstNameAndLastName(first, last);
         List<EmployeeLookupResult> listEmployeeLookupResult = new ArrayList<>();
-
-        if (employees == null) {
-            return listEmployeeLookupResult;
-        }
 
         EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
 

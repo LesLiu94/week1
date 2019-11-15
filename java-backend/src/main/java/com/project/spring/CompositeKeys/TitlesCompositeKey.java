@@ -3,27 +3,26 @@ package com.project.spring.CompositeKeys;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.Enums.EmployeeTitle;
+import com.project.spring.Misc.PostgreSQLEnumType;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.joda.time.LocalDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Embeddable
+@TypeDef(
+        name = "psql_enum",
+        typeClass = PostgreSQLEnumType.class
+)
 public class TitlesCompositeKey implements Serializable {
-
-    /*@Column(name = "emp_no")
-    private int empNo;*/
 
     @ManyToOne
     @JoinColumn(name = "emp_no", referencedColumnName = "emp_no")
     private Employee employee;
-
-    /*@Column(name = "title")
-    @Enumerated(EnumType.STRING)
-    private EmployeeTitle title;*/
 
     @Column(name = "title")
     @NotNull
@@ -32,8 +31,7 @@ public class TitlesCompositeKey implements Serializable {
     private EmployeeTitle title;
 
     @Column(name = "from_date")
-    @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date fromDate;
 
     public TitlesCompositeKey(){

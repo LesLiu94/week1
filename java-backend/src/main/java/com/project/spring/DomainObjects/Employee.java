@@ -1,22 +1,19 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.project.spring.Enums.Sex;
 import com.project.spring.Misc.PostgreSQLEnumType;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
+import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Comparator;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(schema = "employeesschema", name = "employees")
@@ -35,8 +32,7 @@ public class Employee{
     private Integer empNo;
 
     @Column(name = "birth_date")
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date birthDate;
 
     @Column(name = "first_name")
@@ -54,8 +50,7 @@ public class Employee{
     private Sex sex;
 
     @Column(name = "hire_date")
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date hireDate;
 
     @OneToMany(fetch = FetchType.LAZY, cascade=CascadeType.ALL)
@@ -78,7 +73,7 @@ public class Employee{
 
     @Override
     public String toString(){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String dobString = dateFormat.format(this.birthDate);
         String resultString = String.join(" ",this.firstName, this.lastName, dobString);
         return resultString;

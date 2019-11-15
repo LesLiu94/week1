@@ -2,27 +2,26 @@ package com.project.spring.CompositeKeys;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.DomainObjects.Employee;
+import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
+import org.joda.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 
 @Embeddable
 public class SalariesCompositeKey implements Serializable {
-    /*@Column(name = "emp_no")
-    private int empNo;*/
 
     @ManyToOne
     @JoinColumn(name = "emp_no", referencedColumnName = "emp_no")
     private Employee employee;
 
     @Column(name = "from_date")
-    @NotBlank
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date fromDate;
 
     public SalariesCompositeKey(){
@@ -32,14 +31,6 @@ public class SalariesCompositeKey implements Serializable {
         this.employee = employee;
         this.fromDate = fromDate;
     }
-
-    /*public int getEmpNo(){
-        return empNo;
-    }
-
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
-    }*/
 
     public Employee getEmployee() {
         return employee;

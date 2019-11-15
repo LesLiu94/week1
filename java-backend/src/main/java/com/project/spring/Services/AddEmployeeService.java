@@ -4,16 +4,14 @@ import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
 import com.project.spring.DomainObjects.Title;
+import com.project.spring.dto.AddEmployeeRequest;
+import com.project.spring.dto.EmployeeLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -45,25 +43,21 @@ public class AddEmployeeService {
                 " gender, from date, and to date");
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
 
-        //checking all dates to see if they are the correct format
-        checkDateFormat(employeeRequest.getBirthDate());
-        checkDateFormat(""+employeeRequest.getFromDate());
-        checkDateFormat(""+employeeRequest.getToDate());
-
         //checking to see if dates are in order
-        LocalDate fromLocalDate = LocalDate.parse(employeeRequest.getFromDate());
-        LocalDate toLocalDate = LocalDate.parse(employeeRequest.getToDate());
-        LocalDate hireLocalDate = LocalDate.fromDateFields(employeeRequest.getHireDate());
-        LocalDate birthLocalDate = LocalDate.parse(employeeRequest.getBirthDate());
-        if(toLocalDate.isBefore(fromLocalDate)){
+        Date fromDate = employeeRequest.getFromDate();
+        Date toDate = employeeRequest.getToDate();
+        Date hireDate = employeeRequest.getHireDate();
+        Date birthDate = employeeRequest.getBirthDate();
+
+        if(toDate.before(fromDate)){
             logger.info("Your 'from date' is after your 'to date' which does not make sense.");
             return null;
         }
-        if(fromLocalDate.isBefore(hireLocalDate)){
+        if(fromDate.before(hireDate)){
             logger.info("Your 'hire date' is after your 'from date'/'start date'.");
             return null;
         }
-        if(fromLocalDate.isBefore(birthLocalDate)){
+        if(fromDate.before(birthDate)){
             logger.info("Your 'birth date' is after your 'hire date' which makes absolutely no sense.");
             return null;
         }
@@ -72,16 +66,16 @@ public class AddEmployeeService {
         List<Salary> salaryList = new ArrayList<>();
         Salary newEmployeeSalary = new Salary();
         newEmployeeSalary.setPay(employeeRequest.getSalary());
-        newEmployeeSalary.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
-        newEmployeeSalary.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
+        newEmployeeSalary.setToDate(employeeRequest.getToDate());
+        newEmployeeSalary.setFromDate(employeeRequest.getFromDate());
         salaryList.add(newEmployeeSalary);
 
         //titles
         List<Title> titleList = new ArrayList<>();
         Title newEmployeeTitle = new Title();
         newEmployeeTitle.setTitle(employeeRequest.getEmployeeTitle());
-        newEmployeeTitle.setFromDate(java.sql.Date.valueOf(employeeRequest.getFromDate()));
-        newEmployeeTitle.setToDate(java.sql.Date.valueOf(employeeRequest.getToDate()));
+        newEmployeeTitle.setFromDate(employeeRequest.getFromDate());
+        newEmployeeTitle.setToDate(employeeRequest.getToDate());
         titleList.add(newEmployeeTitle);
 
         //employee
@@ -89,18 +83,7 @@ public class AddEmployeeService {
         newEmployee.setFirstName(employeeRequest.getFirstName());
         newEmployee.setLastName(employeeRequest.getLastName());
         newEmployee.setSex(employeeRequest.getGender());
-        newEmployee.setBirthDate(java.sql.Date.valueOf(employeeRequest.getBirthDate()));
-
-        //change employeeRequest's ISO format to MM-DD-YYYY
-
-//        Date newEmployeeHireDate = new Date();
-//        try {
-//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//            SimpleDateFormat sdf2 = new SimpleDateFormat("dd-MM-yyyy");
-//            newEmployeeHireDate = new SimpleDateFormat("mm/dd/yyyy").parse(sdf2.format(sdf.parse(employeeRequest.getHireDate().toString())));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+        newEmployee.setBirthDate(employeeRequest.getBirthDate());
 
         newEmployee.setHireDate(employeeRequest.getHireDate());
         newEmployee.setSalaries(salaryList);
@@ -116,17 +99,10 @@ public class AddEmployeeService {
         newEmployeeResult.setLastName(employeeRequest.getLastName());
         newEmployeeResult.setSalary(employeeRequest.getSalary());
         newEmployeeResult.setEmployeeTitle(employeeRequest.getEmployeeTitle());
+        newEmployeeResult.setDob(employeeRequest.getDob());
+
 
         return newEmployeeResult;
-    }
-
-    private void checkDateFormat(String newEmployeeDate){
-        LocalDate newEmployeeLocalDate;
-        try {
-            newEmployeeLocalDate = LocalDate.parse(""+newEmployeeDate);
-        } catch (DateTimeParseException e) {
-            logger.info("Your date format is incorrect, try again using the format: 'yyyy-MM-dd' ");
-        }
     }
 
 }
