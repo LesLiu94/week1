@@ -36,13 +36,10 @@ public class EmployeeLookupService {
 
         logger.info("Finding employee(s) by first name and last name");
 
-        //capitalizes the first character of first name and last name if not inputted as capitalized
-        if (Character.isLowerCase(first.charAt(0))) {
-            first = Character.toUpperCase(first.charAt(0)) + first.substring(1);
-        }
-        if (Character.isLowerCase(last.charAt(0))) {
-            last = Character.toUpperCase(last.charAt(0)) + last.substring(1);
-        }
+        first = first.toLowerCase();
+        first = Character.toUpperCase(first.charAt(0)) + first.substring(1);
+        last = last.toLowerCase();
+        last = Character.toUpperCase(last.charAt(0)) + last.substring(1);
 
         List<Employee> employees = employeeDAO.findByFirstNameAndLastName(first, last);
         List<EmployeeLookupResult> listEmployeeLookupResult = new ArrayList<>();
@@ -53,6 +50,7 @@ public class EmployeeLookupService {
 
             employeeLookupResult.setFirstName(employee.getFirstName());
             employeeLookupResult.setLastName(employee.getLastName());
+            employeeLookupResult.setDob(employee.getBirthDate());
 
             Date now = new Date();
 

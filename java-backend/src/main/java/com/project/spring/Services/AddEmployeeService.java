@@ -80,8 +80,12 @@ public class AddEmployeeService {
 
         //employee
         Employee newEmployee = new Employee();
-        newEmployee.setFirstName(employeeRequest.getFirstName());
-        newEmployee.setLastName(employeeRequest.getLastName());
+        String newEmployeeFirstName = employeeRequest.getFirstName().toLowerCase();
+        newEmployeeFirstName = Character.toUpperCase(newEmployeeFirstName.charAt(0)) + newEmployeeFirstName.substring(1);
+        newEmployee.setFirstName(newEmployeeFirstName);
+        String newEmployeeLastName = employeeRequest.getLastName().toLowerCase();
+        newEmployeeLastName = Character.toUpperCase(newEmployeeLastName.charAt(0)) + newEmployeeLastName.substring(1);
+        newEmployee.setLastName(newEmployeeLastName);
         newEmployee.setSex(employeeRequest.getGender());
         newEmployee.setBirthDate(employeeRequest.getBirthDate());
 
@@ -95,12 +99,10 @@ public class AddEmployeeService {
         employeeDAO.save(newEmployee);
 
         //response
-        newEmployeeResult.setFirstName(employeeRequest.getFirstName());
-        newEmployeeResult.setLastName(employeeRequest.getLastName());
+        newEmployeeResult.setFirstName(newEmployeeFirstName);
+        newEmployeeResult.setLastName(newEmployeeLastName);
         newEmployeeResult.setSalary(employeeRequest.getSalary());
         newEmployeeResult.setEmployeeTitle(employeeRequest.getEmployeeTitle());
-        newEmployeeResult.setDob(employeeRequest.getDob());
-
 
         return newEmployeeResult;
     }

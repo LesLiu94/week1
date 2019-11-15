@@ -64,7 +64,9 @@ public class UnequalPayLookupService {
                 currentUnequalEmployee.setFirstName(employeeList.get(i).getFirstName());
                 currentUnequalEmployee.setLastName(employeeList.get(i).getLastName());
 
-                currentUnequalEmployee.setBirthDate(employeeList.get(i).getBirthDate());
+                Date birthDate = employeeList.get(i).getBirthDate();
+                currentUnequalEmployee.setBirthDate(birthDate);
+                System.out.println(currentUnequalEmployee.getBirthDate());
 
                 Date hireDate = employeeList.get(i).getHireDate();
                 currentUnequalEmployee.setHireDate(hireDate);

@@ -5,9 +5,7 @@
         <div>
                 <label style="width: 8%; font-size: 14px;">First Name:</label> <input ng-model="employeeLookupForm.fname" type="text" placeholder="John">
                 <br>
-                <label style="width: 8%; font-size: 14px;">Last Name:</label> <input ng-model="employeeLookupForm.lname" type="text" placeholder="Doe">
-                <br>
-                <label class="lastItem" style="width: 8%; font-size: 13.5px;">Date of Birth:</label> <input ng-model="employeeLookupForm.dob" type="text" placeholder="yyyy-mm-dd">
+                <label class="lastItem" style="width: 8%; font-size: 14px;">Last Name:</label> <input ng-model="employeeLookupForm.lname" type="text" placeholder="Doe">
                 <br>
                 <button type="button" class="lastItem btn btn-secondary btn-lg" ng-click="lookup(employeeLookupForm)">Lookup</button>
         </div>
@@ -18,14 +16,14 @@
 <div class="card border-info mb-3">
     <h1 class="card-header">Lookup Result:</h1>
         <div class="card-body">
-            <h2 class="firstItem">{{firstName}} {{lastName}} </h2>
-            <br>
-            <h4>Department(s) = {{departments}} </h4>
-            <br>
-            <h4>Title = {{employeeTitle}} </h4>
-            <br>
-            <h4>Salary = $ {{salary}} </h4>
-            <br>
+            <table ng-table="employeeLookupTable" class="table table-hover table-bordered">
+                <tr style="text-align: center;" ng-repeat="employee in employeeLookupList">
+                    <td data-title="'#'">{{((employeeLookupTable.page()-1) * employeeLookupTable.count()) + ($index + 1)}}</td>
+                    <td data-title="'Name'">{{employee.firstName}} {{employee.lastName}} </td>
+                    <td data-title="'Title'">{{employee.employeeTitle}}</td>
+                    <td data-title="'Salary'">{{employee.salary | currency}}</td>
+                </tr>
+            </table>
         </div>
 </div>
 <br>
