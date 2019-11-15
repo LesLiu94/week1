@@ -31,10 +31,12 @@ public class UnequalLookupResult extends EmployeeLookupResult {
         this.hireDate = hireDate;
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     public Date getBirthDate() {
         return super.getDob();
     }
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     public void setBirthDate(Date birthDate) {
         super.setDob(birthDate);
     }
