@@ -18,7 +18,8 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTable',
-    'ngTouch'
+    'ngTouch',
+    'ui.bootstrap'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';
@@ -42,6 +43,10 @@ angular
       .when('/employee-lookup', {
         templateUrl: 'views/employee-lookup.html',
         controller: 'EmployeeLookupCtrl'
+      })
+      .when('/add-employee', {
+        templateUrl: 'views/add-employee.html',
+        controller: 'AddEmployeeCtrl'
       })
       .when('/unequally-paid', {
         templateUrl: 'views/unequally-paid.html',

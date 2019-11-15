@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../frontend/app/scripts/controllers/employee-lookup-ctrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/scripts/controllers/employee-lookup-ctrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/views/employee-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/views/employee-lookup.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/views/employee-lookup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java" afterDir="false" />
-    </list>
+    <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
     <ignored path="$PROJECT_DIR$/build/" />
@@ -71,7 +62,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="218">
+            <state relative-caret-position="552">
               <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
             </state>
           </provider>
@@ -334,7 +325,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.9029126" visible="true" weight="0.23134328" />
       <window_info id="Structure" order="1" sideWeight="0.097087376" side_tool="true" weight="0.19616205" />
@@ -345,7 +336,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5007874" side_tool="true" weight="0.10501066" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3618635" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3618635" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -676,7 +667,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="218">
+        <state relative-caret-position="552">
           <caret line="67" column="62" selection-start-line="67" selection-start-column="62" selection-end-line="67" selection-end-column="62" />
         </state>
       </provider>
