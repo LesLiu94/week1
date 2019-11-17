@@ -6,7 +6,24 @@
                 <h3 class="modal-title">I'm Add Employee Modal!</h3>
             </div>
             <div class="modal-body">
-                
+                First Name: <input ng-model="addEmployeeForm.firstName" type="text" placeholder="John">
+                <br>
+                Last Name: <input ng-model="addEmployeeForm.lastName" type="text" placeholder="Smith">
+                <br>
+                Title: <input ng-model="addEmployeeForm.title" type="text" placeholder="EMPLOYEE">
+                <br>
+                Salary: <input ng-model="addEmployeeForm.salary" type="number" placeholder="0.00">
+                <br> 
+                Birth Date: <input ng-model="addEmployeeForm.birthDate" type="date" placeholder="01/01/2019">
+                <br>
+                Hire Date: <input ng-model="addEmployeeForm.hireDate" type="date" placeholder="01/01/2019">
+                <br>
+                Gender: <input ng-model="addEmployeeForm.gender" type="text" placeholder="M">
+                <br>
+                From Date: <input ng-model="addEmployeeForm.fromDate" type="date" placeholder="01/01/2019">
+                <br>
+                To Date: <input ng-model="addEmployeeForm.toDate" type="date" placeholder="01/01/2019">
+                <br> 
             </div>
             <div class="modal-footer">
                 <button class="btn btn-primary" ng-click="ok()">OK</button>
@@ -14,6 +31,6 @@
             </div>
         </script>
         
-        <button class="btn btn-default" ng-click="open()">Add Employee</button>
+        <button class="btn btn-default" ng-click="open()">Open Modal To Add Employee</button>
     </div>
 </div>

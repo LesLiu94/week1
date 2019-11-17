@@ -8,14 +8,22 @@
  * Controller of the employeeProjectApp
  */
 angular.module('employeeProjectApp')
-  .controller('AddEmployeeModalInstanceCtrl', ['$scope', '$modal', function ($scope, $modal) {
-    
+  .controller('AddEmployeeModalInstanceCtrl', ['$scope', '$uibModalInstance', '$http', function ($scope, $uibModalInstance, $http) {
     $scope.ok = function(){
-        $modalInstance.close();
+        $ubiModalInstance.close();
     }
     $scope.cancel = function(){
-        $modalInstance.dismiss('cancel');
+        $ubiModalInstance.dismiss('cancel');
     }
+
+    $scope.addEmployee = function(addEmployeeCriteria) {
+      $http({
+        method: 'POST',
+        url: "http://localhost:8080/api/AddEmployee/employee",
+        
+      })
+    }
+
   }]);
   
 
