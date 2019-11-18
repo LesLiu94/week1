@@ -18,8 +18,7 @@ angular
     'ngRoute',
     'ngSanitize',
     'ngTable',
-    'ngTouch',
-    'ui.bootstrap'
+    'ngTouch'
   ])
   .config(['$routeProvider', '$httpProvider', function ($routeProvider, $httpProvider) {
     $httpProvider.defaults.headers.common['Access-Control-Allow-Headers'] = '*';

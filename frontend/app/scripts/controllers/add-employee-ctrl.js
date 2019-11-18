@@ -8,14 +8,9 @@
  * Controller of the employeeProjectApp
  */
 angular.module('employeeProjectApp')
-  .controller('AddEmployeeCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
+  .controller('AddEmployeeCtrl', ['$scope', function ($scope) {
     $scope.title = "Add Employee";
-    $scope.open = function () {
-        $uibModal.open({
-            templateUrl: 'addEmployeeModalContent.html',
-            controller: 'AddEmployeeModalInstanceCtrl'
-        }).result.then(function(){}, function(res){})
-    }
+    
   }]);
   
 

@@ -1,36 +1,28 @@
 <div class="card border-info mb-3">
     <h1 class="card-header">{{title}}</h1>
     <div class="card-body">
-        <script type="text/ng-template" id="addEmployeeModalContent.html">
-            <div class="modal-header">
-                <h3 class="modal-title">I'm Add Employee Modal!</h3>
+        <button class="btn btn-default btn-lg btn-outline-primary" data-toggle="modal" data-target="#addEmployeeModal">Open Modal To Add Employee</button>
+    
+        <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="addEmployeeModalLabel">Add Employee Modal</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sedcondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
             </div>
-            <!-- <div class="modal-body">
-                First Name: <input ng-model="addEmployeeForm.firstName" type="text" placeholder="John">
-                <br>
-                Last Name: <input ng-model="addEmployeeForm.lastName" type="text" placeholder="Smith">
-                <br>
-                Title: <input ng-model="addEmployeeForm.title" type="text" placeholder="EMPLOYEE">
-                <br>
-                Salary: <input ng-model="addEmployeeForm.salary" type="number" placeholder="0.00">
-                <br> 
-                Birth Date: <input ng-model="addEmployeeForm.birthDate" type="date" placeholder="01/01/2019">
-                <br>
-                Hire Date: <input ng-model="addEmployeeForm.hireDate" type="date" placeholder="01/01/2019">
-                <br>
-                Gender: <input ng-model="addEmployeeForm.gender" type="text" placeholder="M">
-                <br>
-                From Date: <input ng-model="addEmployeeForm.fromDate" type="date" placeholder="01/01/2019">
-                <br>
-                To Date: <input ng-model="addEmployeeForm.toDate" type="date" placeholder="01/01/2019">
-                <br> 
-            </div> -->
-            <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="ok()">OK</button>
-                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-            </div>
-        </script>
-        
-        <button class="btn btn-default btn-lg btn-outline-primary" ng-click="open()">Open Modal To Add Employee</button>
+        </div>
     </div>
 </div>
