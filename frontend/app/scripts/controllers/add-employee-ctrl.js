@@ -11,10 +11,10 @@ angular.module('employeeProjectApp')
   .controller('AddEmployeeCtrl', ['$scope', '$uibModal', function ($scope, $uibModal) {
     $scope.title = "Add Employee";
     $scope.open = function () {
-        var modalInstance = $uibModal.open({
+        $uibModal.open({
             templateUrl: 'addEmployeeModalContent.html',
             controller: 'AddEmployeeModalInstanceCtrl'
-        })
+        }).result.then(function(){}, function(res){})
     }
   }]);
   
