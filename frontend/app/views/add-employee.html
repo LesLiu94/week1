@@ -4,7 +4,7 @@
         <button class="btn btn-default btn-lg btn-outline-primary" data-toggle="modal" data-target="#addEmployeeModal">Open Modal To Add Employee</button>
     
         <div class="modal fade" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title" id="addEmployeeModalLabel">Add Employee Modal</h3>
@@ -12,14 +12,31 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <div class="modal-body">
-
-
+                    <div class="modal-body" style="text-align: center;">
+                        <br>
+                        <label style="width: 8%;">First Name: </label> <input ng-model="addEmployeeForm.fname" type="text" placeholder="Jane">
+                        <br>
+                        <label style="width: 8%;">Last Name: </label> <input ng-model="addEmployeeForm.lname" type="text" placeholder="Doe">
+                        <br>
+                        <label style="width: 8%;">Date of Birth: </label> <input ng-model="addEmployeeForm.dob" type="date" placeholder="01/13/1990">
+                        <br>
+                        <label style="width: 8%;">Employee Title: </label> <input ng-model="addEmployeeForm.title" type="text" placeholder="EMPLOYEE">
+                        <br>
+                        <label style="width: 8%;">Salary: </label> <input ng-model="addEmployeeForm.salary" type="number" placeholder="0.00">
+                        <br>
+                        <label style="width: 8%;">Hire Date: </label> <input ng-model="addEmployeeForm.hdate" type="date" placeholder="01/13/1990">
+                        <br>
+                        <label style="width: 8%;">Gender: </label> <input ng-model="addEmployeeForm.gender" type="text" placeholder="F">
+                        <br>
+                        <label style="width: 8%;">From Date: </label> <input ng-model="addEmployeeForm.fdate" type="date" placeholder="01/13/1990">
+                        <br>
+                        <label style="width: 8%;">To Date: </label> <input ng-model="addEmployeeForm.tdate" type="date" placeholder="01/13/1990">
+                        <br>
 
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-sedcondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                        <button type="button" class="btn btn-primary" ng-click="addEmployee(addEmployeeForm)">Save changes</button>
                     </div>
                 </div>
             </div>
