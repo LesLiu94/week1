@@ -22,7 +22,7 @@ public class AddEmployeeEndpoint {
     @CrossOrigin(origins = "http://localhost:9000")
     @PostMapping(path = "/employee", consumes = "application/json", produces = "application/json")
     @ResponseBody
-    public EmployeeLookupResult addEmployee(final AddEmployeeRequest addedEmployee){
+    public EmployeeLookupResult addEmployee(@RequestBody final AddEmployeeRequest addedEmployee){
         logger.info("Handling request for an employee");
 
         final EmployeeLookupResult addedResult = addEmployeeService.addEmployee(addedEmployee);
