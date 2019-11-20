@@ -44,38 +44,54 @@ public class AddEmployeeService {
         EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
 
         //checking to see if dates are in order
-        Date fromDate = employeeRequest.getFromDate();
-        Date toDate = employeeRequest.getToDate();
-        Date hireDate = employeeRequest.getHireDate();
-        Date birthDate = employeeRequest.getBirthDate();
+        boolean onlyEmployeeDAO = false;
+        if(employeeRequest.getFromDate() == null || employeeRequest.getToDate() == null){
+            onlyEmployeeDAO = true;
+            Date hireDate = employeeRequest.getHireDate();
+            Date birthDate = employeeRequest.getBirthDate();
+            if(hireDate.before(birthDate)){
+                logger.info("Your 'birth date' is after your 'hire date' which makes absolutely no sense.");
+                return null;
+            }
+        }
+        else{
+            Date fromDate = employeeRequest.getFromDate();
+            Date toDate = employeeRequest.getToDate();
+            Date hireDate = employeeRequest.getHireDate();
+            Date birthDate = employeeRequest.getBirthDate();
 
-        if(toDate.before(fromDate)){
-            logger.info("Your 'from date' is after your 'to date' which does not make sense.");
-            return null;
-        }
-        if(fromDate.before(hireDate)){
-            logger.info("Your 'hire date' is after your 'from date'/'start date'.");
-            return null;
-        }
-        if(fromDate.before(birthDate)){
-            logger.info("Your 'birth date' is after your 'hire date' which makes absolutely no sense.");
-            return null;
+            if(toDate.before(fromDate)){
+                logger.info("Your 'from date' is after your 'to date' which does not make sense.");
+                return null;
+            }
+            if(fromDate.before(hireDate)){
+                logger.info("Your 'hire date' is after your 'from date'/'start date'.");
+                return null;
+            }
+            if(fromDate.before(birthDate)){
+                logger.info("Your 'birth date' is after your 'hire date' which makes absolutely no sense.");
+                return null;
+            }
         }
 
         //salaries
         List<Salary> salaryList = new ArrayList<>();
         Salary newEmployeeSalary = new Salary();
         newEmployeeSalary.setPay(employeeRequest.getSalary());
-        newEmployeeSalary.setToDate(employeeRequest.getToDate());
-        newEmployeeSalary.setFromDate(employeeRequest.getFromDate());
+        if(!onlyEmployeeDAO){
+            newEmployeeSalary.setToDate(employeeRequest.getToDate());
+            newEmployeeSalary.setFromDate(employeeRequest.getFromDate());
+        }
         salaryList.add(newEmployeeSalary);
 
         //titles
         List<Title> titleList = new ArrayList<>();
         Title newEmployeeTitle = new Title();
         newEmployeeTitle.setTitle(employeeRequest.getEmployeeTitle());
-        newEmployeeTitle.setFromDate(employeeRequest.getFromDate());
-        newEmployeeTitle.setToDate(employeeRequest.getToDate());
+        if(!onlyEmployeeDAO){
+            newEmployeeTitle.setFromDate(employeeRequest.getFromDate());
+            newEmployeeTitle.setToDate(employeeRequest.getToDate());
+        }
         titleList.add(newEmployeeTitle);
 
         //employee

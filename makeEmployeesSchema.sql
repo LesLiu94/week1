@@ -31,7 +31,7 @@ create table employeesSchema.dept_emp (
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	dept_no char(4) references employeesSchema.departments(dept_no) on update cascade on delete restrict,
 	from_date date not null,
-	to_date date not null,			--not sure why this cannot be null
+	to_date date not null,
 	primary key (emp_no, dept_no)
 );
 
@@ -43,7 +43,7 @@ create table employeesSchema.dept_manager (
 	dept_no char(4) references employeesSchema.departments(dept_no) on update cascade on delete restrict,
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	from_date date not null,
-	to_date date not null,			--not sure why this cannot be null
+	to_date date not null,
 	primary key (emp_no, dept_no)
 );
 

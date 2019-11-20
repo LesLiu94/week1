@@ -10,6 +10,17 @@
 angular.module('employeeProjectApp')
   .controller('AddEmployeeCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.title = "Add Employee";
+    $scope.validateForm = function(addEmployeeCriteria) {
+      if(addEmployeeCriteria.fname == null || addEmployeeCriteria.fname == "" || addEmployeeCriteria.lname == null || addEmployeeCriteria.lname == "" || 
+      addEmployeeCriteria.dob == null || addEmployeeCriteria.dob == "" || addEmployeeCriteria.title == null || addEmployeeCriteria.title == "" ||
+      addEmployeeCriteria.salary == null || addEmployeeCriteria.salary == "" || addEmployeeCriteria.hdate == null || addEmployeeCriteria.hdate == "" ||
+      addEmployeeCriteria.gender == null || addEmployeeCriteria.gender == "" || addEmployeeCriteria.tdate == null ||addEmployeeCriteria.tdate == "" ||
+      addEmployeeCriteria.fdate == null || addEmployeeCriteria.fdate == ""){
+        alert("Please fill out all required fields.")
+        return;
+      }
+      $scope.addEmployee(addEmployeeCriteria);
+    }
     $scope.addEmployeeForm = {
       fname: '',
       lname: '',
@@ -38,6 +49,8 @@ angular.module('employeeProjectApp')
             toDate: addEmployeeCriteria.tdate
         }
       })
+      $('#addEmployeeModal').modal('hide');
+      $('.modal-backdrop').remove();
     }
   }]);
   
