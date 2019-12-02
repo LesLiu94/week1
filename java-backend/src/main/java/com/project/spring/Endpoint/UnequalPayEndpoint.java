@@ -1,6 +1,6 @@
 package com.project.spring.Endpoint;
 
-import com.project.spring.dto.UnequalLookupResult;
+import com.project.spring.DTO.UnequalLookupResult;
 import com.project.spring.Services.UnequalPayLookupService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;

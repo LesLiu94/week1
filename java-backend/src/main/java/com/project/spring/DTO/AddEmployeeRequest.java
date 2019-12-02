@@ -1,8 +1,7 @@
-package com.project.spring.dto;
+package com.project.spring.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Enums.Sex;
-import org.joda.time.LocalDate;
 
 import java.util.Date;
 

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface EmployeeDAO extends JpaRepository<Employee,Long> {
     List<Employee> findByFirstNameAndLastName(String firstName, String lastName);
+    Employee findByEmpNo(Integer empNo);
 }

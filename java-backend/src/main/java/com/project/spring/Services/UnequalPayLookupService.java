@@ -5,14 +5,13 @@ import com.project.spring.DAO.SalaryDAO;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
 import com.project.spring.Misc.UnequalPayLookupUtilities;
-import com.project.spring.dto.UnequalLookupResult;
+import com.project.spring.DTO.UnequalLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import org.joda.time.LocalDate;
 
 import java.util.*;
 

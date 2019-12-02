@@ -3,10 +3,9 @@ package com.project.spring.Services;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.*;
 import com.project.spring.Enums.EmployeeTitle;
-import com.project.spring.dto.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -97,6 +96,7 @@ public class EmployeeLookupService {
                         .collect(Collectors.toList()));
             }
 
+            employeeLookupResult.setEmpNumber(employee.getEmpNo());
             listEmployeeLookupResult.add(employeeLookupResult);
         }
 

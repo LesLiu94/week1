@@ -1,8 +1,7 @@
-package com.project.spring.dto;
+package com.project.spring.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Enums.EmployeeTitle;
-import org.joda.time.LocalDate;
 
 import java.util.Date;
 import java.util.List;
@@ -17,6 +16,7 @@ public class EmployeeLookupResult {
     private EmployeeTitle employeeTitle;
     private List<String> departments;
     private Double salary;
+    private Integer empNumber;
 
     @Override
     public String toString() {
@@ -73,5 +73,13 @@ public class EmployeeLookupResult {
 
     public void setSalary(Double salary) {
         this.salary = salary;
+    }
+
+    public Integer getEmpNumber() {
+        return empNumber;
+    }
+
+    public void setEmpNumber(Integer empNumber) {
+        this.empNumber = empNumber;
     }
 }

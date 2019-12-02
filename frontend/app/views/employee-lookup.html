@@ -13,13 +13,14 @@
 </div>
 <br>
 <br>
-<div class="card border-info mb-3">
+<div class="card border-info mb-3" ng-show="lookupResult">
     <h1 class="card-header">Lookup Result:</h1>
         <div class="card-body">
             <table ng-table="employeeLookupTable" class="table table-hover table-bordered">
-                <tr style="text-align: center;" ng-repeat="employee in employeeLookupList">
+                <tr style="text-align: center;" ng-repeat="employee in employeeLookupList" ng-click="editEmployee(employee)">
                     <td data-title="'#'">{{((employeeLookupTable.page()-1) * employeeLookupTable.count()) + ($index + 1)}}</td>
-                    <td data-title="'Name'">{{employee.firstName}} {{employee.lastName}} </td>
+                    <td data-title="'First Name'">{{employee.firstName}}</td>
+                    <td data-title="'Last Name'">{{employee.lastName}}</td>
                     <td data-title="'Title'">{{employee.employeeTitle}}</td>
                     <td data-title="'Salary'">{{employee.salary | currency}}</td>
                 </tr>
@@ -27,3 +28,40 @@
         </div>
 </div>
 <br>
+
+<div class="modal" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="margin: 0 auto;">Edit Employee Modal</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+            </div>
+            <div class="modal-body" style="margin: 0 auto;">
+                <p><input type="text" class="input-sm" id="editFirstName" ng-model="updateForm.fname"/></p>
+                <p><input type="text" class="input-sm" id="editLastName" ng-model="updateForm.lname"/></p>
+                <p><input type="text" class="input-sm" id="editTitle" ng-model="updateForm.title"/></p>
+                <p><input type="text" class="input-sm" id="editSalary" ng-model="updateForm.salary"/></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="updateEmployee(updateForm, employee.empNo)">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" data-delay="1500" role="alert">
+    <div class="toast-header">
+        <h3>Result Message</h3>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="toast-body">
+        <p>{{msg}}</p>
+        <p>{{successEmployee}}</p>
+    </div>
+</div>

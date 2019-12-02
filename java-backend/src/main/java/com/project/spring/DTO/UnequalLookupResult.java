@@ -1,11 +1,9 @@
-package com.project.spring.dto;
+package com.project.spring.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Endpoint.UnequalPayEndpoint;
-import com.project.spring.dto.EmployeeLookupResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.joda.time.LocalDate;
 
 import java.util.Date;
 
