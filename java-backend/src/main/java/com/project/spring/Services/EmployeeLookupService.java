@@ -96,7 +96,7 @@ public class EmployeeLookupService {
                         .collect(Collectors.toList()));
             }
 
-            employeeLookupResult.setEmpNumber(employee.getEmpNo());
+            employeeLookupResult.setEmpNo(employee.getEmpNo());
             listEmployeeLookupResult.add(employeeLookupResult);
         }
 

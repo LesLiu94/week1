@@ -53,8 +53,9 @@ angular.module('employeeProjectApp')
       $scope.updateForm.lname = employee.lastName;
       $scope.updateForm.title = employee.employeeTitle;
       $scope.updateForm.salary = employee.salary;
+      $scope.updateForm.empNo = employee.empNo;
     }
-    $scope.updateEmployee = function(updateParams, employeeNum){
+    $scope.updateEmployee = function(updateParams){
       $http({
         method: 'PUT',
         url: "http://localhost:8080/api/Edit/employee",
@@ -63,7 +64,7 @@ angular.module('employeeProjectApp')
             lastName : updateParams.lname,
             title : updateParams.title,
             salary : updateParams.salary,
-            empNo : employeeNum
+            empNo : updateParams.empNo
         }
       }).then(function(response){
         if(response.data) {

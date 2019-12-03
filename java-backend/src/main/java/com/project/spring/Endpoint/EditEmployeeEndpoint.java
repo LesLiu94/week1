@@ -24,7 +24,7 @@ public class EditEmployeeEndpoint {
     @ResponseBody
     public String editingEmployee(@RequestBody final EditEmployee editEmployee){
         logger.info("Handling request to edit an employee");
-        
+
         String result = editEmployeeService.editEmployee(editEmployee);
 
         return result;

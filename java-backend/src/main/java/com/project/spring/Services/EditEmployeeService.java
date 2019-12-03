@@ -5,12 +5,15 @@ import com.project.spring.DTO.EditEmployee;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
 import com.project.spring.DomainObjects.Title;
+import com.project.spring.Enums.EmployeeTitle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -40,20 +43,28 @@ public class EditEmployeeService {
 
         Employee edittedEmployee = employeeDAO.findByEmpNo(editEmployee.getEmpNo());
 
-        edittedEmployee.setFirstName(editEmployee.getFirstName());
-        edittedEmployee.setLastName(editEmployee.getLastName());
+        edittedEmployee.setFirstName(first);
+        edittedEmployee.setLastName(last);
 
-        Title editEmployeeTitle = new Title();
-        editEmployeeTitle.setTitle(editEmployee.getTitle());
-        List<Title> editEmployeeTitles = edittedEmployee.getTitles();
-        editEmployeeTitles.add(editEmployeeTitle);
-        edittedEmployee.setTitles(editEmployeeTitles);
+        Date now = new Date();
 
-        Salary editEmployeeSalary = new Salary();
-        editEmployeeSalary.setPay(editEmployee.getSalary());
-        List<Salary> editEmployeeSalaries = edittedEmployee.getSalaries();
-        editEmployeeSalaries.add(editEmployeeSalary);
-        edittedEmployee.setSalaries(editEmployeeSalaries);
+        edittedEmployee
+                    .getTitles()
+                    .stream()
+                    .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
+                    .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
+                    .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
+                    .get()
+                    .setTitle(editEmployee.getTitle());
+
+        edittedEmployee
+                .getSalaries()
+                .stream()
+                .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
+                .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
+                .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
+                .get()
+                .setPay(editEmployee.getSalary());
 
         employeeDAO.save(edittedEmployee);
 

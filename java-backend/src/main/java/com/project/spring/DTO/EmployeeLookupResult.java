@@ -16,7 +16,7 @@ public class EmployeeLookupResult {
     private EmployeeTitle employeeTitle;
     private List<String> departments;
     private Double salary;
-    private Integer empNumber;
+    private Integer empNo;
 
     @Override
     public String toString() {
@@ -75,11 +75,11 @@ public class EmployeeLookupResult {
         this.salary = salary;
     }
 
-    public Integer getEmpNumber() {
-        return empNumber;
+    public Integer getEmpNo() {
+        return empNo;
     }
 
-    public void setEmpNumber(Integer empNumber) {
-        this.empNumber = empNumber;
+    public void setEmpNo(Integer empNo) {
+        this.empNo = empNo;
     }
 }
