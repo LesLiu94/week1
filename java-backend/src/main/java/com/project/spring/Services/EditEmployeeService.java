@@ -34,41 +34,41 @@ public class EditEmployeeService {
 
     private final static Logger logger = LogManager.getLogger(EditEmployeeService.class);
 
-    public String editEmployee(EditEmployee editEmployee) {
+    public String editEmployee(EditEmployee inputEmployee) {
 
-        String first = editEmployee.getFirstName().toLowerCase();
+        String first = inputEmployee.getFirstName().toLowerCase();
         first = Character.toUpperCase(first.charAt(0)) + first.substring(1);
-        String last = editEmployee.getLastName().toLowerCase();
+        String last = inputEmployee.getLastName().toLowerCase();
         last = Character.toUpperCase(last.charAt(0)) + last.substring(1);
 
-        Employee edittedEmployee = employeeDAO.findByEmpNo(editEmployee.getEmpNo());
+        Employee editedEmployee = employeeDAO.findByEmpNo(inputEmployee.getEmpNo());
 
-        edittedEmployee.setFirstName(first);
-        edittedEmployee.setLastName(last);
+        editedEmployee.setFirstName(first);
+        editedEmployee.setLastName(last);
 
         Date now = new Date();
 
-        edittedEmployee
+        editedEmployee
                     .getTitles()
                     .stream()
                     .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
                     .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
                     .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
                     .get()
-                    .setTitle(editEmployee.getTitle());
+                    .setTitle(inputEmployee.getTitle());
 
-        edittedEmployee
+        editedEmployee
                 .getSalaries()
                 .stream()
                 .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
                 .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
                 .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
                 .get()
-                .setPay(editEmployee.getSalary());
+                .setPay(inputEmployee.getSalary());
 
-        employeeDAO.save(edittedEmployee);
+        employeeDAO.save(editedEmployee);
 
-        return edittedEmployee.getFirstName() + " " + editEmployee.getLastName();
+        return editedEmployee.getFirstName() + " " + inputEmployee.getLastName();
     }
 
 }
