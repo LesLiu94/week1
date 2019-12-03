@@ -47,18 +47,18 @@ angular.module('employeeProjectApp')
     };
     $scope.editEmployee = function(employee){
       $scope.selected_employee = employee;
-      angular.element('#editModal').modal();
-      $('#editFirstName').attr('value',employee.firstName);
-      $('#editLastName').attr('value',employee.lastName);
-      $('#editTitle').attr('value',employee.employeeTitle);
-      $('#editSalary').attr('value',employee.salary);
+      $('#editModal').modal();
+      $scope.updateForm= {};
+      $scope.updateForm.fname = employee.firstName;
+      $scope.updateForm.lname = employee.lastName;
+      $scope.updateForm.title = employee.employeeTitle;
+      $scope.updateForm.salary = employee.salary;
     }
     $scope.updateEmployee = function(updateParams, employeeNum){
       $http({
         method: 'PUT',
         url: "http://localhost:8080/api/Edit/employee",
-        header: "Access-Control-Allow-Origin: http://localhost:9000/", 
-        params: {
+        data: {
             firstName : updateParams.fname,
             lastName : updateParams.lname,
             title : updateParams.title,
@@ -66,10 +66,12 @@ angular.module('employeeProjectApp')
             empNo : employeeNum
         }
       }).then(function(response){
-        if(response.data)
+        if(response.data) {
+          $('#editModal').modal('hide');
           $scope.msg = "Successfully editted employee!";
-          $scope.successEmployee = reponse.data;
+          $scope.successEmployee = response.data;
           $('.toast').toast("show");
+        }
       })
       
     }

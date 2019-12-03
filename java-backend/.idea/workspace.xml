@@ -2,26 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f1b6857c-e4e1-4f74-b3d4-c0a033fe940a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DTO/EditEmployee.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EditEmployeeEndpoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/app/scripts/controllers/employee-lookup-ctrl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/scripts/controllers/employee-lookup-ctrl.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/app/views/employee-lookup.html" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/app/views/employee-lookup.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/DAO/EmployeeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DAO/EmployeeDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeListEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeListEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/UnequalPayEndpoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/UnequalPayEndpoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeListLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeListLookupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/UnequalPayLookupService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/dto/AddEmployeeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DTO/AddEmployeeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/dto/EmployeeLookupResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DTO/EmployeeLookupResult.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/dto/UnequalLookupResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/DTO/UnequalLookupResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -46,14 +28,14 @@
     <favorites_list name="Employees_Project" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="vertical" split-proportion="0.5855962">
+    <splitter split-orientation="vertical" split-proportion="0.75757575">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EditEmployeeEndpoint.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="243">
-                  <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+                <state relative-caret-position="129">
+                  <caret line="27" selection-start-line="27" selection-end-line="27" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -62,10 +44,19 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-136">
+                  <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="680">
-                  <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+                <state relative-caret-position="111">
+                  <caret line="42" selection-start-line="42" selection-end-line="42" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -77,10 +68,10 @@
       </split-first>
       <split-second>
         <leaf>
-          <file pinned="false" current-in-tab="true">
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeEndpoint.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="34">
+                <state relative-caret-position="11">
                   <caret line="19" column="78" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="78" />
                 </state>
               </provider>
@@ -98,10 +89,10 @@
               </provider>
             </entry>
           </file>
-          <file pinned="false" current-in-tab="false">
+          <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="82">
+                <state relative-caret-position="27">
                   <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="56" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -175,8 +166,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/DTO/EditEmployee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/DAO/EmployeeDAO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EditEmployeeEndpoint.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java" />
       </list>
     </option>
   </component>
@@ -276,15 +267,6 @@
               <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spring" type="462c0819:PsiDirectoryNode" />
-              <item name="Enums" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Employees_Project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="java-backend" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="spring" type="462c0819:PsiDirectoryNode" />
               <item name="Services" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -370,7 +352,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.9029126" visible="true" weight="0.18869936" />
@@ -382,7 +364,7 @@
       <window_info id="Favorites" order="6" sideWeight="0.5007874" side_tool="true" weight="0.10501066" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.082340196" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.45287108" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -665,13 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/DTO/EditEmployee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="510">
@@ -686,16 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="82">
-          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EmployeeLookupService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1539">
@@ -706,27 +671,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="77" selection-start-line="40" selection-start-column="77" selection-end-line="40" selection-end-column="77" />
+        <state relative-caret-position="11">
+          <caret line="19" column="78" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/AddEmployeeEndpoint.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="27">
+          <caret line="24" column="44" selection-start-line="24" selection-start-column="44" selection-end-line="24" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EmployeeEndpoint.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/AddEmployeeService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="19" column="78" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="78" />
+        <state relative-caret-position="-136">
+          <caret line="92" column="68" selection-start-line="92" selection-start-column="68" selection-end-line="92" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Services/EditEmployeeService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="111">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/project/spring/Endpoint/EditEmployeeEndpoint.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+        <state relative-caret-position="129">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
