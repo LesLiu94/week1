@@ -41,11 +41,12 @@ public class EmployeeLookupService {
         last = Character.toUpperCase(last.charAt(0)) + last.substring(1);
 
         List<Employee> employees = employeeDAO.findByFirstNameAndLastName(first, last);
+
         List<EmployeeLookupResult> listEmployeeLookupResult = new ArrayList<>();
 
-        EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
-
         for (Employee employee : employees) {
+
+            EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
 
             employeeLookupResult.setFirstName(employee.getFirstName());
             employeeLookupResult.setLastName(employee.getLastName());
@@ -98,6 +99,7 @@ public class EmployeeLookupService {
 
             employeeLookupResult.setEmpNo(employee.getEmpNo());
             listEmployeeLookupResult.add(employeeLookupResult);
+
         }
 
 

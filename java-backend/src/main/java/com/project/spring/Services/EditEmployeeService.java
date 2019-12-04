@@ -57,6 +57,10 @@ public class EditEmployeeService {
                     .get()
                     .setTitle(inputEmployee.getTitle());
 
+        for (Title empTitle: editedEmployee.getTitles()) {
+            logger.info(empTitle.getTitle().toString());
+        }
+
         editedEmployee
                 .getSalaries()
                 .stream()

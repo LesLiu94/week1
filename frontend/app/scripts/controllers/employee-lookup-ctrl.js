@@ -69,6 +69,7 @@ angular.module('employeeProjectApp')
       }).then(function(response){
         if(response.data) {
           $('#editModal').modal('hide');
+          $scope.lookup($scope.employeeLookupForm);
           $scope.msg = "Successfully editted employee!";
           $scope.successEmployee = response.data;
           $('.toast').toast("show");
