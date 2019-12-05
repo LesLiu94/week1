@@ -10,12 +10,6 @@
 angular.module('employeeProjectApp')
   .controller('EmployeeLookupCtrl', ['$scope', '$http', 'NgTableParams', function ($scope, $http, NgTableParams) {
     $scope.title = "Employee Lookup";
-    $scope.titles = [
-      "EMPLOYEE",
-      "MANAGER",
-      "JANITOR",
-      "NONE"
-    ]
     $scope.lookupResult = false;
     $scope.employeeLookupForm = {
         fname: '',

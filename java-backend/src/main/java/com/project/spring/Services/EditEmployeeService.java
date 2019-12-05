@@ -49,19 +49,6 @@ public class EditEmployeeService {
         Date now = new Date();
 
         editedEmployee
-                    .getTitles()
-                    .stream()
-                    .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
-                    .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
-                    .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
-                    .get()
-                    .setTitle(inputEmployee.getTitle());
-
-        for (Title empTitle: editedEmployee.getTitles()) {
-            logger.info(empTitle.getTitle().toString());
-        }
-
-        editedEmployee
                 .getSalaries()
                 .stream()
                 .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
