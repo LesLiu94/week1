@@ -7,6 +7,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,7 +21,9 @@ public class AddEmployeeEndpoint {
 
     @ApiOperation(value = "adds an employee to the database")
     @CrossOrigin(origins = "http://localhost:9000")
-    @PostMapping(path = "/employee", consumes = "application/json", produces = "application/json")
+    @PostMapping(path = "/employee",
+            consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
     public EmployeeLookupResult addEmployee(@RequestBody final AddEmployeeRequest addedEmployee){
         logger.info("Handling request for an employee");

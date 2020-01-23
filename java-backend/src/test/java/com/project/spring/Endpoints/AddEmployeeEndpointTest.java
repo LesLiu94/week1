@@ -1,19 +1,18 @@
 package com.project.spring.Endpoints;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.project.spring.DTO.AddEmployeeRequest;
 import com.project.spring.DTO.EmployeeLookupResult;
 import com.project.spring.Endpoint.AddEmployeeEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Enums.Sex;
 import com.project.spring.Services.AddEmployeeService;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -39,6 +38,9 @@ public class AddEmployeeEndpointTest {
 
     @InjectMocks
     AddEmployeeEndpoint addEmployeeEndpoint;
+
+    @Captor
+    private ArgumentCaptor<AddEmployeeRequest> addEmployeeReqBodyArgCaptor;
 
     @Before
     public void init(){
@@ -77,17 +79,22 @@ public class AddEmployeeEndpointTest {
         Date dobStub = new Date();
         employeeLookupResultStub.setDob(dobStub);
 
-        Gson gson = new Gson();
+        Gson gson = new GsonBuilder()
+                .setDateFormat("MM/dd/yyyy").create();
+
         String jsonStub = gson.toJson(addEmployeeRequestStub);
 
-        Mockito.when(addEmployeeService.addEmployee(addEmployeeRequestStub)).thenReturn(employeeLookupResultStub);
-        mockMvc.perform(post("/api/AddEmployee/employee").accept(MediaType.APPLICATION_JSON)
-                .contentType(MediaType.APPLICATION_JSON)
+        Mockito.when(addEmployeeService.addEmployee(addEmployeeReqBodyArgCaptor.capture())).thenReturn(employeeLookupResultStub);
+
+        mockMvc.perform(post("/api/AddEmployee/employee").accept(MediaType.APPLICATION_JSON_UTF8)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(jsonStub))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
-        Mockito.verify(addEmployeeService.addEmployee(addEmployeeRequestStub));
+        AddEmployeeRequest actualEmployeeRequest = addEmployeeReqBodyArgCaptor.getValue();
+        Assert.assertEquals(addEmployeeRequestStub.getSalary(), actualEmployeeRequest.getSalary());
+        Mockito.verify(addEmployeeService).addEmployee(actualEmployeeRequest);
         Mockito.verifyNoMoreInteractions(addEmployeeService);
 
     }
