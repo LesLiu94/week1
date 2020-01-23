@@ -19,7 +19,7 @@ public class EmployeeEndpoint {
 
     final static Logger logger = LogManager.getLogger(EmployeeEndpoint.class);
 
-    @ApiOperation(value = "returns an employee given first name, last name, and date of birth")
+    @ApiOperation(value = "returns an employee given first name and last name")
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/findEmployee", produces= "application/json")
     @ResponseBody

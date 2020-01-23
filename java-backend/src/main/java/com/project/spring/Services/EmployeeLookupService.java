@@ -18,16 +18,6 @@ import java.util.stream.Collectors;
 public class EmployeeLookupService {
     @Autowired
     private EmployeeDAO employeeDAO;
-    @Autowired
-    private SalaryDAO salaryDAO;
-    @Autowired
-    private TitleDAO titleDAO;
-    @Autowired
-    private DepartmentEmployeeDAO departmentEmployeeDAO;
-    @Autowired
-    private DepartmentManagerDAO departmentManagerDAO;
-    @Autowired
-    private DepartmentDAO departmentDAO;
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
