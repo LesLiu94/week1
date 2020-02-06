@@ -2,11 +2,12 @@ package com.project.spring.DTO;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Enums.EmployeeTitle;
+import com.project.spring.Enums.Sex;
 
 import java.util.Date;
 import java.util.List;
 
-public class EmployeeLookupResult {
+public class EmployeeResult {
 
     private String firstName;
     private String lastName;
@@ -18,10 +19,23 @@ public class EmployeeLookupResult {
     private Double salary;
     private Integer empNo;
 
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private Date hireDate;
+
+    private Sex gender;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private Date fromDate;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    private Date toDate;
+
     @Override
     public String toString() {
         String departmentsString = String.join(", ", departments);
-        String resultString = String.format("%s %s is a(n) %s with department(s): %s with a salary of $%f", firstName, lastName, employeeTitle, departmentsString, salary);
+        String resultString = String.format("%s %s is a(n) %s with department(s): %s with a salary of %f and " +
+                "hired on %s", this.getFirstName(), this.getLastName(), this.getEmployeeTitle(), departmentsString,
+                this.getSalary(), this.getHireDate());
         return resultString;
     }
 
@@ -81,5 +95,37 @@ public class EmployeeLookupResult {
 
     public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public Sex getGender() {
+        return gender;
+    }
+
+    public void setGender(Sex gender) {
+        this.gender = gender;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
     }
 }

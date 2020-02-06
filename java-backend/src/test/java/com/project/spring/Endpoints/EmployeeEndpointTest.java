@@ -1,6 +1,6 @@
 package com.project.spring.Endpoints;
 
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.Endpoint.EmployeeEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Services.EmployeeLookupService;
@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.project.spring.Enums.EmployeeTitle.EMPLOYEE;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -66,16 +65,16 @@ public class EmployeeEndpointTest {
         departmentsStub.add("Human Resources");
         Double salaryStub = 1.00;
 
-        EmployeeLookupResult employeeLookupResultStub = new EmployeeLookupResult();
-        employeeLookupResultStub.setFirstName(knownFirstNameStub);
-        employeeLookupResultStub.setLastName(knownLastNameStub);
-        employeeLookupResultStub.setEmployeeTitle(employeeTitleStub);
-        employeeLookupResultStub.setDepartments(departmentsStub);
-        employeeLookupResultStub.setSalary(salaryStub);
-        ArrayList<EmployeeLookupResult> employeeLookupResultListStub = new ArrayList<>();
-        employeeLookupResultListStub.add(employeeLookupResultStub);
+        EmployeeResult employeeResultStub = new EmployeeResult();
+        employeeResultStub.setFirstName(knownFirstNameStub);
+        employeeResultStub.setLastName(knownLastNameStub);
+        employeeResultStub.setEmployeeTitle(employeeTitleStub);
+        employeeResultStub.setDepartments(departmentsStub);
+        employeeResultStub.setSalary(salaryStub);
+        ArrayList<EmployeeResult> employeeResultListStub = new ArrayList<>();
+        employeeResultListStub.add(employeeResultStub);
 
-        Mockito.when(employeeLookupService.findEmployee(knownFirstNameStub, knownLastNameStub)).thenReturn(employeeLookupResultListStub);
+        Mockito.when(employeeLookupService.findEmployee(knownFirstNameStub, knownLastNameStub)).thenReturn(employeeResultListStub);
         mockMvc.perform(get("/api/EmployeeLookup/findEmployee").accept(MediaType.APPLICATION_JSON)
                 .param("first", knownFirstNameStub)
                 .param("last", knownLastNameStub))

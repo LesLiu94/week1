@@ -1,8 +1,7 @@
 package com.project.spring.Endpoint;
 
-import com.project.spring.DTO.AddEmployeeRequest;
 import com.project.spring.Services.AddEmployeeService;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,10 +24,10 @@ public class AddEmployeeEndpoint {
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public EmployeeLookupResult addEmployee(@RequestBody final AddEmployeeRequest addedEmployee){
+    public EmployeeResult addEmployee(@RequestBody final EmployeeResult addedEmployee){
         logger.info("Handling request for an employee");
 
-        final EmployeeLookupResult addedResult = addEmployeeService.addEmployee(addedEmployee);
+        final EmployeeResult addedResult = addEmployeeService.addEmployee(addedEmployee);
 
         return addedResult;
     }

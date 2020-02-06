@@ -1,6 +1,6 @@
 package com.project.spring.Endpoint;
 
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.Services.EmployeeLookupService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -23,9 +23,9 @@ public class EmployeeEndpoint {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/findEmployee", produces= "application/json")
     @ResponseBody
-    public List<EmployeeLookupResult> findEmployee(String first, String last) {
+    public List<EmployeeResult> findEmployee(String first, String last) {
         logger.info("Handling request for an employee");
-        List<EmployeeLookupResult> yourEmployees = employeeLookupService.findEmployee(first,last);
+        List<EmployeeResult> yourEmployees = employeeLookupService.findEmployee(first,last);
 
         if (yourEmployees == null){
             logger.info("We could not find the person you were looking for.");

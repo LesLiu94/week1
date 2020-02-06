@@ -1,7 +1,7 @@
 package com.project.spring.Endpoint;
 
 import com.project.spring.Services.EmployeeListLookupService;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,9 +23,9 @@ public class EmployeeListEndpoint {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/allEmployees", produces = "application/json")
     @ResponseBody
-    public List<EmployeeLookupResult> findAllEmployees(){
+    public List<EmployeeResult> findAllEmployees(){
         logger.info("Handling request for list of employees");
-        List<EmployeeLookupResult> employeeList = employeeListLookupService.findAllEmplyees();
+        List<EmployeeResult> employeeList = employeeListLookupService.findAllEmplyees();
 
         logger.info("Successfully generated a response for all employees");
         return employeeList;

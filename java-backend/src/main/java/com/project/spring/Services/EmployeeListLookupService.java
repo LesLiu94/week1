@@ -3,7 +3,7 @@ package com.project.spring.Services;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.*;
 import com.project.spring.Enums.EmployeeTitle;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,26 +34,26 @@ public class EmployeeListLookupService {
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
-    public List<EmployeeLookupResult> findAllEmplyees(){
+    public List<EmployeeResult> findAllEmplyees(){
 
         logger.info("Finding all employees.");
 
         List<Employee> employeeList = employeeDAO.findAll();
 
-        List<EmployeeLookupResult> employeeListResult = new ArrayList<>();
+        List<EmployeeResult> employeeListResult = new ArrayList<>();
 
         Date now = new Date();
 
         for (Employee e: employeeList) {
 
-            EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
+            EmployeeResult employeeResult = new EmployeeResult();
 
-            employeeLookupResult.setFirstName(e.getFirstName());
-            employeeLookupResult.setLastName(e.getLastName());
-            employeeLookupResult.setDob(e.getBirthDate());
+            employeeResult.setFirstName(e.getFirstName());
+            employeeResult.setLastName(e.getLastName());
+            employeeResult.setDob(e.getBirthDate());
 
             //assume only 1 title is relevant at a time
-            employeeLookupResult.setEmployeeTitle( e
+            employeeResult.setEmployeeTitle( e
                 .getTitles()
                 .stream()
                     .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
@@ -63,7 +63,7 @@ public class EmployeeListLookupService {
                     .orElse(EmployeeTitle.NONE));
 
             //assume only 1 salary is relevant at a time
-            employeeLookupResult.setSalary( e
+            employeeResult.setSalary( e
                 .getSalaries()
                 .stream()
                     .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
@@ -72,9 +72,9 @@ public class EmployeeListLookupService {
                     .map(wage -> wage.getPay())
                     .orElse(0.0));
 
-            if (employeeLookupResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
+            if (employeeResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
                 //a person can manage many departments
-                employeeLookupResult.setDepartments( e
+                employeeResult.setDepartments( e
                         .getDepartmentManager()
                         .stream()
                         .filter(depManager -> depManager.getFromDate() != null && now.compareTo(depManager.getFromDate()) >= 0)
@@ -85,7 +85,7 @@ public class EmployeeListLookupService {
             }
             else {
                 //a person can work at many departments
-                employeeLookupResult.setDepartments( e
+                employeeResult.setDepartments( e
                         .getDepartmentEmployee()
                         .stream()
                         .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
@@ -95,7 +95,7 @@ public class EmployeeListLookupService {
                         .collect(Collectors.toList()));
             }
 
-            employeeListResult.add(employeeLookupResult);
+            employeeListResult.add(employeeResult);
         }
 
         return employeeListResult;

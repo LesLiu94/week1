@@ -26,6 +26,10 @@ public class Salary implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date toDate;
 
+    @Column(name = "active")
+    @NotNull(message = "Please enter true or false for active")
+    private Boolean active;
+
     public Salary() {
         salariesCompositeKey = new SalariesCompositeKey();
     }
@@ -37,6 +41,8 @@ public class Salary implements Serializable {
     public void setPay(double pay) {
         this.pay = pay;
     }
+
+    public Integer getEmpNo() { return (salariesCompositeKey==null)? null : salariesCompositeKey.getEmployee().getEmpNo();}
 
     public Date getFromDate() {
         return (salariesCompositeKey==null) ? null : salariesCompositeKey.getFromDate();
@@ -68,5 +74,13 @@ public class Salary implements Serializable {
 
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
     }
 }

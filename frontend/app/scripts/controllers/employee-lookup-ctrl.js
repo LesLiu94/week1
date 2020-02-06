@@ -48,6 +48,9 @@ angular.module('employeeProjectApp')
       $scope.updateForm.title = employee.employeeTitle;
       $scope.updateForm.salary = employee.salary;
       $scope.updateForm.empNo = employee.empNo;
+      $scope.updateForm.hdate = employee.hireDate;
+      $scope.updateForm.fdate = employee.fromDate;
+      $scope.updateForm.tdate = employee.toDate;
     }
     $scope.updateEmployee = function(updateParams){
       $http({

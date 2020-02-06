@@ -2,8 +2,7 @@ package com.project.spring.Endpoints;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.project.spring.DTO.AddEmployeeRequest;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.Endpoint.AddEmployeeEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Enums.Sex;
@@ -18,7 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -69,22 +67,22 @@ public class AddEmployeeEndpointTest {
         addEmployeeRequestStub.setHireDate(hireDateStub);
         addEmployeeRequestStub.setGender(Sex.M);
 
-        EmployeeLookupResult employeeLookupResultStub = new EmployeeLookupResult();
-        employeeLookupResultStub.setEmpNo(3);
-        employeeLookupResultStub.setDepartments(departmentsStub);
-        employeeLookupResultStub.setSalary(salaryStub);
-        employeeLookupResultStub.setEmployeeTitle(employeeTitleStub);
-        employeeLookupResultStub.setFirstName(firstNameStub);
-        employeeLookupResultStub.setLastName(lastNameStub);
+        EmployeeResult employeeResultStub = new EmployeeResult();
+        employeeResultStub.setEmpNo(3);
+        employeeResultStub.setDepartments(departmentsStub);
+        employeeResultStub.setSalary(salaryStub);
+        employeeResultStub.setEmployeeTitle(employeeTitleStub);
+        employeeResultStub.setFirstName(firstNameStub);
+        employeeResultStub.setLastName(lastNameStub);
         Date dobStub = new Date();
-        employeeLookupResultStub.setDob(dobStub);
+        employeeResultStub.setDob(dobStub);
 
         Gson gson = new GsonBuilder()
                 .setDateFormat("MM/dd/yyyy").create();
 
         String jsonStub = gson.toJson(addEmployeeRequestStub);
 
-        Mockito.when(addEmployeeService.addEmployee(addEmployeeReqBodyArgCaptor.capture())).thenReturn(employeeLookupResultStub);
+        Mockito.when(addEmployeeService.addEmployee(addEmployeeReqBodyArgCaptor.capture())).thenReturn(employeeResultStub);
 
         mockMvc.perform(post("/api/AddEmployee/employee").accept(MediaType.APPLICATION_JSON_UTF8)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)

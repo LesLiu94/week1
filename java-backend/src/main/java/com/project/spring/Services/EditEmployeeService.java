@@ -45,6 +45,7 @@ public class EditEmployeeService {
 
         editedEmployee.setFirstName(first);
         editedEmployee.setLastName(last);
+        editedEmployee.setHireDate(inputEmployee.getHireDate());
 
         Date now = new Date();
 
@@ -58,6 +59,13 @@ public class EditEmployeeService {
                 .setPay(inputEmployee.getSalary());
 
         employeeDAO.save(editedEmployee);
+
+        Salary salary = salaryDAO.findSalaryByEmpNo(editedEmployee.getEmpNo());
+
+        salary.setFromDate(inputEmployee.getFromDate());
+        salary.setToDate(inputEmployee.getToDate());
+
+        salaryDAO.save(salary);
 
         return editedEmployee.getFirstName() + " " + inputEmployee.getLastName();
     }

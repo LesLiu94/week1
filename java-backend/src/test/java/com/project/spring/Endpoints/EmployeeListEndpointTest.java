@@ -1,6 +1,6 @@
 package com.project.spring.Endpoints;
 
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.Endpoint.EmployeeListEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Services.EmployeeListLookupService;
@@ -16,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import javax.print.attribute.standard.Media;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,20 +46,20 @@ public class EmployeeListEndpointTest {
     @Test
     public void testFindAllEmployees() throws Exception {
 
-        EmployeeLookupResult employeeLookupResultStub = new EmployeeLookupResult();
+        EmployeeResult employeeResultStub = new EmployeeResult();
         EmployeeTitle employeeTitleStub = EMPLOYEE;
         Double salaryStub = 1.00;
         List<String> departmentStub = new ArrayList<>();
         departmentStub.add("MARKETING");
-        employeeLookupResultStub.setFirstName("Jane");
-        employeeLookupResultStub.setLastName("Doe");
-        employeeLookupResultStub.setSalary(salaryStub);
-        employeeLookupResultStub.setDepartments(departmentStub);
-        employeeLookupResultStub.setEmployeeTitle(employeeTitleStub);
-        List<EmployeeLookupResult> employeeLookupResultListStub = new ArrayList<>();
-        employeeLookupResultListStub.add(employeeLookupResultStub);
+        employeeResultStub.setFirstName("Jane");
+        employeeResultStub.setLastName("Doe");
+        employeeResultStub.setSalary(salaryStub);
+        employeeResultStub.setDepartments(departmentStub);
+        employeeResultStub.setEmployeeTitle(employeeTitleStub);
+        List<EmployeeResult> employeeResultListStub = new ArrayList<>();
+        employeeResultListStub.add(employeeResultStub);
 
-        Mockito.when(employeeListLookupService.findAllEmplyees()).thenReturn(employeeLookupResultListStub);
+        Mockito.when(employeeListLookupService.findAllEmplyees()).thenReturn(employeeResultListStub);
         mockMvc.perform(get("/api/EmployeeListLookup/allEmployees").accept(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE));

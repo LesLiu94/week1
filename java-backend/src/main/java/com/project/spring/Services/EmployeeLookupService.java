@@ -3,7 +3,7 @@ package com.project.spring.Services;
 import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.*;
 import com.project.spring.Enums.EmployeeTitle;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class EmployeeLookupService {
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
-    public List<EmployeeLookupResult> findEmployee(String first, String last) {
+    public List<EmployeeResult> findEmployee(String first, String last) {
 
         logger.info("Finding employee(s) by first name and last name");
 
@@ -32,20 +32,21 @@ public class EmployeeLookupService {
 
         List<Employee> employees = employeeDAO.findByFirstNameAndLastName(first, last);
 
-        List<EmployeeLookupResult> listEmployeeLookupResult = new ArrayList<>();
+        List<EmployeeResult> listEmployeeResult = new ArrayList<>();
 
         for (Employee employee : employees) {
 
-            EmployeeLookupResult employeeLookupResult = new EmployeeLookupResult();
+            EmployeeResult employeeResult = new EmployeeResult();
 
-            employeeLookupResult.setFirstName(employee.getFirstName());
-            employeeLookupResult.setLastName(employee.getLastName());
-            employeeLookupResult.setDob(employee.getBirthDate());
+            employeeResult.setFirstName(employee.getFirstName());
+            employeeResult.setLastName(employee.getLastName());
+            employeeResult.setDob(employee.getBirthDate());
+            employeeResult.setHireDate(employee.getHireDate());
 
             Date now = new Date();
 
             //assumes only 1 title is relevant at a time
-            employeeLookupResult.setEmployeeTitle(employee
+            employeeResult.setEmployeeTitle(employee
                     .getTitles()
                     .stream()
                     .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
@@ -55,7 +56,7 @@ public class EmployeeLookupService {
                     .orElse(EmployeeTitle.NONE));
 
             //assumes only 1 salary is relevant at a time
-            employeeLookupResult.setSalary(employee
+            employeeResult.setSalary(employee
                     .getSalaries()
                     .stream()
                     .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
@@ -64,10 +65,32 @@ public class EmployeeLookupService {
                     .map(wage -> wage.getPay())
                     .orElse(0.0));
 
+            if(employeeResult.getSalary()!= 0){
+                employeeResult.setFromDate(employee
+                        .getSalaries()
+                        .stream()
+                        .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
+                        .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
+                        .filter(wage-> wage.getActive() == true)
+                        .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
+                        .map(wage -> wage.getFromDate())
+                        .get());
 
-            if (employeeLookupResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
+                employeeResult.setToDate(employee
+                        .getSalaries()
+                        .stream()
+                        .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
+                        .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
+                        .filter(wage-> wage.getActive() == true)
+                        .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
+                        .map(wage -> wage.getToDate())
+                        .get());
+
+            }
+
+            if (employeeResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
                 //a person can manage many departments
-                employeeLookupResult.setDepartments(employee
+                employeeResult.setDepartments(employee
                         .getDepartmentManager()
                         .stream()
                         .filter(depManager -> depManager.getFromDate() != null && now.compareTo(depManager.getFromDate()) >= 0)
@@ -77,7 +100,7 @@ public class EmployeeLookupService {
                         .collect(Collectors.toList()));
             } else {
                 //a person can work at many departments
-                employeeLookupResult.setDepartments(employee
+                employeeResult.setDepartments(employee
                         .getDepartmentEmployee()
                         .stream()
                         .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
@@ -87,13 +110,12 @@ public class EmployeeLookupService {
                         .collect(Collectors.toList()));
             }
 
-            employeeLookupResult.setEmpNo(employee.getEmpNo());
-            listEmployeeLookupResult.add(employeeLookupResult);
+            employeeResult.setEmpNo(employee.getEmpNo());
+            listEmployeeResult.add(employeeResult);
 
         }
 
-
-        return listEmployeeLookupResult;
+        return listEmployeeResult;
     }
 }
 

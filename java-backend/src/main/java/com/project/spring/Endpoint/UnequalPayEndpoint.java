@@ -1,6 +1,6 @@
 package com.project.spring.Endpoint;
 
-import com.project.spring.DTO.UnequalLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.Services.UnequalPayLookupService;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
@@ -23,9 +23,9 @@ public class UnequalPayEndpoint {
     @CrossOrigin(origins = "*")
     @GetMapping(value = "/unequalEmployees", produces = "application/json")
     @ResponseBody
-    public ArrayList<UnequalLookupResult> findUnequallyPaidEmployees() {
+    public ArrayList<EmployeeResult> findUnequallyPaidEmployees() {
         logger.info("Handling request for list of employees that make less than their juniors");
-        ArrayList<UnequalLookupResult> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
+        ArrayList<EmployeeResult> unequalEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
 
         logger.info("Successfully generated a response for unequally paid employees");
         return unequalEmployees;

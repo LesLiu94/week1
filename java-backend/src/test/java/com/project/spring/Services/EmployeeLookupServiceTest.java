@@ -1,12 +1,11 @@
 package com.project.spring.Services;
 
 import com.project.spring.DAO.*;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import com.project.spring.DomainObjects.DepartmentEmployee;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
 import com.project.spring.DomainObjects.Title;
-import com.project.spring.Enums.EmployeeTitle;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +31,7 @@ public class EmployeeLookupServiceTest {
     @Test
     public void testFindEmployeeWithUnknownEmployee(){
 
-        List<EmployeeLookupResult> result;
+        List<EmployeeResult> result;
         String firstNameStub = "John";
         String lastNameStub = "Smith";
 

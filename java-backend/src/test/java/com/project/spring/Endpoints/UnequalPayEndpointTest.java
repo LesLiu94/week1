@@ -1,7 +1,5 @@
 package com.project.spring.Endpoints;
 
-import com.project.spring.DTO.EmployeeLookupResult;
-import com.project.spring.DTO.UnequalLookupResult;
 import com.project.spring.Endpoint.UnequalPayEndpoint;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Services.UnequalPayLookupService;

@@ -56,6 +56,7 @@ create table employeesSchema.salaries (
 	salary numeric(11,2) not null,
 	from_date date not null,
 	to_date date not null,
+	active boolean not null,
 	primary key (emp_no, from_date)
 );
 

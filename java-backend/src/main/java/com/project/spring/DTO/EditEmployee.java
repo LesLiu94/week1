@@ -2,6 +2,8 @@ package com.project.spring.DTO;
 
 import com.project.spring.Enums.EmployeeTitle;
 
+import java.util.Date;
+
 public class EditEmployee {
 
     private String firstName;
@@ -9,6 +11,9 @@ public class EditEmployee {
     private EmployeeTitle title;
     private Double salary;
     private Integer empNo;
+    private Date hireDate;
+    private Date fromDate;
+    private Date toDate;
 
     public String getFirstName() {
         return firstName;
@@ -48,5 +53,29 @@ public class EditEmployee {
 
     public void setEmpNo(Integer empNo) {
         this.empNo = empNo;
+    }
+
+    public Date getHireDate() {
+        return hireDate;
+    }
+
+    public void setHireDate(Date hireDate) {
+        this.hireDate = hireDate;
+    }
+
+    public Date getFromDate() {
+        return fromDate;
+    }
+
+    public void setFromDate(Date fromDate) {
+        this.fromDate = fromDate;
+    }
+
+    public Date getToDate() {
+        return toDate;
+    }
+
+    public void setToDate(Date toDate) {
+        this.toDate = toDate;
     }
 }

@@ -4,8 +4,7 @@ import com.project.spring.DAO.*;
 import com.project.spring.DomainObjects.Employee;
 import com.project.spring.DomainObjects.Salary;
 import com.project.spring.DomainObjects.Title;
-import com.project.spring.DTO.AddEmployeeRequest;
-import com.project.spring.DTO.EmployeeLookupResult;
+import com.project.spring.DTO.EmployeeResult;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,18 +36,18 @@ public class AddEmployeeService {
 
     private final static Logger logger = LogManager.getLogger(AddEmployeeService.class);
 
-    public EmployeeLookupResult addEmployee(AddEmployeeRequest employeeRequest){
+    public EmployeeResult addEmployee(EmployeeResult employeeRequest){
 
         logger.info("Adding employee by first name, last name, title, salary, birth date, hire date," +
                 " gender, from date, and to date");
-        EmployeeLookupResult newEmployeeResult = new EmployeeLookupResult();
+        EmployeeResult newEmployeeResult = new EmployeeResult();
 
         //checking to see if dates are in order
         boolean onlyEmployeeDAO = false;
         if(employeeRequest.getFromDate() == null || employeeRequest.getToDate() == null){
             onlyEmployeeDAO = true;
             Date hireDate = employeeRequest.getHireDate();
-            Date birthDate = employeeRequest.getBirthDate();
+            Date birthDate = employeeRequest.getDob();
             if(hireDate.before(birthDate)){
                 logger.info("Your 'birth date' is after your 'hire date' which makes absolutely no sense.");
                 return null;
@@ -58,7 +57,7 @@ public class AddEmployeeService {
             Date fromDate = employeeRequest.getFromDate();
             Date toDate = employeeRequest.getToDate();
             Date hireDate = employeeRequest.getHireDate();
-            Date birthDate = employeeRequest.getBirthDate();
+            Date birthDate = employeeRequest.getDob();
 
             if(toDate.before(fromDate)){
                 logger.info("Your 'from date' is after your 'to date' which does not make sense.");
@@ -103,7 +102,7 @@ public class AddEmployeeService {
         newEmployeeLastName = Character.toUpperCase(newEmployeeLastName.charAt(0)) + newEmployeeLastName.substring(1);
         newEmployee.setLastName(newEmployeeLastName);
         newEmployee.setSex(employeeRequest.getGender());
-        newEmployee.setBirthDate(employeeRequest.getBirthDate());
+        newEmployee.setBirthDate(employeeRequest.getDob());
 
         newEmployee.setHireDate(employeeRequest.getHireDate());
         newEmployee.setSalaries(salaryList);
