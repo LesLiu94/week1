@@ -60,7 +60,7 @@ public class EditEmployeeService {
 
         employeeDAO.save(editedEmployee);
 
-        Salary salary = salaryDAO.findSalaryByEmpNo(editedEmployee.getEmpNo());
+        Salary salary = salaryDAO.findByEmpNoAndActive(editedEmployee.getEmpNo(), true);
 
         salary.setFromDate(inputEmployee.getFromDate());
         salary.setToDate(inputEmployee.getToDate());

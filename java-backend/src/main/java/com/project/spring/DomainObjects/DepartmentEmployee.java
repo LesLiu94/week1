@@ -1,25 +1,28 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.spring.CompositeKeys.DeptEmpCompositeKey;
-import org.hibernate.annotations.Type;
-
-import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_emp")
+@SequenceGenerator(name="dept_emp_seq",
+        sequenceName="dept_emp_seq", schema="employeesschema")
+
+
 public class DepartmentEmployee implements Serializable{
 
-    @EmbeddedId
-    private DeptEmpCompositeKey deptEmpCompositeKey;
+    @Id
+    @Column(name = "dept_emp_no")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="dept_emp_seq")
+    private int deptEmpNo;
 
     @Column(name = "emp_no",insertable=false, updatable=false)
-    @NotBlank
+    @NotNull
     private int empNo;
 
     @Column(name = "dept_no",insertable=false, updatable=false)
@@ -48,20 +51,13 @@ public class DepartmentEmployee implements Serializable{
 
     //Getters and Setters
 
-    public DeptEmpCompositeKey getDeptEmpCompositeKey() {
-        return deptEmpCompositeKey;
-    }
 
-    public void setDeptEmpCompositeKey(DeptEmpCompositeKey deptEmpCompositeKey) {
-        this.deptEmpCompositeKey = deptEmpCompositeKey;
+    public int getDeptEmpNo() {
+        return deptEmpNo;
     }
 
     public int getEmpNo() {
         return empNo;
-    }
-
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
     }
 
     public String getDeptNo() {

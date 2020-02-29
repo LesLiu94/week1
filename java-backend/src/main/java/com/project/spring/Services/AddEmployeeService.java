@@ -73,16 +73,6 @@ public class AddEmployeeService {
             }
         }
 
-        //salaries
-        List<Salary> salaryList = new ArrayList<>();
-        Salary newEmployeeSalary = new Salary();
-        newEmployeeSalary.setPay(employeeRequest.getSalary());
-        if(!onlyEmployeeDAO){
-            newEmployeeSalary.setToDate(employeeRequest.getToDate());
-            newEmployeeSalary.setFromDate(employeeRequest.getFromDate());
-        }
-        salaryList.add(newEmployeeSalary);
-
         //titles
         List<Title> titleList = new ArrayList<>();
         Title newEmployeeTitle = new Title();
@@ -105,13 +95,28 @@ public class AddEmployeeService {
         newEmployee.setBirthDate(employeeRequest.getDob());
 
         newEmployee.setHireDate(employeeRequest.getHireDate());
-        newEmployee.setSalaries(salaryList);
         newEmployee.setTitles(titleList);
 
-        newEmployeeSalary.setEmployee(newEmployee);
-        newEmployeeTitle.setEmployee(newEmployee);
+        employeeDAO.save(newEmployee);
+
+        //salaries
+        List<Salary> salaryList = new ArrayList<>();
+        Salary newEmployeeSalary = new Salary();
+        newEmployeeSalary.setPay(employeeRequest.getSalary());
+        if(!onlyEmployeeDAO){
+            newEmployeeSalary.setToDate(employeeRequest.getToDate());
+            newEmployeeSalary.setFromDate(employeeRequest.getFromDate());
+            newEmployeeSalary.setActive(true);
+        }
+        newEmployeeSalary.setEmpNo(newEmployee.getEmpNo());
+        salaryDAO.save(newEmployeeSalary);
+
+        salaryList.add(newEmployeeSalary);
+        newEmployee.setSalaries(salaryList);
 
         employeeDAO.save(newEmployee);
+
+
 
         //response
         newEmployeeResult.setFirstName(newEmployeeFirstName);

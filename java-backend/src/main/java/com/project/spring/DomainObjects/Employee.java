@@ -29,6 +29,7 @@ public class Employee{
     @Id
     @Column(name = "emp_no")
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="emp_seq")
+    @NotNull
     private Integer empNo;
 
     @Column(name = "birth_date")
@@ -82,10 +83,6 @@ public class Employee{
     //Getters and Setters
     public Integer getEmpNo() {
         return empNo;
-    }
-
-    public void setEmpNo(Integer empNo) {
-        this.empNo = empNo;
     }
 
     public Date getBirthDate() {

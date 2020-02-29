@@ -28,11 +28,11 @@ create table employeesSchema.employees (
 );
 
 create table employeesSchema.dept_emp (
+	dept_emp_no INT primary key,
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	dept_no char(4) references employeesSchema.departments(dept_no) on update cascade on delete restrict,
 	from_date date not null,
-	to_date date not null,
-	primary key (emp_no, dept_no)
+	to_date date not null
 );
 
 create index emp_no_dept_emp_index on employeesSchema.dept_emp(emp_no);
@@ -40,11 +40,11 @@ create index emp_no_dept_emp_index on employeesSchema.dept_emp(emp_no);
 create index dept_no_dept_emp_index on employeesSchema.dept_emp(dept_no);
 
 create table employeesSchema.dept_manager (
+	dept_manager_no INT primary key,
 	dept_no char(4) references employeesSchema.departments(dept_no) on update cascade on delete restrict,
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	from_date date not null,
-	to_date date not null,
-	primary key (emp_no, dept_no)
+	to_date date not null
 );
 
 create index emp_no_dept_manager_index on employeesSchema.dept_manager(emp_no);
@@ -52,25 +52,37 @@ create index emp_no_dept_manager_index on employeesSchema.dept_manager(emp_no);
 create index dept_no_dept_manager_index on employeesSchema.dept_manager(dept_no);
 
 create table employeesSchema.salaries (
+	salary_no INT primary key,
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	salary numeric(11,2) not null,
 	from_date date not null,
 	to_date date not null,
-	active boolean not null,
-	primary key (emp_no, from_date)
+	active boolean not null
 );
 
 create index emp_no_salaries_index on employeesSchema.salaries(emp_no);
 
 create table employeesSchema.titles (
+	title_no INT primary key,
 	emp_no INT references employeesSchema.employees(emp_no) on update cascade on delete restrict,
 	title employeesSchema.employee_title not null,
 	from_date date not null,
-	to_date date,
-	primary key (emp_no, title, from_date)
+	to_date date
 );
 
 create index emp_no_titles_index on employeesSchema.titles(emp_no);
 
 drop sequence if exists employeesSchema.emp_seq;
 create sequence if not exists employeesSchema.emp_seq start 1 increment 50 minvalue 1;
+
+drop sequence if exists employeesSchema.dept_emp_seq;
+create sequence if not exists employeesSchema.dept_emp_seq start 3 increment 70 minvalue 1;
+
+drop sequence if exists employeesSchema.dept_manager_seq;
+create sequence if not exists employeesSchema.dept_manager_seq start 5 increment 90 minvalue 1;
+
+drop sequence if exists employeesSchema.salary_seq;
+create sequence if not exists employeesSchema.salary_seq start 7 increment 110 minvalue 1;
+
+drop sequence if exists employeesSchema.title_seq;
+create sequence if not exists employeesSchema.title_seq start 9 increment 130 minvalue 1;

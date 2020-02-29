@@ -1,25 +1,27 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.spring.CompositeKeys.DeptManagerCompositeKey;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.joda.time.LocalDate;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "dept_manager")
+@SequenceGenerator(name="dept_manager_seq",
+        sequenceName="dept_manager_seq", schema="employeesschema")
+
 public class DepartmentManager implements Serializable{
 
-    @EmbeddedId
-    private DeptManagerCompositeKey deptManagerCompositeKey;
+    @Id
+    @Column(name = "dept_manager_no")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="dept_manager_seq")
+    private Integer deptManagerNo;
 
     @Column(name = "emp_no", insertable = false, updatable = false)
-    @NotBlank
+    @NotNull
     private int empNo;
 
     @Column(name = "dept_no", insertable = false, updatable = false)
@@ -52,24 +54,12 @@ public class DepartmentManager implements Serializable{
         return empNo;
     }
 
-    public void setEmpNo(int empNo) {
-        this.empNo = empNo;
-    }
-
     public String getDeptNo() {
         return deptNo;
     }
 
-    public void setDeptNo(String deptNo) {
-        this.deptNo = deptNo;
-    }
-
-    public DeptManagerCompositeKey getDeptManagerCompositeKey() {
-        return deptManagerCompositeKey;
-    }
-
-    public void setDeptManagerCompositeKey(DeptManagerCompositeKey deptManagerCompositeKey) {
-        this.deptManagerCompositeKey = deptManagerCompositeKey;
+    public Integer getDeptManagerNo() {
+        return deptManagerNo;
     }
 
     public Date getFromDate() {

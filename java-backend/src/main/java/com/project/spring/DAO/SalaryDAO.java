@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface SalaryDAO extends JpaRepository<Salary,Long> {
 
-    @Query("SELECT s FROM Salary s WHERE s.active = true AND s.empNo = ?1")
-    Salary findSalaryByEmpNo(Integer empNo);
+    Salary findByEmpNoAndActive(Integer empNo, Boolean active);
 
 }

@@ -1,26 +1,36 @@
 package com.project.spring.DomainObjects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.project.spring.CompositeKeys.SalariesCompositeKey;
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.joda.time.LocalDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
 @Entity
 @Table(schema = "employeesschema", name = "salaries")
+@SequenceGenerator(name="salary_seq",
+        sequenceName="salary_seq", schema="employeesschema")
+
 public class Salary implements Serializable {
 
-    @EmbeddedId
-    private SalariesCompositeKey salariesCompositeKey;
+    @Id
+    @Column(name = "salary_no")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "salary_seq")
+    private Integer salaryNo;
+
+    @Column(name = "emp_no")
+    @NotNull
+    private int empNo;
 
     @Column(name = "salary")
     @NotNull(message = "Please enter pay")
     private double pay;
+
+    @Column(name = "from_date")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
+    private Date fromDate;
 
     @Column(name = "to_date")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
@@ -30,8 +40,16 @@ public class Salary implements Serializable {
     @NotNull(message = "Please enter true or false for active")
     private Boolean active;
 
-    public Salary() {
-        salariesCompositeKey = new SalariesCompositeKey();
+    public Integer getSalaryNo() {
+        return salaryNo;
+    }
+
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
+    public int getEmpNo() {
+        return empNo;
     }
 
     public double getPay() {
@@ -42,31 +60,13 @@ public class Salary implements Serializable {
         this.pay = pay;
     }
 
-    public Integer getEmpNo() { return (salariesCompositeKey==null)? null : salariesCompositeKey.getEmployee().getEmpNo();}
-
     public Date getFromDate() {
-        return (salariesCompositeKey==null) ? null : salariesCompositeKey.getFromDate();
+        return fromDate;
     }
 
     public void setFromDate(Date fromDate) {
-        if (salariesCompositeKey != null) {
-            salariesCompositeKey.setFromDate(fromDate);
-        }
-    }
-
-    public Employee getEmployee() {
-        return (salariesCompositeKey==null) ? null : salariesCompositeKey.getEmployee();
-    }
-
-    public void setEmployee(Employee employee) {
-        if(salariesCompositeKey != null){
-            salariesCompositeKey.setEmployee(employee);
-        }
-    }
-
-    /*public void setFromDate(Date fromDate) {
         this.fromDate = fromDate;
-    }*/
+    }
 
     public Date getToDate() {
         return toDate;
