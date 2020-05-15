@@ -2,6 +2,7 @@ package com.project.spring.DomainObjects;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(schema = "employeesschema", name = "departments")
@@ -10,11 +11,10 @@ public class Department {
     @Column(name = "dept_no")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @NotBlank
     private String deptNo;
 
     @Column(name = "dept_name", unique = true)
-    @NotBlank
+    @NotNull
     private String deptName;
 
     public String getDeptNo() {

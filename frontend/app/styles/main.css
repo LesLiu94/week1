@@ -42,7 +42,7 @@ body {
   }
 
   input {
-    text-indent: 20px;
+    text-indent: 10px;
     border-radius: 4px;
   }
 
@@ -74,4 +74,8 @@ body {
   .ng-table-sort-header {
     color: white;
     background-color: rgb(45, 122, 185);
+  }
+
+  input[type="date"]{
+    text-indent: 0px;
   }

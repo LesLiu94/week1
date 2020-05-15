@@ -57,7 +57,7 @@ public class EmployeeListLookupService {
                 .getTitles()
                 .stream()
                     .filter(position -> position.getFromDate() != null && now.compareTo(position.getFromDate()) >= 0)  //filter for ones that have started already
-                    .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) < 0) //filter for ones that havent ended yet
+                    .filter(position -> position.getToDate() == null || now.compareTo(position.getToDate()) <= 0) //filter for ones that havent ended yet
                     .max(Comparator.nullsFirst(Comparator.comparing(Title::getFromDate))) //get the "max" from date
                     .map(Title::getTitle)
                     .orElse(EmployeeTitle.NONE));
@@ -67,18 +67,22 @@ public class EmployeeListLookupService {
                 .getSalaries()
                 .stream()
                     .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
-                    .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
+                    .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) <= 0)
                     .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
                     .map(wage -> wage.getPay())
                     .orElse(0.0));
 
+            //assuming no unpaid internships
+            if(employeeResult.getSalary() == 0 && employeeResult.getEmployeeTitle().equals(EmployeeTitle.NONE)){
+                continue;
+            }
             if (employeeResult.getEmployeeTitle() == EmployeeTitle.MANAGER) {
                 //a person can manage many departments
                 employeeResult.setDepartments( e
                         .getDepartmentManager()
                         .stream()
                         .filter(depManager -> depManager.getFromDate() != null && now.compareTo(depManager.getFromDate()) >= 0)
-                        .filter(depManager -> depManager.getToDate() == null || now.compareTo(depManager.getToDate()) < 0)
+                        .filter(depManager -> depManager.getToDate() == null || now.compareTo(depManager.getToDate()) <= 0)
                         .map(DepartmentManager::getDepartment) //get the department
                         .map(Department::getDeptName) //get the department name
                         .collect(Collectors.toList()));
@@ -89,12 +93,13 @@ public class EmployeeListLookupService {
                         .getDepartmentEmployee()
                         .stream()
                         .filter(depEmployee -> depEmployee.getFromDate() != null && now.compareTo(depEmployee.getFromDate()) >= 0)
-                        .filter(depEmployee -> depEmployee.getToDate() == null || now.compareTo(depEmployee.getToDate()) < 0)
+                        .filter(depEmployee -> depEmployee.getToDate() == null || now.compareTo(depEmployee.getToDate()) <= 0)
                         .map(DepartmentEmployee::getDepartment)
                         .map(Department::getDeptName)
                         .collect(Collectors.toList()));
             }
 
+            employeeResult.setEmpNo(e.getEmpNo());
             employeeListResult.add(employeeResult);
         }
 

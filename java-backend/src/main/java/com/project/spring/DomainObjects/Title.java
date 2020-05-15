@@ -57,6 +57,10 @@ public class Title implements Serializable{
         return empNo;
     }
 
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
     public EmployeeTitle getTitle() {
         return title;
     }

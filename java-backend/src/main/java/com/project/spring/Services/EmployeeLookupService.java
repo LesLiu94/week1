@@ -110,6 +110,14 @@ public class EmployeeLookupService {
                         .collect(Collectors.toList()));
             }
 
+            //check if
+            if(employeeResult.getSalary()==0){
+                employeeResult.setActive(false);
+            }
+            else{
+                employeeResult.setActive(true);
+            }
+
             employeeResult.setEmpNo(employee.getEmpNo());
             listEmployeeResult.add(employeeResult);
 

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DepartmentManagerDAO extends JpaRepository<DepartmentManager,Long> {
+    DepartmentManager findByEmpNo(Integer empNo);
 }

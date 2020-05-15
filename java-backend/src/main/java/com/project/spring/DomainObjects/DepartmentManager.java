@@ -25,27 +25,27 @@ public class DepartmentManager implements Serializable{
     private int empNo;
 
     @Column(name = "dept_no", insertable = false, updatable = false)
-    @NotBlank
+    @NotNull
     private String deptNo;
 
     @Column(name = "from_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date fromDate;
 
     @Column(name = "to_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date toDate;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "dept_no", insertable = false, updatable = false)
-    @NotBlank
+    @NotNull
     private Department department;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", insertable = false, updatable = false)
-    @NotBlank
+    @NotNull
     private Employee employee;
 
     //Getters and Setters
@@ -54,8 +54,16 @@ public class DepartmentManager implements Serializable{
         return empNo;
     }
 
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
+    }
+
     public String getDeptNo() {
         return deptNo;
+    }
+
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo;
     }
 
     public Integer getDeptManagerNo() {

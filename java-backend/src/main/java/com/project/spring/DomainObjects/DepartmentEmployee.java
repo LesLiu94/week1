@@ -21,32 +21,32 @@ public class DepartmentEmployee implements Serializable{
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="dept_emp_seq")
     private int deptEmpNo;
 
-    @Column(name = "emp_no",insertable=false, updatable=false)
+    @Column(name = "emp_no",insertable=true, updatable=true)
     @NotNull
     private int empNo;
 
-    @Column(name = "dept_no",insertable=false, updatable=false)
-    @NotBlank
+    @Column(name = "dept_no",insertable=true, updatable=true)
+    @NotNull
     private String deptNo;
 
     @Column(name = "from_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date fromDate;
 
     @Column(name = "to_date")
-    @NotBlank
+    @NotNull
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     private Date toDate;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "dept_no", insertable = false, updatable = false)
-    @NotBlank
+    @JoinColumn(name = "dept_no", insertable =false, updatable = false)
+    @NotNull
     private Department department;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "emp_no", insertable = false, updatable = false)
-    @NotBlank
+    @NotNull
     private Employee employee;
 
     //Getters and Setters
@@ -58,6 +58,10 @@ public class DepartmentEmployee implements Serializable{
 
     public int getEmpNo() {
         return empNo;
+    }
+
+    public void setEmpNo(int empNo) {
+        this.empNo = empNo;
     }
 
     public String getDeptNo() {

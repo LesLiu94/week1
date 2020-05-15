@@ -24,10 +24,12 @@ public class AddEmployeeEndpoint {
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @ResponseBody
-    public EmployeeResult addEmployee(@RequestBody final EmployeeResult addedEmployee){
+    public EmployeeResult addEmployee(@RequestBody EmployeeResult addedEmployee){
         logger.info("Handling request for an employee");
 
         final EmployeeResult addedResult = addEmployeeService.addEmployee(addedEmployee);
+
+        logger.info("Successfully added " + addedResult.getFirstName() + " " + addedResult.getLastName() + ".");
 
         return addedResult;
     }

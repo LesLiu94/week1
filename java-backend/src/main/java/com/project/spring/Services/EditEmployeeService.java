@@ -49,23 +49,34 @@ public class EditEmployeeService {
 
         Date now = new Date();
 
-        editedEmployee
-                .getSalaries()
-                .stream()
-                .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
-                .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) < 0)
-                .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
-                .get()
-                .setPay(inputEmployee.getSalary());
-
         employeeDAO.save(editedEmployee);
 
-        Salary salary = salaryDAO.findByEmpNoAndActive(editedEmployee.getEmpNo(), true);
+        //if salary was changed
+        if(editedEmployee.getSalaries().get(0).getPay() != inputEmployee.getSalary()){
+            //terminate the existing salary
+            Salary oldSalary = salaryDAO.findByEmpNoAndActive(editedEmployee.getEmpNo(), true);
+            oldSalary.setActive(false);
+            oldSalary.setToDate(now);
+            salaryDAO.save(oldSalary);
 
-        salary.setFromDate(inputEmployee.getFromDate());
-        salary.setToDate(inputEmployee.getToDate());
+            //create a new salary and add to database
+            Salary newSalary = new Salary();
+            newSalary.setToDate(inputEmployee.getToDate());
+            newSalary.setFromDate(inputEmployee.getFromDate());
+            newSalary.setActive(true);
+            newSalary.setPay(inputEmployee.getSalary());
+            newSalary.setEmpNo(inputEmployee.getEmpNo());
+            editedEmployee.getSalaries().add(newSalary);
+            salaryDAO.save(newSalary);
+        }
+        else{
+            Salary salary = salaryDAO.findByEmpNoAndActive(editedEmployee.getEmpNo(), true);
 
-        salaryDAO.save(salary);
+            salary.setFromDate(inputEmployee.getFromDate());
+            salary.setToDate(inputEmployee.getToDate());
+
+            salaryDAO.save(salary);
+        }
 
         return editedEmployee.getFirstName() + " " + inputEmployee.getLastName();
     }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.project.spring.Enums.EmployeeTitle;
 import com.project.spring.Enums.Sex;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class EmployeeResult {
     private Double salary;
     private Integer empNo;
 
+    //this boolean is the frontend's lookup html
+    private boolean isActive;
+
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
     private Date hireDate;
 
@@ -28,6 +32,7 @@ public class EmployeeResult {
     private Date fromDate;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM/dd/yyyy")
+    @NotNull
     private Date toDate;
 
     @Override
@@ -127,5 +132,13 @@ public class EmployeeResult {
 
     public void setToDate(Date toDate) {
         this.toDate = toDate;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

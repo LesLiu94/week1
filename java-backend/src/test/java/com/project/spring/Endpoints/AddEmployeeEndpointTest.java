@@ -38,7 +38,7 @@ public class AddEmployeeEndpointTest {
     AddEmployeeEndpoint addEmployeeEndpoint;
 
     @Captor
-    private ArgumentCaptor<AddEmployeeRequest> addEmployeeReqBodyArgCaptor;
+    private ArgumentCaptor<EmployeeResult> employeeResultBodyArgCaptor;
 
     @Before
     public void init(){
@@ -51,7 +51,7 @@ public class AddEmployeeEndpointTest {
     @Test
     public void testAddEmployee() throws Exception{
 
-        AddEmployeeRequest addEmployeeRequestStub = new AddEmployeeRequest();
+        EmployeeResult addEmployeeRequestStub = new EmployeeResult();
         String firstNameStub = "John";
         String lastNameStub = "Smith";
         EmployeeTitle employeeTitleStub = EMPLOYEE;
@@ -82,7 +82,7 @@ public class AddEmployeeEndpointTest {
 
         String jsonStub = gson.toJson(addEmployeeRequestStub);
 
-        Mockito.when(addEmployeeService.addEmployee(addEmployeeReqBodyArgCaptor.capture())).thenReturn(employeeResultStub);
+        Mockito.when(addEmployeeService.addEmployee(employeeResultBodyArgCaptor.capture())).thenReturn(employeeResultStub);
 
         mockMvc.perform(post("/api/AddEmployee/employee").accept(MediaType.APPLICATION_JSON_UTF8)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
@@ -90,7 +90,7 @@ public class AddEmployeeEndpointTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
-        AddEmployeeRequest actualEmployeeRequest = addEmployeeReqBodyArgCaptor.getValue();
+        EmployeeResult actualEmployeeRequest = employeeResultBodyArgCaptor.getValue();
         Assert.assertEquals(addEmployeeRequestStub.getSalary(), actualEmployeeRequest.getSalary());
         Mockito.verify(addEmployeeService).addEmployee(actualEmployeeRequest);
         Mockito.verifyNoMoreInteractions(addEmployeeService);

@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TitleDAO extends JpaRepository<Title, Long> {
+    Title findByEmpNo(Integer empNo);
 }
