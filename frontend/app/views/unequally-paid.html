@@ -1,0 +1,20 @@
+<h1 style="text-indent: 3em;">{{title}}:</h1>
+<div class="card-deck"> 
+    <div class="card">
+        <ul class="list-group">
+            <li class="list-group-item card border border-dark" ng-repeat = "unequal in unequalList">
+               <div class="card-header" style="text-align: center; font-size: 20px;">
+                    Name: {{unequal.firstName}} {{unequal.lastName}}
+               </div>
+               <br>
+               <div class="card-body" style="text-align: center; font-size: 16px;">
+                    Salary: {{unequal.salary | currency}}
+                    <br> Hire Date: {{unequal.hireDate}}
+                    <br> Birth Date: {{unequal.dob}}
+               </div>
+            </li>
+        </ul>
+    </div>
+    
+</div>
+

@@ -1,0 +1,74 @@
+<div class="card border-info mb-3">
+    <h1 class="card-header">{{title}}</h1>
+    <div class="card-body">
+        <p class="card-text" style="font-size: 24px;">Enter the details below to lookup an employee.</p>
+        <div>
+                <label style="width: 8%; font-size: 14px;">First Name:</label> <input ng-model="employeeLookupForm.fname" type="text" placeholder="John">
+                <br>
+                <label class="lastItem" style="width: 8%; font-size: 14px;">Last Name:</label> <input ng-model="employeeLookupForm.lname" type="text" placeholder="Doe">
+                <br>
+                <button type="button" class="lastItem btn btn-secondary btn-lg" ng-click="lookup(employeeLookupForm)">Lookup</button>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<div class="card border-info mb-3" ng-show="lookupResult">
+    <h1 class="card-header">Lookup Result:</h1>
+        <div class="card-body">
+            <table ng-table="employeeLookupTable" class="table table-hover table-bordered">
+                <tr style="text-align: center;" ng-repeat="employee in employeeLookupList" ng-click="editEmployee(employee)">
+                    <td data-title="'#'">{{((employeeLookupTable.page()-1) * employeeLookupTable.count()) + ($index + 1)}}</td>
+                    <td data-title="'Employee Number'">{{employee.empNo}}</td>
+                    <td data-title="'First Name'">{{employee.firstName}}</td>
+                    <td data-title="'Last Name'">{{employee.lastName}}</td>
+                    <td data-title="'Title'">{{employee.employeeTitle}}</td>
+                    <td data-title="'Salary'">{{employee.salary | currency}}</td>
+                    <td data-title="'Hire Date'">{{employee.hireDate}}</td>
+                    <td data-title="'From Date'">{{employee.fromDate}}</td>
+                    <td data-title="'To Date'">{{employee.toDate}}</td>
+                    <td data-title="'Active'">{{employee.active}}</td>
+                </tr>
+            </table>
+        </div>
+</div>
+<br>
+
+<div class="modal" id="editModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" style="margin: 0 auto;">Edit Employee Modal</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+            </div>
+            <div class="modal-body" style="margin: 0 auto;">
+                <p><input type="text" class="input-sm" ng-model="updateForm.fname"/></p>
+                <p><input type="text" class="input-sm" ng-model="updateForm.lname"/></p>
+                <p><input type="text" class="input-sm" ng-model="updateForm.salary"/></p>
+                <p><input type="text" class="input-sm" ng-model="updateForm.hdate"/></p>
+                <p><input type="text" class="input-sm" ng-model="updateForm.fdate"/></p>
+                <p><input type="text" class="input-sm" ng-model="updateForm.tdate"/></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="updateEmployee(updateForm)">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="toast" data-delay="1500" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+        <h3>Result Message</h3>
+        <button type="button" class="ml-2 mb-1 close" data-dismiss="toast">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
+    <div class="toast-body">
+        <p>{{msg}}</p>
+        <p>{{successEmployee}}</p>
+    </div>
+</div>

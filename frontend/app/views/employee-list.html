@@ -1,0 +1,16 @@
+<div>
+    <h1>{{title}}</h1>
+    <br>
+    <table ng-table="employeeTable"class="table table-hover table-bordered">
+        <tr ng-repeat="employee in $data">    
+            <td data-title="'#'">{{((employeeTable.page() - 1) * employeeTable.count()) + ($index + 1)}}</td>
+            <td data-title="'First Name'">{{employee.firstName}} </td>
+            <td data-title="'Last Name'">{{employee.lastName}}</td>
+            <td data-title="'Title'">{{employee.employeeTitle}}</td>
+            <td data-title="'Salary'">{{employee.salary | currency}}</td>
+           <td data-title="'Terminate'"><button class="btn btn-lg btn-danger" ng-click="fireEmployee(employee)"> Fire </button></td>
+        </tr> 
+    </table>
+    <br>
+</div>
+

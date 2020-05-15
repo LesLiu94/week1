@@ -1,0 +1,52 @@
+<div class="card border-info mb-3">
+    <h1 class="card-header">{{title}}</h1>
+    <div class="card-body">
+        <button class="btn btn-default btn-lg btn-outline-primary" data-toggle="modal" data-target="#addEmployeeModal">Open Modal To Add Employee</button>
+    
+        <div class="modal" id="addEmployeeModal" tabindex="-1" role="dialog" aria-labelledby="addEmployeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="addEmployeeModalLabel">Add Employee Modal</h3>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" style="text-align: center;">
+                        <br>
+                        <label style="width: 8%;">First Name: </label> <input ng-model="addEmployeeForm.fname" type="text" placeholder="John">
+                        <br>
+                        <label style="width: 8%;">Last Name: </label> <input ng-model="addEmployeeForm.lname" type="text" placeholder="Smith">
+                        <br>
+                        <label style="width: 8%;">Date of Birth: </label> <input ng-model="addEmployeeForm.dob" type="text" onfocus="(this.type='date')" onblur="(this.type='date')" placeholder="mm/dd/yyyy">
+                        <br>
+                        <label style="width: 8%;">Employee Title: </label> <select ng-model="addEmployeeForm.title" ng-options="t for t in titles" type="text"></select>
+                        <br>
+                        <label style="width:8%">Department: </label> <select ng-model="addEmployeeForm.departments" ng-options="d for d in theDepartments" type="text"></select>
+                        <br>
+                        <label style="width: 8%;">Salary: </label> <input ng-model="addEmployeeForm.salary" type="number" placeholder="0.00">
+                        <br>
+                        <label style="width: 8%;">Hire Date: </label> <input ng-model="addEmployeeForm.hdate" type="text" onfocus="(this.type='date')" onblur="(this.type='date')" placeholder="mm/dd/yyyy">
+                        <br>
+                        <label style="width: 8%;">Gender: </label> <input ng-model="addEmployeeForm.gender" type="text" placeholder="M">
+                        <br>
+                        <label style="width: 8%;">From Date: </label> <input ng-model="addEmployeeForm.fdate" type="text" onfocus="(this.type='date')" onblur="(this.type='date')" placeholder="mm/dd/yyyy">
+                        <br>
+                        <label style="width: 8%;">To Date: </label> <input ng-model="addEmployeeForm.tdate" type="text" onfocus="(this.type='date')" onblur="(this.type='date')" placeholder="mm/dd/yyyy">
+                        <br>
+                        <br>
+                        <a style="color: red;">Please fill out all fields of this form.</a>
+                        <br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-sedcondary btn-outline-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" ng-click="validateForm(addEmployeeForm)">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 col-sm-12 col-xs-12 alert alert-success" ng-show="successMessagebool">
+        <strong>{{successMessage}}</strong>
+    </div>
+</div>
