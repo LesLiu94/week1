@@ -1,10 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
 <databaseChangeLog
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
-   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-   http://www.liquibase.org/xml/ns/dbchangelog
-   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+        
+        <changeSet id="cleanSchema" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/schema/cleanSchema.sql"/>
+        </changeSet>
+
+        <changeSet id="makeSchema" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/schema/createSchema.sql"/>
+        </changeSet>
+
+        <changeSet id="makeTypes" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/types/sex.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/types/employee_title.sql"/>
+        </changeSet>
+
+        <changeSet id="makeTables" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/department.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/employees.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/dept_emp.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/dept_manager.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/salaries.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/titles.sql"/>
+        </changeSet>
+
+        <changeSet id="makeSequences" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/sequences/dept_emp_seq.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/sequences/dept_manager_seq.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/sequences/emp_seq.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/sequences/salary_seq.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/sequences/title_seq.sql"/>
+        </changeSet>
+
+        <changeSet id="createMockData" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateTables.sql"/>
+        </changeSet>
 
 </databaseChangeLog>
