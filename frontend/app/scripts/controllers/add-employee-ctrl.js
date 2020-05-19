@@ -69,40 +69,7 @@ angular.module('employeeProjectApp')
 
     $scope.formatDate = function(date) {
       var fixedDate;
-      //this is to fix the off by 1 day error
-      var day = Number(date.substring(8,10)) + 1;
-      var month = Number(date.substring(5,7));
-      var year = Number(date.substring(0,4));
-
-      if(day<10){
-        day = '0' + day;
-      }
-      else if(day > 30){
-        //checking to see if it is a month that allows for 31 days
-        if(month == 1 || month == 3 || month == 5 || month == 7 || month  == 8 || month == 10 || month == 12){
-          if(day > 31){
-            day = '0' + 1;
-            month = month + 1;
-            if(month > 12){
-              year = year + 1;
-              month = 1;
-            }
-          }
-        }
-        else{
-          month = month + 1;
-          if(month > 12){
-            year = year + 1;
-            month = 1;
-          }
-        }
-      }
-
-      if(month<10){
-        month = '0' + month;
-      }
-
-      fixedDate = month + '/' + day + '/' + year;
+      fixedDate = date.substring(5,7) + '/' + date.substring(8,10) + '/' + date.substring(0,4);
       return fixedDate;
     }
 
