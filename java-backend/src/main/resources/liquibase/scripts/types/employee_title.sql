@@ -1,0 +1,1 @@
+CREATE TYPE employeesSchema.employee_title AS ENUM ('EMPLOYEE','MANAGER', 'JANITOR', 'NONE');

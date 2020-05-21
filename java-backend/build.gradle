@@ -1,51 +1,65 @@
-buildscript {
-    ext {
-        springBootVersion = '2.1.4'
-    }
-    repositories {
-        mavenCentral()
-        jcenter()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.4.RELEASE")
-    }
-}
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+
+plugins {
+    id "java"
+    id "io.spring.dependency-management" version "1.0.9.RELEASE"
+    id "org.springframework.boot" version "2.3.0.RELEASE"
+    id "org.liquibase.gradle" version "2.0.2"
+}
 
 bootJar {
-    baseName = 'gs-spring-boot'
-    version = '0.1.0'
+    archiveBaseName = 'gs-spring-boot'
+    archiveVersion = '0.1.0'
+    mainClassName = 'com.project.spring.Application'
 }
 
-group 'com.project.spring'
-version '1.0-SNAPSHOT'
+group 'com.proj.solo'
+version '1.0.0'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.11
+targetCompatibility = 1.11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    compile("com.fasterxml.jackson.core:jackson-databind:2.9.7")
-    compile("io.springfox:springfox-swagger-ui:2.7.0")
-    compile("io.springfox:springfox-swagger2:2.7.0")
-    compile("org.apache.logging.log4j:log4j-api")
-    compile("org.apache.logging.log4j:log4j-core")
-    compile("org.springframework.boot:spring-boot-starter-data-jpa")
-    compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.postgresql:postgresql:9.4.1212")
-    compile("joda-time:joda-time:2.10.2")
-    compile("org.liquibase:liquibase-core:3.8.0")
-    compile("org.liquibase:liquibase-gradle-plugin:2.0.1")
-    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
-    compile group: 'com.google.code.gson', name:'gson', version:'2.8.5'
-    implementation("com.google.code.gson:gson:2.8.2")
-    testImplementation 'org.mockito:mockito-core:2.7.22'
-    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.2.2.RELEASE'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.9.7")
+    implementation("io.springfox:springfox-swagger-ui:2.7.0")
+    implementation("io.springfox:springfox-swagger2:2.7.0")
+    implementation("org.apache.logging.log4j:log4j-api")
+    implementation("org.apache.logging.log4j:log4j-core")
+    implementation "org.springframework.boot:spring-boot-starter"
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation("org.postgresql:postgresql:9.4.1212")
+    implementation("joda-time:joda-time:2.10.2")
+    implementation("org.apache.commons:commons-lang3:3.0")
+    implementation("com.google.code.gson:gson:2.8.5")
+    testImplementation("org.mockito:mockito-core:2.7.22")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE")
+    testImplementation("junit:junit:4.12")
+    liquibaseRuntime("org.liquibase:liquibase-core:3.8.1")
+    liquibaseRuntime("org.liquibase:liquibase-groovy-dsl:2.0.1")
+    liquibaseRuntime("org.liquibase.ext:liquibase-hibernate5:3.6")
+    liquibaseRuntime("ch.qos.logback:logback-core:1.2.3")
+    liquibaseRuntime("ch.qos.logback:logback-classic:1.2.3")
+    liquibaseRuntime("org.postgresql:postgresql:9.4.1212")
+    liquibaseRuntime(sourceSets.main.output)
 }
+
+def changeLog = "$projectDir/src/main/resources/liquibase/db-changelog-master.xml"
+
+liquibase {
+    activities {
+        main {
+            changeLogFile changeLog
+            url 'jdbc:postgresql://localhost:5432/postgres'
+            username 'postgres'
+            password 'postgres'
+        }
+    }
+}
+

@@ -1,0 +1,1 @@
+CREATE SEQUENCE IF NOT EXISTS employeesSchema.dept_manager_seq START 5 INCREMENT 90 MINVALUE 1;
