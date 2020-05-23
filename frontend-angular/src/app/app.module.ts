@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { FormsModule }   from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AddEmployeeModalComponent } from './components/add-employee-modal/add-employee-modal.component';
 import { AddEmployeeModalButton } from './components/add-employee-modal/add-employee-modal.component';
@@ -27,7 +28,8 @@ import { AddEmployeeModalButton } from './components/add-employee-modal/add-empl
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

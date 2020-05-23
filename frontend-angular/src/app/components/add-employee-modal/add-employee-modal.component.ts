@@ -3,8 +3,8 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { EmployeeTitle } from '../../enums/EmployeeTitle';
 import { Department } from '../../enums/Department';
 import { Gender } from '../../enums/Gender';
-
-
+import { AddEmployeeDTO } from '../../DTO/add-employee-dto';
+import { AddEmployeeService } from '../../services/add-employee-service/add-employee-service.service'
 
 @Component({
   selector: 'add-employee-modal-button',
@@ -36,33 +36,39 @@ export class AddEmployeeModalComponent implements OnInit {
   Departments: Object;
   Genders: Object;
 
-  firstName: string;
-  lastName: string;
-  dateOfBirth: Date;
-  employeeTitle: EmployeeTitle;
-  department: Department;
-  salary: number;
-  hireDate: Date;
-  gender: Gender;
-  fromDate: Date;
-  toDate: Date;
+  form: AddEmployeeDTO;
+
+  employees: AddEmployeeDTO[];
 
   constructor(
-		public dialogRef: MatDialogRef<AddEmployeeModalComponent>) {}
+    public dialogRef: MatDialogRef<AddEmployeeModalComponent>,
+    private addEmployeeService: AddEmployeeService) {}
 		
 	ngOnInit(): void {
     this.EmployeeTitles = Object.keys(EmployeeTitle);
     this.Departments = Object.keys(Department);
     this.Genders = Object.values(Gender);
+    this.form = new AddEmployeeDTO();
+    this.employees = [];
 	}
 
 	save(): void {
-    //save input
+
+    this.addEmployeeService.addEmployee(this.form)
+      .subscribe(employee=>this.employees.push(employee));
+
 		this.close();
 	}
   
   close(): void {
     this.dialogRef.close();
+  }
+
+  hasMissingFields(): boolean {
+    let emptyFields = Object.getOwnPropertyNames(this.form)
+      .filter(fieldName=>!this.form[fieldName]);
+
+    return emptyFields.length>0
   }
 
 }
