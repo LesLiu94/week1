@@ -22,7 +22,7 @@
   <mat-form-field>
     <mat-label>Title</mat-label>
     <select matNativeControl required [(ngModel)]="form.employeeTitle">
-      <option *ngFor="let title of EmployeeTitles;" value="employeeTitle">{{title}}</option>
+      <option *ngFor="let title of EmployeeTitles;" value="{{title}}">{{title}}</option>
     </select>
   </mat-form-field>
   <br/>
@@ -30,7 +30,7 @@
   <mat-form-field>
     <mat-label>Department</mat-label>
     <select matNativeControl required [(ngModel)]="form.department">
-      <option *ngFor="let department of Departments;" value="department">{{department}}</option>
+      <option *ngFor="let department of Departments;" value="{{department}}">{{department}}</option>
     </select>
   </mat-form-field>
   <br/>
@@ -50,7 +50,7 @@
   <mat-form-field>
     <mat-label>Gender</mat-label>
     <select matNativeControl required [(ngModel)]="form.gender">
-      <option *ngFor="let gender of Genders;" value="gender">{{gender}}</option>
+      <option *ngFor="let gender of Genders;" value="{{gender}}">{{gender}}</option>
     </select>
   </mat-form-field>
   <br/>

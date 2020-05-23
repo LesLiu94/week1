@@ -4,7 +4,7 @@ import { EmployeeTitle } from '../../enums/EmployeeTitle';
 import { Department } from '../../enums/Department';
 import { Gender } from '../../enums/Gender';
 import { AddEmployeeDTO } from '../../DTO/add-employee-dto';
-import { AddEmployeeService } from '../../services/add-employee-service/add-employee-service.service'
+import { AddEmployeeService } from '../../services/add-employee-service/add-employee-service.service';
 
 @Component({
   selector: 'add-employee-modal-button',
@@ -17,8 +17,8 @@ export class AddEmployeeModalButton {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddEmployeeModalComponent, {
-      width: '250px',
-      height: '500px'
+      width: '500px',
+      height: '750px'
     });
   }
 
@@ -57,7 +57,7 @@ export class AddEmployeeModalComponent implements OnInit {
     this.addEmployeeService.addEmployee(this.form)
       .subscribe(employee=>this.employees.push(employee));
 
-		this.close();
+		// this.close();
 	}
   
   close(): void {
