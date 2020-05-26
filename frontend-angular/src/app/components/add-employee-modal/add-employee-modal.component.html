@@ -1,0 +1,74 @@
+<h1 mat-dialog-title>Add Employee</h1>
+<div mat-dialog-content>
+
+  <mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input matInput [(ngModel)]="form.firstName" cdkFocusInitial class="form-control" type="text" name="firstName" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input matInput [(ngModel)]="form.lastName" class="form-control" name="lastName" type="text" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [(ngModel)]="form.dateOfBirth" class="form-control" type="date" name="dateOfBirth" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Title</mat-label>
+    <select matNativeControl required [(ngModel)]="form.employeeTitle">
+      <option *ngFor="let title of EmployeeTitles;" value="{{title}}">{{title}}</option>
+    </select>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Department</mat-label>
+    <select matNativeControl required [(ngModel)]="form.department">
+      <option *ngFor="let department of Departments;" value="{{department}}">{{department}}</option>
+    </select>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Salary</mat-label>
+    <input matInput [(ngModel)]="form.salary" class="form-control" type="number" name="salary" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Hire Date</mat-label>
+    <input matInput [(ngModel)]="form.hireDate" class="form-control" type="date" name="hireDate" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Gender</mat-label>
+    <select matNativeControl required [(ngModel)]="form.gender">
+      <option *ngFor="let gender of Genders;" value="{{gender}}">{{gender}}</option>
+    </select>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Employment Start Date</mat-label>
+    <input matInput [(ngModel)]="form.fromDate" class="form-control" type="date" name="fromDate" required/>
+  </mat-form-field>
+  <br/>
+
+  <mat-form-field>
+    <mat-label>Employment End Date</mat-label>
+    <input matInput [(ngModel)]="form.toDate" class="form-control" type="date" name="toDate" required/>
+  </mat-form-field>
+  <br/>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+  <button mat-button [disabled]="hasMissingFields()" (click)="save()">Save</button>
+</div>
