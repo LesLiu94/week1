@@ -9,7 +9,7 @@ import { AddEmployeeService } from '../../services/add-employee-service/add-empl
 @Component({
   selector: 'add-employee-modal-button',
   templateUrl: './add-employee-modal-button.component.html',
-  styleUrls: ['./add-employee-modal.component.sass'],
+  styleUrls: ['./add-employee-modal.component.scss'],
 })
 export class AddEmployeeModalButton {
 
@@ -28,7 +28,7 @@ export class AddEmployeeModalButton {
 @Component({
   selector: 'app-add-employee-modal',
   templateUrl: './add-employee-modal.component.html',
-  styleUrls: ['./add-employee-modal.component.sass']
+  styleUrls: ['./add-employee-modal.component.scss']
 })
 export class AddEmployeeModalComponent implements OnInit {
 
