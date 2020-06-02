@@ -8,17 +8,22 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog'; 
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AddEmployeeModalComponent } from './components/add-employee-modal/add-employee-modal.component';
 import { AddEmployeeModalButton } from './components/add-employee-modal/add-employee-modal.component';
+import { EmployeeTableComponent } from './components/employee-table/employee-table.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     AddEmployeeModalComponent,
-    AddEmployeeModalButton
+    AddEmployeeModalButton,
+    EmployeeTableComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +33,8 @@ import { AddEmployeeModalButton } from './components/add-employee-modal/add-empl
     MatButtonModule,
     MatDialogModule,
     MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
     FormsModule,
     HttpClientModule
   ],
