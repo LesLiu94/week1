@@ -1,3 +1,19 @@
+mat-form-field {
+    width: 60%;
+}
+
 table {
-    width: 100%;
+    width: 60%;
+}
+
+th, td {
+    overflow: hidden;
+    width: 14rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
 }

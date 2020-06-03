@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { EmployeeTableService } from 'src/app/services/employee-table/employee-table.service';
 import { EmployeeDTO } from 'src/app/DTO/employee-dto';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table'; 
 
 @Component({
@@ -17,28 +18,27 @@ export class EmployeeTableComponent implements OnInit {
 
   constructor(private employeeTableService: EmployeeTableService) {}
 
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   ngOnInit(): void {
     this.getEmployees();
-    this.dataSource.paginator = this.paginator;
   }
 
   getEmployees(){
     this.employeeTableService.getEmployees()
-      .subscribe(employees => this.employees = employees);
+      .subscribe(
+        employees => {
+          this.employees = employees;
+          this.dataSource = new MatTableDataSource<EmployeeDTO>(Object.values(employees));
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
-  //added tracking for the table for performance optimization.
-  //for example:
-  //when a new employee is added, only a new row will be created instead of destroying the whole table and recreating every entry
-  trackByEmpNo(index: number, employee:any): string {
-    return employee.empNo;
   }
 
 }

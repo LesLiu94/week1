@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule} from '@angular/material/sort';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,6 +36,7 @@ import { EmployeeTableComponent } from './components/employee-table/employee-tab
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
     FormsModule,
     HttpClientModule
   ],
