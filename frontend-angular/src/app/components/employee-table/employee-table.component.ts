@@ -28,6 +28,7 @@ export class EmployeeTableComponent implements OnInit {
       return data.firstName.toLowerCase().includes(filter) || data.lastName.toLowerCase().includes(filter)
       || data.employeeTitle.toLowerCase().includes(filter) || data.salary.toString().includes(filter);
     }
+    this.getEmployees();
   }
 
   getEmployees(){
