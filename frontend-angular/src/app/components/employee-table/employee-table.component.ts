@@ -37,6 +37,7 @@ export class EmployeeTableComponent implements OnInit {
         employees => {
           this.employees = employees;
           this.dataSource = new MatTableDataSource<EmployeeDTO>(Object.values(employees));
+          this.dataSource.filterPredicate = this.filterRowData;
           this.dataSource.paginator = this.paginator;
           this.dataSource.sort = this.sort;
         });
@@ -46,4 +47,8 @@ export class EmployeeTableComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  filterRowData(data: EmployeeDTO, filter: string) {
+    return data.firstName.toLowerCase().includes(filter) || data.lastName.toLowerCase().includes(filter)
+    || data.employeeTitle.toLowerCase().includes(filter) || data.salary.toString().includes(filter);
+  }
 }
