@@ -3,12 +3,14 @@ import { EmployeeTableService } from 'src/app/services/employee-table/employee-t
 import { EmployeeDTO } from 'src/app/DTO/employee-dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource, MatTable } from '@angular/material/table'; 
+import { MatTableDataSource, MatTable } from '@angular/material/table';
+import { EmployeeListFilterPipe } from '../../pipes/employee-list-filter.pipe';
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
-  styleUrls: ['./employee-table.component.scss']
+  styleUrls: ['./employee-table.component.scss'],
+  providers: [EmployeeListFilterPipe]
 })
 export class EmployeeTableComponent implements OnInit {
 
@@ -16,13 +18,16 @@ export class EmployeeTableComponent implements OnInit {
   employees: EmployeeDTO[];
   dataSource = new MatTableDataSource<EmployeeDTO>(this.employees);
 
-  constructor(private employeeTableService: EmployeeTableService) {}
+  constructor(private employeeTableService: EmployeeTableService, private pipe: EmployeeListFilterPipe) {}
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   ngOnInit(): void {
-    this.getEmployees();
+    this.dataSource.filterPredicate = function(data: EmployeeDTO, filter: string): boolean {
+      return data.firstName.toLowerCase().includes(filter) || data.lastName.toLowerCase().includes(filter)
+      || data.employeeTitle.toLowerCase().includes(filter) || data.salary.toString().includes(filter);
+    }
   }
 
   getEmployees(){
@@ -36,8 +41,7 @@ export class EmployeeTableComponent implements OnInit {
         });
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 

@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddEmployeeModalComponent } from './components/add-employee-modal/add-employee-modal.component';
 import { AddEmployeeModalButton } from './components/add-employee-modal/add-employee-modal.component';
 import { EmployeeTableComponent } from './components/employee-table/employee-table.component';
+import { EmployeeListFilterPipe } from './pipes/employee-list-filter.pipe';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { EmployeeTableComponent } from './components/employee-table/employee-tab
     AppComponent,
     AddEmployeeModalComponent,
     AddEmployeeModalButton,
-    EmployeeTableComponent
+    EmployeeTableComponent,
+    EmployeeListFilterPipe
   ],
   imports: [
     BrowserModule,
