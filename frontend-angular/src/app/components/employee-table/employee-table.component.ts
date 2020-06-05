@@ -4,13 +4,13 @@ import { EmployeeDTO } from 'src/app/DTO/employee-dto';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTable } from '@angular/material/table';
-import { EmployeeListFilterPipe } from '../../pipes/employee-list-filter.pipe';
+import { MatDialog} from '@angular/material/dialog';
+import { EmployeeDetailComponent } from '../employee-detail/employee-detail.component';
 
 @Component({
   selector: 'app-employee-table',
   templateUrl: './employee-table.component.html',
-  styleUrls: ['./employee-table.component.scss'],
-  providers: [EmployeeListFilterPipe]
+  styleUrls: ['./employee-table.component.scss']
 })
 export class EmployeeTableComponent implements OnInit {
 
@@ -18,16 +18,12 @@ export class EmployeeTableComponent implements OnInit {
   employees: EmployeeDTO[];
   dataSource = new MatTableDataSource<EmployeeDTO>(this.employees);
 
-  constructor(private employeeTableService: EmployeeTableService, private pipe: EmployeeListFilterPipe) {}
+  constructor(private employeeTableService: EmployeeTableService, public dialog: MatDialog) {}
 
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
   ngOnInit(): void {
-    this.dataSource.filterPredicate = function(data: EmployeeDTO, filter: string): boolean {
-      return data.firstName.toLowerCase().includes(filter) || data.lastName.toLowerCase().includes(filter)
-      || data.employeeTitle.toLowerCase().includes(filter) || data.salary.toString().includes(filter);
-    }
     this.getEmployees();
   }
 
@@ -50,5 +46,12 @@ export class EmployeeTableComponent implements OnInit {
   filterRowData(data: EmployeeDTO, filter: string) {
     return data.firstName.toLowerCase().includes(filter) || data.lastName.toLowerCase().includes(filter)
     || data.employeeTitle.toLowerCase().includes(filter) || data.salary.toString().includes(filter);
+  }
+
+  displayDetails(employee: EmployeeDTO){
+    const dialogRef = this.dialog.open(EmployeeDetailComponent, {
+        width: '350px',
+        data:employee
+    });
   }
 }

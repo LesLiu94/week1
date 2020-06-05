@@ -1,0 +1,19 @@
+<h1 mat-dialog-title> {{data.firstName}} {{data.lastName}}</h1>
+<div mat-dialog-content>
+    <mat-list>
+        <mat-list-item>Employee No: {{data.empNo}}</mat-list-item>
+        <br>
+        <mat-list-item>Title: {{data.employeeTitle}}</mat-list-item>
+        <br>
+        <mat-list-item>Gender: {{data.gender}}</mat-list-item>
+        <br>
+        <mat-list-item>Birth Date: {{data.dob}} </mat-list-item>
+        <br>
+        <mat-list-item>Hire Date: {{data.hireDate}}</mat-list-item>
+        <br>
+        <mat-list-item>Salary: {{data.salary | currency}}</mat-list-item>
+        <br>
+        <mat-list-item>Department(s): {{data.departments}}</mat-list-item>
+        <br>
+    </mat-list>
+</div>

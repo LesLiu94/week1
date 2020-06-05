@@ -99,6 +99,8 @@ public class EmployeeListLookupService {
                         .collect(Collectors.toList()));
             }
 
+            employeeResult.setGender(e.getSex());
+            employeeResult.setHireDate(e.getHireDate());
             employeeResult.setEmpNo(e.getEmpNo());
             employeeListResult.add(employeeResult);
         }
