@@ -11,6 +11,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
+import { MatListModule } from '@angular/material/list';
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -39,6 +40,7 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatListModule,
     FormsModule,
     HttpClientModule
   ],
