@@ -35,6 +35,8 @@ public class EmployeeResult {
     @NotNull
     private Date toDate;
 
+    private boolean isUnequallyPaid = false;
+
     @Override
     public String toString() {
         String departmentsString = String.join(", ", departments);
@@ -140,5 +142,13 @@ public class EmployeeResult {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public boolean isUnequallyPaid() {
+        return isUnequallyPaid;
+    }
+
+    public void setUnequallyPaid(boolean unequallyPaid) {
+        isUnequallyPaid = unequallyPaid;
     }
 }

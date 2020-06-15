@@ -7,11 +7,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'; 
 import { MatButtonModule } from '@angular/material/button';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle'; 
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule} from '@angular/material/sort';
 import { MatListModule } from '@angular/material/list';
+import {MatIconModule} from '@angular/material/icon'; 
 import { FormsModule }   from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -35,6 +37,8 @@ import { EmployeeDetailComponent } from './components/employee-detail/employee-d
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatButtonModule,
+    MatSlideToggleModule,
+    MatIconModule,
     MatDialogModule,
     MatInputModule,
     MatTableModule,

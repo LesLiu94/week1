@@ -15,5 +15,5 @@ export interface EmployeeDTO {
     gender: Gender;
     fromDate: Date;
     toDate: Date;
-
+    unequallyPaid: boolean;
 }

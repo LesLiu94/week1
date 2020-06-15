@@ -1,9 +1,11 @@
-<div >
+<div>
     <mat-form-field>
         <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Ex. John">
+        <input matInput (keyup)="applyFilter($event.target.value, false)" placeholder="Ex. John">
     </mat-form-field>
-    
+    <mat-slide-toggle (change)="toggleUnequallyPaidFilter($event)">Show Unequally Paid</mat-slide-toggle>
+    <add-employee-modal-button></add-employee-modal-button>
+
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         
         <!-- Index Column -->
