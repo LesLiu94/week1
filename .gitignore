@@ -9,7 +9,9 @@
 **/.gradle
 **/build
 **/.gradle/**
+.gradle/
 
 **/*.jar
 
 node_modules/
+

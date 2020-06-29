@@ -79,42 +79,13 @@ angular.module('employeeProjectApp')
       
     }
 
-    //this is to attempt to fix the 1 day off from the correct date as well as reformat from mm/dd/yyyy to yyyy-mm-dd
     $scope.formatDate = function(date) {
       var fixedDate;
       var day = Number(date.substring(3,5)) + 1;
-      var month = Number(date.substring(0,2));
-      var year = Number(date.substring(6));
-
       if(day<10){
-        day = '0' + day;
+        day = 0+day;
       }
-      else if(day > 30){
-        //checking to see if it is a month that allows for 31 days
-        if(month == 1 || month == 3 || month == 5 || month == 7 || month  == 8 || month == 10 || month == 12){
-          if(day > 31){
-            day = '0' + 1;
-            month = month + 1;
-            if(month > 12){
-              year = year + 1;
-              month = 1;
-            }
-          }
-        }
-        else{
-          month = month + 1;
-          if(month > 12){
-            year = year + 1;
-            month = 1;
-          }
-        }
-      }
-
-      if(month<10){
-        month = '0' + month;
-      }
-
-      fixedDate = year + '-' + month + '-' + day;
+      fixedDate = date.substring(6) + '-' + date.substring(0,2) + '-' + day;
       return fixedDate;
     }
 

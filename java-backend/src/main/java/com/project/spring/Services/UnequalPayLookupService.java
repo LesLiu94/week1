@@ -69,6 +69,8 @@ public class UnequalPayLookupService {
                 currentUnequalEmployee.setHireDate(hireDate);
                 currentUnequalEmployee.setSalary((salaryArrayList.get(i).getPay()));
 
+                currentUnequalEmployee.setEmpNo(employeeList.get(i).getEmpNo());
+
                 unequalResultList.add(currentUnequalEmployee);
             }
         }

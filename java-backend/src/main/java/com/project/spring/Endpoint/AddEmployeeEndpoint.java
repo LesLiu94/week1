@@ -19,7 +19,7 @@ public class AddEmployeeEndpoint {
     final static Logger logger = LogManager.getLogger(AddEmployeeEndpoint.class);
 
     @ApiOperation(value = "adds an employee to the database")
-    @CrossOrigin(origins = "http://localhost:9000")
+    @CrossOrigin(origins = {"http://localhost:9000", "http://localhost:4200"})
     @PostMapping(path = "/employee",
             consumes = MediaType.APPLICATION_JSON_UTF8_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

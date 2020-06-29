@@ -10,10 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,6 +28,8 @@ public class EmployeeListLookupService {
     private DepartmentManagerDAO departmentManagerDAO;
     @Autowired
     private DepartmentDAO departmentDAO;
+    @Autowired
+    private UnequalPayLookupService unequalPayLookupService;
 
     private final static Logger logger = LogManager.getLogger(EmployeeLookupService.class);
 
@@ -69,7 +68,7 @@ public class EmployeeListLookupService {
                     .filter(wage -> wage.getFromDate() != null && now.compareTo(wage.getFromDate()) >= 0)
                     .filter(wage -> wage.getToDate() == null || now.compareTo(wage.getToDate()) <= 0)
                     .max(Comparator.nullsFirst(Comparator.comparing(Salary::getFromDate)))
-                    .map(wage -> wage.getPay())
+                    .map(Salary::getPay)
                     .orElse(0.0));
 
             //assuming no unpaid internships
@@ -99,8 +98,23 @@ public class EmployeeListLookupService {
                         .collect(Collectors.toList()));
             }
 
+            employeeResult.setGender(e.getSex());
+            employeeResult.setHireDate(e.getHireDate());
             employeeResult.setEmpNo(e.getEmpNo());
             employeeListResult.add(employeeResult);
+        }
+
+        HashMap<Integer, EmployeeResult> employeeMapById = new HashMap<>();
+
+        for(EmployeeResult employeeResult: employeeListResult){
+            employeeMapById.put(employeeResult.getEmpNo(), employeeResult);
+        }
+
+        ArrayList<EmployeeResult> unequallyPaidEmployees = unequalPayLookupService.findUnequallyPaidEmployees();
+
+        for(EmployeeResult unequallyPaidEmployeeResult: unequallyPaidEmployees){
+            EmployeeResult employee = employeeMapById.get(unequallyPaidEmployeeResult.getEmpNo());
+            employee.setUnequallyPaid(true);
         }
 
         return employeeListResult;

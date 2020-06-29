@@ -1,0 +1,26 @@
+mat-form-field {
+    padding-left: 25px;
+    width: 30%;
+}
+mat-slide-toggle {
+    padding-left: 25px;
+}
+add-employee-modal-button {
+    padding-left: 25px;
+}
+table {
+    padding-left: 25px;
+    width: 60%;
+}
+
+th, td {
+    overflow: hidden;
+    width: 14rem;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+mat-paginator {
+    display: flex;
+    justify-content: center;
+}
