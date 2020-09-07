@@ -18,29 +18,31 @@ import javax.sql.DataSource;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+	/**
+	*
+	* To avoid using UserDetailsServiceAutoConfiguration.clas for user authentication,
+    * the following configurations need to be written for our app:
+	 *
+	* 1) AuthenticationManager.class
+	* 2) AuthenticationProvider.class
+	* 3) UserDetailsService.class (done)
+	*
+	* */
     @Autowired
     DataSource dataSource;
 
-    @Autowired
-    public void initialize(AuthenticationManagerBuilder builder, DataSource dataSource) throws Exception {
-        builder.jdbcAuthentication().dataSource(dataSource).withUser("dave")
-                .password("secret").roles("USER");
+    @Override
+    public void configure(AuthenticationManagerBuilder builder) throws Exception {
+        builder.jdbcAuthentication().dataSource(dataSource);
     }
-
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/", "/home").permitAll()
-                .anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .permitAll();
+	        .authorizeRequests()
+		        .anyRequest().authenticated()
+				.and()
+			.httpBasic();
     }
 
     @Bean

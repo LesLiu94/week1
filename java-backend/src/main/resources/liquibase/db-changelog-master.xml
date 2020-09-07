@@ -37,7 +37,19 @@
         </changeSet>
 
         <changeSet id="createMockData" author="KatGunz">
-                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateTables.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateDepartments.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateEmployees.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateDeptEmp.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateDeptManager.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateSalaries.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateTitles.sql"/>
+        </changeSet>
+
+        <changeSet id="createAuthentication" author="KatGunz">
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/users.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/tables/authorities.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateUsers.sql"/>
+                <sqlFile relativeToChangelogFile="true" path="scripts/mockData/populateAuthorities.sql"/>
         </changeSet>
 
 </databaseChangeLog>

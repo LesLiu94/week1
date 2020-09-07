@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping(value = "/api/PayLookup")
+@RequestMapping(value = "/PayLookup")
 public class UnequalPayEndpoint {
 
     @Autowired

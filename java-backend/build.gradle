@@ -16,7 +16,7 @@ bootJar {
 group 'com.proj.solo'
 version '1.0.0'
 
-sourceCompatibility = 1.11
+sourceCompatibility = 1.8
 targetCompatibility = 1.11
 
 repositories {
@@ -34,15 +34,16 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("org.springframework.boot:spring-boot-starter-jdbc")
+    implementation('org.springframework.boot:spring-boot-starter-security')
     implementation("org.postgresql:postgresql:9.4.1212")
     implementation("joda-time:joda-time:2.10.2")
     implementation("org.apache.commons:commons-lang3:3.0")
     implementation("com.google.code.gson:gson:2.8.5")
-    implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.security:spring-security-test'
+
     testImplementation("org.mockito:mockito-core:2.7.22")
     testImplementation("org.springframework.boot:spring-boot-starter-test:2.2.2.RELEASE")
     testImplementation("junit:junit:4.12")
+
     liquibaseRuntime("org.liquibase:liquibase-core:3.8.1")
     liquibaseRuntime("org.liquibase:liquibase-groovy-dsl:2.0.1")
     liquibaseRuntime("org.liquibase.ext:liquibase-hibernate5:3.6")
